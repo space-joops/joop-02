@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" role="img" aria-label="[제안] 메탈형 줍스 액센트">
+  <!--
+    ⚠️ 제안(proposal)입니다. 확정된 디자인이 아닙니다.
+       성격 유형 4종의 게임 반영 방식은 CLAUDE.md의 미확정 항목이고, roadmap.md M6에서 결론이 납니다.
+       여기 있는 것은 "이런 방향이 가능하다"는 시안이며, 채택 여부는 정해지지 않았습니다.
+
+    사용 방식: 이 파일은 액센트 레이어 **단독**입니다. jupsy-base.svg 위에 같은 좌표계(200x240)로
+    겹쳐 그립니다. 몸체를 복사하지 않은 이유는 원본이 4벌로 갈라지면 동기화가 깨지기 때문입니다.
+
+    메탈형 — 금속 부품 선호 / 씩씩함 / 갑옷형 외형
+  -->
+  <g id="type-metal-accent">
+    <!-- 어깨 장갑 -->
+    <path d="M62 152 C54 158 52 172 56 184 C64 180 70 168 70 156 Z"
+      fill="var(--color-debris-metal, #c9a05a)"/>
+    <path d="M138 152 C146 158 148 172 144 184 C136 180 130 168 130 156 Z"
+      fill="var(--color-debris-metal, #c9a05a)"/>
+    <!-- 이마 보호대 -->
+    <path d="M62 56 C74 44 126 44 138 56 L134 62 C122 52 78 52 66 62 Z"
+      fill="var(--color-debris-metal, #c9a05a)"/>
+    <circle cx="100" cy="50" r="4.5" fill="var(--color-debris-metal-hi, #e8c88f)"/>
+    <!-- 리벳 -->
+    <g fill="var(--color-debris-metal-shadow, #8e6d34)">
+      <circle cx="62" cy="176" r="2.6"/>
+      <circle cx="138" cy="176" r="2.6"/>
+    </g>
+  </g>
+</svg>
