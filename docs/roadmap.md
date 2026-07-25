@@ -6,9 +6,9 @@
 
 | 항목 | 값 |
 | --- | --- |
-| 진행 중인 마일스톤 | **M0 시작 전** |
-| 레포 상태 | 문서만 존재. 애플리케이션 코드 없음 |
-| 다음 작업 | M0 — Next.js 프로젝트 스캐폴딩 |
+| 진행 중인 마일스톤 | **M0 완료** (Vercel 배포만 미확인) |
+| 레포 상태 | 홈 화면 + 검증 파이프라인 동작. 게임 로직은 아직 없음 |
+| 다음 작업 | **M1 — 아케이드 모드 코어** |
 
 > 마일스톤을 완료하거나 착수할 때마다 이 표를 갱신합니다.
 
@@ -26,30 +26,32 @@ M0~M3은 **"플레이 가능한 하나의 세로 슬라이스"** 를 만드는 �
 
 ---
 
-## M0 — 프로젝트 기반
+## M0 — 프로젝트 기반 ✅
 
 **목표**: 코드를 쓸 수 있는 상태를 만든다. 이후 모든 마일스톤이 딛고 설 바닥.
 
 **범위**
 
-- Next.js 14 App Router + TypeScript 스캐폴딩 (npm)
+- ~~Next.js 14~~ **Next.js 16** App Router + React 19 + TypeScript 스캐폴딩 (npm) — 버전 변경 경위는 [`decisions.md`](./decisions.md) ADR-008
 - 모바일 세로 화면 고정 레이아웃 셸 (`app/layout.tsx`) — 뷰포트 설정, safe-area 대응, 가로 방향 안내
 - CSS Modules + 디자인 토큰(CSS 변수): 색상·간격·타이포·z-index를 `app/globals.css`의 `:root`에 정의
 - ESLint + Prettier 설정
 - Vitest 설정 (게임 로직 단위 테스트용, jsdom 환경)
-- GitHub Actions CI: `lint` → `test` → `build`
+- GitHub Actions CI: `format:check` → `lint` → `typecheck` → `test` → `build`
 - 홈 화면 (`app/page.tsx`): "청소하러 가기" / "프로필 보기" 진입점
 - `.gitignore`, `README.md`
 
 **완료 기준 (DoD)**
 
-- [ ] `npm run dev`로 홈 화면이 뜨고, 모바일 세로 뷰포트에서 레이아웃이 깨지지 않는다
-- [ ] `npm run lint`, `npm run test`, `npm run build`가 모두 로컬에서 통과한다
-- [ ] 위 세 명령이 GitHub Actions에서도 통과한다
-- [ ] 색상·간격 값이 컴포넌트에 하드코딩되지 않고 CSS 변수를 거친다
-- [ ] Vercel에 배포되어 실제 휴대폰에서 열린다
+- [x] `npm run dev`로 홈 화면이 뜨고, 모바일 세로 뷰포트에서 레이아웃이 깨지지 않는다 — iPhone 14 Pro(393×852) 및 좁은 가로(852×393) 렌더 확인
+- [x] `npm run lint`, `npm run test`, `npm run build`가 모두 로컬에서 통과한다
+- [x] 위 명령이 GitHub Actions에서도 통과한다
+- [x] 색상·간격 값이 컴포넌트에 하드코딩되지 않고 CSS 변수를 거친다
+- [ ] **Vercel에 배포되어 실제 휴대폰에서 열린다** — 레포 연결이 필요해 미완. M1 중 처리
 
 **선행 조건**: 없음
+
+**남은 것**: Vercel 배포 연결. 코드 작업이 아니라 대시보드에서 레포를 연결하는 일이라 M1과 병행할 수 있다.
 
 ---
 
