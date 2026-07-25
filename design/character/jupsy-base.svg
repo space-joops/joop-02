@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" role="img" aria-label="반려위성 줍스">
+  <!--
+    줍스 — 캐릭터 원본 (단일 진실 원본)
+
+    캔버스: 200 x 240
+    눈 슬롯: x=40 y=52 w=120 h=60  (expressions/*.svg 가 그대로 얹히는 자리)
+
+    파트별 transform-origin (M3 애니메이션용):
+      #jupsy-root        100px 120px   부유(bobbing), 피격 흔들림
+      #jupsy-head        100px 100px   갸웃거림
+      #jupsy-arm-left     36px 170px   팔 흔들기
+      #jupsy-arm-right   164px 170px
+      #jupsy-core        100px 176px   맥동
+      #jupsy-thruster    100px 224px   추진 깜빡임
+
+    파트를 개별 파일로 쪼개지 마세요. 이 파일이 몸체의 유일한 원본입니다.
+    표정만 expressions/ 에서 교체합니다. 자세한 규칙은 docs/design-guide.md.
+  -->
+  <defs>
+    <linearGradient id="jupsy-shell-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--color-shell-hi, #ffffff)"/>
+      <stop offset="55%" stop-color="var(--color-shell, #f7faff)"/>
+      <stop offset="100%" stop-color="var(--color-shell-shadow, #d3deee)"/>
+    </linearGradient>
+
+    <linearGradient id="jupsy-body-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--color-shell-hi, #ffffff)"/>
+      <stop offset="60%" stop-color="var(--color-shell, #f7faff)"/>
+      <stop offset="100%" stop-color="var(--color-shell-edge, #b2c1d8)"/>
+    </linearGradient>
+
+    <linearGradient id="jupsy-visor-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--color-visor-hi, #212c4a)"/>
+      <stop offset="70%" stop-color="var(--color-visor, #0b1120)"/>
+    </linearGradient>
+
+    <radialGradient id="jupsy-core-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-shell-hi, #ffffff)"/>
+      <stop offset="35%" stop-color="var(--color-core, #5fe3c0)"/>
+      <stop offset="100%" stop-color="var(--color-core-deep, #2fc7a4)"/>
+    </radialGradient>
+
+    <radialGradient id="jupsy-core-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-core, #5fe3c0)" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="var(--color-core, #5fe3c0)" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="jupsy-thruster-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-core, #5fe3c0)" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="var(--color-core, #5fe3c0)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <g id="jupsy-root">
+    <!-- 추진 발광 -->
+    <g id="jupsy-thruster">
+      <ellipse cx="100" cy="224" rx="40" ry="11" fill="url(#jupsy-thruster-grad)"/>
+    </g>
+
+    <!-- 등 가시 (고슴도치 요소) — 몸통 뒤에서 어깨선 위로 삐져나온다 -->
+    <g id="jupsy-quills" fill="var(--color-shell-deep, #8c9dba)" stroke-linejoin="round">
+      <path d="M71 142 L52 135 L67 154 Z"/>
+      <path d="M65 156 L46 154 L63 167 Z"/>
+      <path d="M129 142 L148 135 L133 154 Z"/>
+      <path d="M135 156 L154 154 L137 167 Z"/>
+    </g>
+
+    <!-- 몸통 -->
+    <g id="jupsy-body">
+      <path
+        d="M100 134 C124 134 140 152 140 174 C140 198 122 216 100 216 C78 216 60 198 60 174 C60 152 76 134 100 134 Z"
+        fill="url(#jupsy-body-grad)"/>
+      <!-- 셸 스페큘러 -->
+      <ellipse cx="82" cy="154" rx="13" ry="8" fill="var(--color-shell-hi, #ffffff)" opacity="0.8"
+        transform="rotate(-28 82 154)"/>
+
+      <!-- 가슴 코어 라이트 -->
+      <g id="jupsy-core">
+        <circle cx="100" cy="176" r="26" fill="url(#jupsy-core-halo)"/>
+        <circle cx="100" cy="176" r="13" fill="var(--color-visor, #0b1120)" opacity="0.35"/>
+        <circle cx="100" cy="176" r="11" fill="url(#jupsy-core-grad)"/>
+      </g>
+    </g>
+
+    <!-- 몸통에서 분리되어 떠 있는 팔 -->
+    <g id="jupsy-arm-left">
+      <ellipse cx="36" cy="180" rx="13" ry="20" fill="url(#jupsy-shell-grad)"
+        transform="rotate(-14 36 180)"/>
+      <ellipse cx="32" cy="170" rx="4.5" ry="6.5" fill="var(--color-shell-hi, #ffffff)" opacity="0.85"
+        transform="rotate(-14 32 170)"/>
+    </g>
+    <g id="jupsy-arm-right">
+      <ellipse cx="164" cy="180" rx="13" ry="20" fill="url(#jupsy-shell-grad)"
+        transform="rotate(14 164 180)"/>
+      <ellipse cx="160" cy="170" rx="4.5" ry="6.5" fill="var(--color-shell-hi, #ffffff)" opacity="0.85"
+        transform="rotate(14 160 170)"/>
+    </g>
+
+    <!-- 머리 (몸통과 분리되어 떠 있다) -->
+    <g id="jupsy-head">
+      <!-- 고양이 귀 형태의 짧은 센서 — 셸보다 먼저 그려 뿌리를 감춘다 -->
+      <g id="jupsy-ears" stroke-linejoin="round">
+        <path d="M53 66 L64 14 L94 42 Z" fill="var(--color-shell-edge, #b2c1d8)"/>
+        <path d="M147 66 L136 14 L106 42 Z" fill="var(--color-shell-edge, #b2c1d8)"/>
+        <path d="M63 58 L67 27 L83 45 Z" fill="var(--color-eye-deep, #2fc6ee)" opacity="0.45"/>
+        <path d="M137 58 L133 27 L117 45 Z" fill="var(--color-eye-deep, #2fc6ee)" opacity="0.45"/>
+      </g>
+
+      <!-- 수염 같은 와이어 -->
+      <g id="jupsy-whiskers" fill="none"
+        stroke="var(--color-shell-edge, #b2c1d8)" stroke-width="2.4" stroke-linecap="round">
+        <path d="M54 86 C42 80 32 79 23 82"/>
+        <path d="M55 97 C44 98 34 103 27 110"/>
+        <path d="M146 86 C158 80 168 79 177 82"/>
+        <path d="M145 97 C156 98 166 103 173 110"/>
+      </g>
+      <g fill="var(--color-eye-deep, #2fc6ee)">
+        <circle cx="21" cy="82" r="3"/>
+        <circle cx="25" cy="111" r="3"/>
+        <circle cx="179" cy="82" r="3"/>
+        <circle cx="175" cy="111" r="3"/>
+      </g>
+
+      <!-- 이음새 없는 매끈한 흰색 달걀형 셸 -->
+      <path
+        d="M100 34 C126 34 152 58 152 86 C152 110 128 126 100 126 C72 126 48 110 48 86 C48 58 74 34 100 34 Z"
+        fill="url(#jupsy-shell-grad)"/>
+      <ellipse cx="72" cy="54" rx="15" ry="9" fill="var(--color-shell-hi, #ffffff)" opacity="0.9"
+        transform="rotate(-32 72 54)"/>
+
+      <!-- 바이저 = 디스플레이. 눈은 이 위에 얹힌다 -->
+      <rect x="58" y="62" width="84" height="40" rx="20" fill="url(#jupsy-visor-grad)"/>
+      <rect x="66" y="67" width="52" height="8" rx="4" fill="var(--color-shell-hi, #ffffff)"
+        opacity="0.14"/>
+
+      <!--
+        눈 슬롯 (x=40 y=52 w=120 h=60).
+        아래 <g id="jupsy-eyes"> 안의 내용을 expressions/*.svg 의 내용으로 통째로 갈아끼웁니다.
+        몸통 구조는 건드리지 않습니다.
+        기본값은 eyes-normal.svg 와 동일합니다.
+      -->
+      <g id="jupsy-eyes" transform="translate(40 52)">
+        <g fill="var(--color-eye, #6fe3ff)">
+          <ellipse cx="42" cy="30" rx="9.5" ry="12"/>
+          <ellipse cx="78" cy="30" rx="9.5" ry="12"/>
+        </g>
+        <g fill="var(--color-eye-soft, #b6f4ff)" opacity="0.9">
+          <ellipse cx="39" cy="25" rx="3.4" ry="4.2"/>
+          <ellipse cx="75" cy="25" rx="3.4" ry="4.2"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
