@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import styles from './layout.module.css';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -7,20 +8,30 @@ export const metadata: Metadata = {
 };
 
 // 모바일 세로 화면 고정 게임이다. 사용자 확대를 막아 조이스틱 드래그가
-// 핀치 줌으로 오인되지 않게 하고, 노치 영역까지 배경을 채운다.
+// 핀치 줌으로 오인되지 않게 하고, viewportFit으로 노치 영역까지 배경을 채운다.
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
   viewportFit: 'cover',
-  themeColor: '#070b18',
+  themeColor: '#04060f',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        <div className={styles.shell}>
+          <div className={styles.safeArea}>{children}</div>
+          <div className={styles.rotateNotice}>
+            <span className={styles.rotateIcon} aria-hidden="true">
+              📱
+            </span>
+            <p>줍스는 세로 화면에서 만날 수 있어요.</p>
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
