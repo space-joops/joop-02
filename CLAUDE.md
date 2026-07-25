@@ -8,10 +8,11 @@
 
 > 이 섹션은 **실제 구현 상태**만 적습니다. 앞으로 만들 것은 여기가 아니라 [`docs/roadmap.md`](./docs/roadmap.md)에 있습니다.
 
-- **애플리케이션 코드 없음.** 레포에는 문서(`CLAUDE.md`, `docs/`)만 존재합니다.
+- **애플리케이션 코드 없음.** 레포에는 문서(`CLAUDE.md`, `docs/`)와 디자인 에셋(`design/`)만 존재합니다.
 - `package.json`, `app/`, `components/`, `lib/` 모두 아직 만들어지지 않았습니다. **존재한다고 가정하고 읽으려 하지 마세요.**
+- `design/` 에 디자인 토큰(`tokens/tokens.css`), 줍스 캐릭터 SVG와 표정 8종, 아케이드 오브젝트, UI 아이콘·배지 틀이 있습니다. **어떤 코드에도 연결되어 있지 않은 원본 파일들입니다.** `design/preview.html` 을 브라우저로 열면 전부 볼 수 있고, 사용 규칙은 [`docs/design-guide.md`](./docs/design-guide.md)에 있습니다.
 - 진행 중인 마일스톤: **M0(프로젝트 기반) 착수 전**
-- 다음 작업: Next.js 14 스캐폴딩 — 상세는 [`docs/roadmap.md`](./docs/roadmap.md)의 M0 참고
+- 다음 작업: Next.js 14 스캐폴딩 — 상세는 [`docs/roadmap.md`](./docs/roadmap.md)의 M0 참고. 토큰은 새로 정하지 말고 `design/tokens/tokens.css` 를 `app/globals.css` 로 이식하세요.
 
 ## 문서 맵
 
@@ -21,6 +22,7 @@
 | [`docs/README.md`](./docs/README.md) | 문서 인덱스. 어떤 문서를 언제 갱신하는가 |
 | [`docs/roadmap.md`](./docs/roadmap.md) | M0~M7 마일스톤. 범위·완료 기준·미결정 질문 목록 |
 | [`docs/decisions.md`](./docs/decisions.md) | 기술 결정의 근거와 트레이드오프 (ADR) |
+| [`docs/design-guide.md`](./docs/design-guide.md) | `design/` 에셋 사용 가이드. 토큰 이식, 표정 교체, 애니메이션·성능·접근성 규칙 |
 | [`docs/worklog.md`](./docs/worklog.md) | 작업 로그. 한 일·검증·배운 점·측정 수치 |
 | [`docs/growth-roadmap.md`](./docs/growth-roadmap.md) | 마일스톤 연계 프론트엔드 학습 커리큘럼 |
 
@@ -89,6 +91,7 @@
 | 패키지 매니저 | **npm** | — |
 | 품질 도구 | **ESLint + Prettier + Vitest + GitHub Actions CI** (`lint → test → build`) | ADR-006 |
 | 보상 설계 | **재화·상점 배제.** 누적 실적·배지만 | ADR-007 |
+| 디자인 에셋 | **코드보다 먼저, 레포 안 `design/` 에 SVG·CSS 원본으로.** 빌드 없음 | ADR-008 |
 
 ### 코드 규칙
 
@@ -114,7 +117,7 @@
 - 프로젝트 스캐폴딩 자체 (M0)
 - 아케이드 모드 (M1)
 - 누적 실적 저장과 프로필 대시보드 (M2)
-- 캐릭터 SVG 고퀄리티 버전 — 분리된 부유형 팔, 바이저 발광 눈 표정 세트 (M3)
+- 캐릭터 컴포넌트 `components/Jupsy.tsx` 와 애니메이션 (M3) — **SVG 원본과 표정 8종은 `design/character/` 에 이미 있습니다.** 없는 것은 이를 컴포넌트로 옮기고 CSS 애니메이션을 붙이는 작업입니다
 - 입양~발사 온보딩 플로우 (M4)
 - 통신 가능 시간 스케줄링과 알림 (M5)
 - 성격 유형 분화 (M6)
