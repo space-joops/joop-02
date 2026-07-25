@@ -4,7 +4,7 @@
 
 - **눈으로 보기** → `preview.html` 을 브라우저로 그냥 여세요 (의존성 없음)
 - **사용 규칙** → [`../docs/design-guide.md`](../docs/design-guide.md)
-- **왜 이렇게 관리하는가** → [`../docs/decisions.md`](../docs/decisions.md) ADR-008
+- **왜 이렇게 관리하는가** → [`../docs/decisions.md`](../docs/decisions.md) ADR-009
 
 ## 빠른 지도
 
@@ -23,3 +23,4 @@
 2. **색은 `var(--토큰, #폴백)` 로 씁니다.** 폴백이 없으면 `preview.html` 에서 안 보입니다
 3. **SVG 주석에 `--` 를 쓰면 XML이 깨집니다.** 토큰 이름은 접두사를 빼고 적으세요
 4. `tokens.css` 를 고치면 `tokens/palette.svg` 도 같이 고쳐야 합니다 (자동 생성 아님)
+5. ⚠️ **앱(`app/globals.css`)에 다른 이름 체계의 토큰이 따로 있습니다.** 합치는 방향은 미결정 — [`../docs/roadmap.md`](../docs/roadmap.md) Q10

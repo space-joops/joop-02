@@ -1,0 +1,44 @@
+{
+  "name": "jupsy",
+  "version": "0.1.0",
+  "private": true,
+  "description": "줍스(Jupsy) — 반려위성 우주청소 게임",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "next": "16.2.11",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "comments": {
+    "overrides": "Next 16이 번들한 postcss/sharp에 미패치 권고가 있어 패치 버전으로 올린다. next 자체에는 직접 권고가 없다. 자세한 내용은 docs/decisions.md ADR-008 참고."
+  },
+  "overrides": {
+    "postcss": "^8.5.23",
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.0.4",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.11",
+    "eslint-config-prettier": "^10.1.8",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.9.6",
+    "typescript": "^5",
+    "vitest": "^4.1.10"
+  }
+}

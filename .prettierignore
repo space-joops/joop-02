@@ -1,0 +1,12 @@
+.next
+out
+build
+coverage
+node_modules
+package-lock.json
+next-env.d.ts
+
+# 한글 문서는 Prettier 포맷 대상에서 제외한다.
+# Prettier는 표를 정렬할 때 문자 수를 코드포인트로 세는데, 한글은 전각이라
+# 실제 표시 폭과 어긋나 오히려 표가 깨져 보인다. 문서는 사람이 직접 정렬한다.
+*.md

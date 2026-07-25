@@ -1,0 +1,114 @@
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--space-6) var(--space-5) var(--space-7);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* 줍스 캐릭터가 들어갈 자리. M3에서 SVG로 채운다. */
+.stage {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8.5rem;
+  height: 8.5rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-full);
+  color: var(--color-text-faint);
+  font-size: var(--font-size-xs);
+  background: var(--color-surface);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  /* 터치 타겟은 최소 44px를 확보한다. */
+  min-height: 3.5rem;
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.action:not(:disabled) {
+  cursor: pointer;
+}
+
+.action:not(:disabled):hover,
+.action:focus-visible {
+  background: var(--color-surface-strong);
+}
+
+/* M1·M2에서 경로가 생기기 전까지의 상태.
+ * 비활성이어도 무엇을 하는 자리인지 읽히도록 완전히 흐리지는 않는다. */
+.action:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.action:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.actionPrimary {
+  border-color: var(--color-accent-deep);
+  background: linear-gradient(135deg, var(--color-accent-deep), var(--color-space-600));
+}
+
+.actionPrimary:not(:disabled):hover,
+.actionPrimary:focus-visible {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-space-500));
+}
+
+.actionLabel {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.actionHint {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.actionPrimary .actionHint {
+  color: rgb(255 255 255 / 75%);
+}

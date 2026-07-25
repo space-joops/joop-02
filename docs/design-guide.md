@@ -1,9 +1,10 @@
 # 디자인 에셋 사용 가이드
 
-`design/` 아래 에셋을 **어떻게 가져다 쓰는가**를 정리합니다. 왜 이렇게 정했는지는 [`decisions.md`](./decisions.md)의 ADR-002·ADR-003·ADR-008에 있습니다.
+`design/` 아래 에셋을 **어떻게 가져다 쓰는가**를 정리합니다. 왜 이렇게 정했는지는 [`decisions.md`](./decisions.md)의 ADR-002·ADR-003·ADR-009에 있습니다.
 
-> **지금 이 에셋들은 어떤 코드에도 연결되어 있지 않습니다.** 레포에 애플리케이션 코드가 없기 때문입니다([`../CLAUDE.md`](../CLAUDE.md)의 `현재 상태` 참고).
-> 아래 "이식 절차"는 **앞으로 M0에서 할 일**이지, 이미 되어 있는 상태를 설명하는 것이 아닙니다.
+> **지금 이 에셋들은 어떤 코드에도 연결되어 있지 않습니다.** M0가 이 작업과 병렬로 진행되어, 앱은 `app/globals.css` 에 **별도의 토큰 한 벌**을 따로 만든 상태입니다([`../CLAUDE.md`](../CLAUDE.md)의 `현재 상태` 참고).
+>
+> 그래서 아래 2절의 "이식 절차"는 **아직 아무도 수행하지 않은, 앞으로 할 일**입니다. 어느 쪽 이름 체계로 합칠지가 먼저 정해져야 합니다 — [`roadmap.md`](./roadmap.md) Q10, 경위는 [`decisions.md`](./decisions.md) ADR-009.
 
 **눈으로 먼저 보세요.** `design/preview.html` 을 브라우저로 열면 모든 에셋이 한 페이지에 나옵니다. 빌드도 의존성도 없습니다.
 
@@ -64,16 +65,32 @@ design/
 
 색·간격 리터럴을 컴포넌트에 직접 쓰지 않는 것은 ADR-003이 정한 규칙이고, M0의 완료 기준이기도 합니다.
 
-### M0에서의 이식 절차
+### ⚠️ 토큰이 두 벌입니다 (Q10 미해결)
 
-M0 범위는 토큰을 `app/globals.css` 의 `:root` 에 두라고 정하고 있습니다. `tokens.css` 는 그 형태에 맞춰 `:root { }` 블록 하나로 작성되어 있습니다.
+M0가 이 작업과 병렬로 진행되면서 `app/globals.css` 에 **다른 이름 체계의 토큰**이 이미 들어갔고, 그대로 배포되었습니다.
 
-1. `design/tokens/tokens.css` 의 내용을 `app/globals.css` 상단에 붙여넣는다
-2. 아래 `@media (prefers-reduced-motion: reduce)` 블록도 같이 가져간다 (M3 완료 기준과 연결)
-3. `app/layout.tsx` 에서 `globals.css` 를 import 한다
-4. **`design/tokens/tokens.css` 는 지우지 않습니다.** `preview.html` 이 이 파일을 참조합니다
+| | `app/globals.css` (M0) | `design/tokens/tokens.css` |
+| --- | --- | --- |
+| 배경 | `--color-space-900` | `--color-bg-deep` |
+| 줍스 눈 | `--color-jupsy-eye` | `--color-eye` |
+| 쓰레기 | `--color-debris-safe` 1종 | 4종으로 분화 |
+| 간격 | `--space-4` | `--sp-4` |
 
-> 두 곳에 같은 값이 생깁니다. 이건 알고 감수하는 중복입니다 — 이유와 대안은 ADR-008에 적어뒀습니다. 토큰을 고칠 때는 **두 파일 다** 고치세요.
+**`design/` 의 SVG는 후자를 참조합니다.** 지금 상태로 SVG를 인라인하면 이름이 없어 전부 폴백 hex로 떨어지고, 토큰 레이어가 죽습니다.
+
+어느 쪽으로 합칠지는 [`roadmap.md`](./roadmap.md) Q10에서 결론이 나야 하고, **M1 착수 전에 정해야 합니다.** 그 전까지 아래 절차는 실행하지 마세요.
+
+### 합치기로 결론이 난 뒤의 이식 절차
+
+`tokens.css` 는 `:root { }` 블록 하나로 작성되어 있어 그대로 옮길 수 있습니다.
+
+1. Q10의 결론에 따라 이름 체계를 하나로 맞춘다 — 한쪽 이름으로 통일하되, 상대편에만 있던 토큰(쓰레기 4종 구분, 배지 티어, 눈 발광 단계 등)은 빠뜨리지 말고 가져온다
+2. 합친 결과를 `app/globals.css` 의 `:root` 에 둔다
+3. `@media (prefers-reduced-motion: reduce)` 블록도 같이 가져간다 (M3 완료 기준과 연결)
+4. 이름이 바뀐 쪽을 실제 참조처에 반영한다 — `design/**/*.svg` 의 `var()` 이름 또는 `app/*.module.css` 의 참조
+5. **`design/tokens/tokens.css` 는 지우지 않습니다.** `preview.html` 이 이 파일을 참조합니다
+
+> 이식 후에도 두 곳에 같은 값이 남습니다. 이건 알고 감수하는 중복입니다 — 이유와 대안은 ADR-009에 적어뒀습니다. 토큰을 고칠 때는 **두 파일 다** 고치세요.
 
 ### 런타임에 값 바꾸기
 
@@ -240,7 +257,7 @@ M1에서 화면 밖으로 나간 오브젝트는 언마운트하세요. 실측�
 
 | 마일스톤 | 쓰는 에셋 |
 | --- | --- |
-| **M0** 기반 | `tokens/tokens.css` → `app/globals.css`, `ui/favicon.svg`, `ui/logo-jupsy.svg` |
+| **M0** 기반 ✅ | 완료됐지만 **토큰은 이식되지 않았습니다**(Q10). `ui/favicon.svg`, `ui/logo-jupsy.svg` 도 아직 붙지 않았습니다 |
 | **M1** 아케이드 | `arcade/debris/*`, `arcade/hazard/*`, `arcade/background/*`, `arcade/fx/*`, `ui/icons/icon-joystick·timer·weight` |
 | **M2** 누적 실적 | `ui/orbit-sector.svg`, `ui/badge/*`, `ui/icons/icon-badge·orbit·profile` |
 | **M3** 캐릭터 | `character/jupsy-base.svg`, `character/expressions/*` |

@@ -3,8 +3,10 @@
    --------------------------------------------------------------------------
    ADR-003(CSS Modules + CSS 변수)에 따른 단일 토큰 정의.
 
-   M0에서 이 파일의 내용을 `app/globals.css`의 `:root`로 이식합니다.
-   이식 절차와 사용 규칙은 `docs/design-guide.md` 2절 참고.
+   ⚠️ 이 파일은 아직 앱에 이식되지 않았습니다. M0가 병렬로 진행되면서
+   `app/globals.css`에 이름 체계가 다른 토큰이 따로 들어갔습니다.
+   어느 쪽으로 합칠지는 미결정 — docs/roadmap.md Q10, 경위는 ADR-009.
+   합친 뒤의 이식 절차는 `docs/design-guide.md` 2절 참고.
 
    구조는 2계층입니다.
      1) 원시 토큰 (--c-*, 색 이름 그대로)  ... 팔레트. 직접 쓰지 마세요.
@@ -184,8 +186,8 @@
      5. 타이포
      ---------------------------------------------------------------------- */
   --font-ui:
-    'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
-    'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+    'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', Roboto,
+    'Noto Sans KR', sans-serif;
 
   --fs-100: 12px; /* 캡션, 단위 */
   --fs-200: 14px; /* 보조 텍스트 */

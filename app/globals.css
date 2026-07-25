@@ -1,0 +1,147 @@
+/*
+ * 디자인 토큰
+ *
+ * 컴포넌트에서 색상·간격·타이포 리터럴을 직접 쓰지 않는다 (ADR-003).
+ * 반드시 여기 정의한 변수를 거친다. 줍스의 기분에 따라 화면 색조를 바꾸는
+ * 연출을 런타임에 변수 재정의만으로 처리하기 위한 기반이기도 하다.
+ */
+
+:root {
+  /* ── 색: 우주 배경 (어두운 쪽부터) ── */
+  --color-space-900: #04060f;
+  --color-space-800: #070b18;
+  --color-space-700: #0d1428;
+  --color-space-600: #16203c;
+  --color-space-500: #243154;
+
+  /* ── 색: 텍스트 ── */
+  --color-text: #f2f5ff;
+  --color-text-muted: #9aa6c9;
+  --color-text-faint: #5f6b8c;
+
+  /* ── 색: 줍스 ── */
+  --color-jupsy-shell: #f4f7ff;
+  --color-jupsy-shell-shade: #c9d3ec;
+  --color-jupsy-visor: #101728;
+  --color-jupsy-eye: #6ff2e4;
+  --color-jupsy-core: #7cc4ff;
+
+  /* ── 색: 게임 오브젝트 ──
+   * 먹을 것은 따뜻한 색, 위험한 것은 경고색. 형태(둥긂/뾰족함)와 함께
+   * 이중으로 구분해 색각 이상 사용자도 판별할 수 있게 한다. */
+  --color-debris-safe: #ffc978;
+  --color-debris-safe-deep: #ff9d4d;
+  --color-debris-hazard: #ff5d73;
+  --color-debris-hazard-deep: #d92d4a;
+
+  /* ── 색: 강조 / 상태 ── */
+  --color-accent: #6ff2e4;
+  --color-accent-deep: #2bb6a8;
+  --color-success: #7ce8a4;
+  --color-warning: #ffc978;
+
+  /* ── 색: 표면 ── */
+  --color-surface: rgb(255 255 255 / 6%);
+  --color-surface-strong: rgb(255 255 255 / 11%);
+  --color-border: rgb(255 255 255 / 14%);
+
+  /* ── 간격 (4px 스케일) ── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* ── 타이포 ── */
+  --font-family:
+    system-ui, -apple-system, 'Apple SD Gothic Neo', 'Segoe UI', 'Noto Sans KR', sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.75rem;
+  --line-height-tight: 1.25;
+  --line-height-base: 1.6;
+
+  /* ── 모서리 ── */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-full: 999px;
+
+  /* ── 레이어 ──
+   * 임의의 z-index 숫자가 코드에 흩어지지 않게 여기서만 정의한다. */
+  --z-base: 0;
+  --z-hud: 10;
+  --z-joystick: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+
+  /* ── 모션 ── */
+  --duration-fast: 120ms;
+  --duration-base: 240ms;
+  --duration-slow: 520ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ── 레이아웃 ──
+   * 모바일 세로 고정 게임이지만 데스크톱에서도 열리므로, 세로형 비율을
+   * 유지한 채 가운데 정렬한다. */
+  --shell-max-width: 30rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  /* 게임 화면이 세로로 스크롤되면 조이스틱 드래그와 충돌한다. */
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: var(--color-space-900);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  -webkit-font-smoothing: antialiased;
+  /* 길게 눌렀을 때 뜨는 텍스트 선택·콜아웃이 게임 조작을 방해한다. */
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 전정기관 장애가 있는 사용자에게 부유·맥동 애니메이션은 불편을 준다.
+ * 개별 컴포넌트에서 잊더라도 전역에서 한 번 걸러낸다. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
