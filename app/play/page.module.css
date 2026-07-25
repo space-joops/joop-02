@@ -1,0 +1,184 @@
+.screen {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* ── HUD ── */
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5) var(--space-2);
+}
+
+.hudBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.hudRight {
+  align-items: flex-end;
+}
+
+.hudLabel {
+  color: var(--color-text-faint);
+  font-size: var(--font-size-xs);
+}
+
+.hudValue {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: var(--line-height-tight);
+}
+
+/* ── 필드 ── */
+
+.stage {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.field {
+  width: 100%;
+  height: 100%;
+  /* 드래그가 브라우저 기본 동작(스크롤·이미지 드래그)에 가로채이지 않게 한다. */
+  touch-action: none;
+}
+
+.safe {
+  fill: var(--color-debris-safe);
+  stroke: var(--color-debris-safe-deep);
+  /* scale이 걸린 그룹 안이라 stroke도 함께 확대된다.
+   * non-scaling-stroke로 파편 크기와 무관하게 선 두께를 일정하게 유지한다. */
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  will-change: transform;
+}
+
+.hazard {
+  fill: var(--color-debris-hazard);
+  stroke: var(--color-debris-hazard-deep);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  will-change: transform;
+}
+
+/* ── 조작 ── */
+
+.controls {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4) var(--space-5) var(--space-6);
+}
+
+/* ── 결과 요약 ── */
+
+.summary {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+  background: rgb(4 6 15 / 82%);
+  animation: fade var(--duration-slow) var(--ease-out);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.summaryCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-items: center;
+  width: 100%;
+  padding: var(--space-6) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  background: var(--color-space-700);
+}
+
+.summarySignal {
+  margin: 0;
+  color: var(--color-text-faint);
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.04em;
+}
+
+.summaryTitle {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+}
+
+.summaryCaption {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.summaryStats {
+  display: flex;
+  gap: var(--space-6);
+  justify-content: center;
+  width: 100%;
+  margin: 0 0 var(--space-3);
+}
+
+.summaryStats div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.summaryStats dt {
+  color: var(--color-text-faint);
+  font-size: var(--font-size-xs);
+}
+
+.summaryStats dd {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.summaryNotice {
+  margin: 0 0 var(--space-4);
+  color: var(--color-text-faint);
+  font-size: var(--font-size-xs);
+}
+
+.summaryButton {
+  width: 100%;
+  min-height: 3rem;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  line-height: 1.5rem;
+  background: linear-gradient(135deg, var(--color-accent-deep), var(--color-space-500));
+}
+
+.summaryButton:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}

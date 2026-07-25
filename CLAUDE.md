@@ -8,25 +8,38 @@
 
 > 이 섹션은 **실제 구현 상태**만 적습니다. 앞으로 만들 것은 여기가 아니라 [`docs/roadmap.md`](./docs/roadmap.md)에 있습니다.
 
-- 진행 중인 마일스톤: **M0(프로젝트 기반) 완료**
-- 다음 작업: **M1(아케이드 모드 코어)** — 상세는 [`docs/roadmap.md`](./docs/roadmap.md) 참고
+- 진행 중인 마일스톤: **M1(아케이드 모드 코어) 완료**
+- 다음 작업: **M2(누적 실적 & 프로필)** — 상세는 [`docs/roadmap.md`](./docs/roadmap.md) 참고
+- **플레이 가능합니다**: 홈 → `청소하러 가기` → 60초 세션 → 결과 요약
 
 **실제로 존재하는 파일**
 
 ```
-app/layout.tsx          모바일 세로 셸 (safe-area, 회전 안내, 뷰포트 설정)
-app/layout.module.css   셸 스타일
-app/globals.css         디자인 토큰 (색·간격·타이포·레이어·모션)
-app/page.tsx            홈 화면
-app/page.module.css     홈 화면 스타일
-app/page.test.tsx       홈 화면 스모크 테스트
+app/layout.tsx           모바일 세로 셸 (safe-area, 회전 안내, 뷰포트 설정)
+app/globals.css          디자인 토큰 (색·간격·타이포·레이어·모션)
+app/page.tsx             홈 화면
+app/play/page.tsx        아케이드 모드 화면 + 세션 관리 + 결과 요약
+components/Joystick.tsx  가상 조이스틱 (포인터 이벤트)
+components/Jupsy.tsx     줍스 SVG — M1 프로토타입 버전. M3에서 고도화
+lib/useGameLoop.ts       rAF + delta time 루프
+lib/game/                게임 규칙 순수 함수
+  types.ts               Vec, Debris, Jupsy, SessionResult
+  constants.ts           필드 크기, 밸런스 수치 — 조정은 전부 여기서
+  vector.ts              벡터 연산
+  growth.ts              성장 곡선, 흡수 가능 판정, 위험 파편 패널티
+  physics.ts             관성 이동, 경계 처리, 파편 표류
+  collision.ts           접촉 판정
+  spawn.ts / random.ts   결정론적 스폰
+  format.ts              kg·시간 표기
 ```
+
+각 `*.tsx`에는 같은 이름의 `.module.css`가 함께 있고, `lib/game/`의 대부분에는 `.test.ts`가 붙어 있습니다 (테스트 65건).
 
 설정 파일: `package.json`, `tsconfig.json`, `next.config.ts`, `eslint.config.mjs`, `.prettierrc.json`, `vitest.config.mts`, `vitest.setup.ts`, `.github/workflows/ci.yml`
 
-**아직 없는 것**: `components/`, `lib/`, `app/play/`, `app/profile/` — 전부 M1 이후에 만듭니다. **존재한다고 가정하고 읽으려 하지 마세요.**
+**아직 없는 것**: `app/profile/`, `lib/storage.ts` — M2에서 만듭니다. **존재한다고 가정하고 읽으려 하지 마세요.**
 
-홈 화면의 두 진입점(`청소하러 가기` / `프로필 보기`)은 아직 경로가 없어 **비활성 버튼**입니다. M1·M2에서 링크로 교체합니다.
+홈 화면의 `프로필 보기`는 아직 경로가 없어 **비활성 버튼**입니다. M2에서 링크로 교체합니다. **아케이드 세션 결과는 아직 저장되지 않습니다** — 한 판이 끝나면 사라집니다. M2에서 붙입니다.
 
 ## 문서 맵
 
