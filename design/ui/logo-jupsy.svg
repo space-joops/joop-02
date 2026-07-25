@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="줍스 로고">
+  <!-- 앱 아이콘 · 128 기준. 작은 크기에서 살아남도록 몸통을 빼고 머리만 씁니다. -->
+  <defs>
+    <linearGradient id="logo-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--color-bg-orbit, #1b2450)"/>
+      <stop offset="100%" stop-color="var(--color-bg-deep, #05070f)"/>
+    </linearGradient>
+    <linearGradient id="logo-shell" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--color-shell-hi, #ffffff)"/>
+      <stop offset="100%" stop-color="var(--color-shell-shadow, #d3deee)"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="128" height="128" rx="30" fill="url(#logo-bg)"/>
+  <g fill="var(--color-star, #eaf0fa)" opacity="0.5">
+    <circle cx="24" cy="26" r="2"/>
+    <circle cx="104" cy="34" r="1.6"/>
+    <circle cx="30" cy="102" r="1.6"/>
+    <circle cx="100" cy="98" r="2.2"/>
+  </g>
+
+  <!-- 고양이 귀 -->
+  <g fill="var(--color-shell-edge, #b2c1d8)" stroke-linejoin="round">
+    <path d="M36 54 L43 22 L62 40 Z"/>
+    <path d="M92 54 L85 22 L66 40 Z"/>
+  </g>
+  <!-- 달걀형 셸 -->
+  <path d="M64 30 C82 30 100 46 100 64 C100 80 84 92 64 92 C44 92 28 80 28 64 C28 46 46 30 64 30 Z"
+    fill="url(#logo-shell)"/>
+  <!-- 바이저 + 눈 -->
+  <rect x="36" y="49" width="56" height="28" rx="14" fill="var(--color-visor, #0b1120)"/>
+  <g fill="var(--color-eye, #6fe3ff)">
+    <ellipse cx="52" cy="63" rx="7" ry="8.5"/>
+    <ellipse cx="76" cy="63" rx="7" ry="8.5"/>
+  </g>
+  <g fill="var(--color-eye-soft, #b6f4ff)" opacity="0.9">
+    <ellipse cx="50" cy="59.5" rx="2.4" ry="3"/>
+    <ellipse cx="74" cy="59.5" rx="2.4" ry="3"/>
+  </g>
+</svg>

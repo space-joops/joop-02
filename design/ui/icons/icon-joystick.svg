@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="조이스틱">
+  <!-- 색은 currentColor로 받습니다. 부모의 color 를 토큰으로 지정하세요. -->
+  <circle cx="12" cy="12" r="9"/>
+  <circle cx="12" cy="12" r="3.6" fill="currentColor" stroke="none"/>
+  <path d="M12 3.6v2.2M12 18.2v2.2M3.6 12h2.2M18.2 12h2.2"/>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="배지 프레임">
+  <!--
+    배지 프레임 (빈 틀)
+
+    ⚠️ 배지의 종류와 획득 조건은 아직 정해지지 않았습니다 (roadmap.md 미결정 질문 Q3, M2에서 결론).
+       그래서 "첫 1kg 청소" 같은 개별 배지 아트를 미리 만들지 않고 틀만 둡니다.
+       조건이 정해지면 아래 슬롯에 ui/icons/ 의 아이콘이나 새 심볼을 얹으세요.
+
+    티어를 파일로 나누지 않았습니다. 색만 다른 파일 3개는 토큰이 존재하는 이유와 어긋납니다.
+    티어는 부모의 color 로 지정하세요:
+      tier1 = color-badge-tier-1 / tier2 = color-badge-tier-2 / tier3 = color-badge-tier-3 토큰
+
+    심볼 슬롯: 중심 (50,50) 반지름 26 원 안. 그 밖으로 나가지 않게 그립니다.
+  -->
+  <g fill="none" stroke="currentColor" stroke-linejoin="round">
+    <!-- 바깥 톱니 링 -->
+    <path d="M50 4 60 10 71 8 78 17 89 19 91 30 99 38 96 49 99 60 91 68 89 79 78 81 71 90 60 88 50 94
+             40 88 29 90 22 81 11 79 9 68 1 60 4 49 1 38 9 30 11 19 22 17 29 8 40 10z"
+      stroke-width="3.5" opacity="0.55"/>
+    <circle cx="50" cy="50" r="36" stroke-width="5"/>
+    <circle cx="50" cy="50" r="28" stroke-width="2" opacity="0.6"/>
+  </g>
+  <!-- 슬롯 배경 -->
+  <circle cx="50" cy="50" r="26" fill="var(--color-surface-raised, #1a2245)"/>
+  <!-- 슬롯 안내선 (실제 배지에서는 지웁니다) -->
+  <circle cx="50" cy="50" r="26" fill="none" stroke="currentColor" stroke-width="1"
+    stroke-dasharray="3 4" opacity="0.35"/>
+</svg>

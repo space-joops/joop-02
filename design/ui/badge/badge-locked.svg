@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="아직 획득하지 못한 배지">
+  <!--
+    미획득 상태 · 프로필에서 "앞으로 받을 수 있는 것"을 보여줄 때 씁니다.
+    ADR-007(재화·상점 배제)에 따라 잠금 해제가 구매로 이어지지 않습니다 — 실적으로만 열립니다.
+    그래서 자물쇠가 아니라 '아직 채워지지 않은 자리'로 표현합니다.
+  -->
+  <circle cx="50" cy="50" r="36" fill="none"
+    stroke="var(--color-border, #2c3866)" stroke-width="5"/>
+  <circle cx="50" cy="50" r="26" fill="var(--color-surface, #111834)"/>
+  <circle cx="50" cy="50" r="26" fill="none"
+    stroke="var(--color-border, #2c3866)" stroke-width="2" stroke-dasharray="4 5"/>
+  <g fill="var(--color-text-low, #8b99bc)" opacity="0.7">
+    <circle cx="38" cy="50" r="4"/>
+    <circle cx="50" cy="50" r="4"/>
+    <circle cx="62" cy="50" r="4"/>
+  </g>
+</svg>
