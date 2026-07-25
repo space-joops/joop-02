@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="피격 이펙트">
+  <!--
+    피격 이펙트 · 위험 파편에 부딪혔을 때 1회 재생
+    게임 오버가 없는 가벼운 패널티(확정)이므로 화면 전체를 덮지 않고 접촉 지점에서만 터집니다.
+  -->
+  <g fill="none" stroke="var(--color-hazard, #ff3d6e)" stroke-width="4.5" stroke-linejoin="miter">
+    <polygon points="50,10 60,32 84,26 72,48 90,64 66,66 56,90 44,68 20,72 30,50 12,34 38,32"/>
+  </g>
+  <g fill="var(--color-hazard-hi, #ffa8be)">
+    <circle cx="50" cy="50" r="6"/>
+    <circle cx="82" cy="18" r="3"/>
+    <circle cx="18" cy="82" r="3"/>
+  </g>
+</svg>

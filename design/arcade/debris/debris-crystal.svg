@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="반짝이는 파편">
+  <!-- 먹을 수 있음 · 반짝이는 파편 · 정규화 캔버스 100x100 -->
+  <!-- 주의: 크리스탈이지만 차가운 파랑을 쓰지 않는다. 먹을 것은 전부 따뜻한 색.
+       종류 구분은 색상이 아니라 형태로 한다. (docs/design-guide.md 1절) -->
+  <g stroke-linejoin="round" stroke-linecap="round">
+    <polygon points="50,14 78,40 65,84 35,84 22,40"
+      fill="var(--color-debris-crystal, #f5c98e)"
+      stroke="var(--color-debris-crystal, #f5c98e)" stroke-width="12"/>
+    <polygon points="50,20 50,80 35,80 27,42"
+      fill="var(--color-debris-crystal-hi, #ffe7c4)" opacity="0.55"/>
+    <path d="M50 20 L50 80 M27 42 L50 52 M73 42 L50 52"
+      fill="none" stroke="var(--color-debris-crystal-shadow, #c79a5e)"
+      stroke-width="3" opacity="0.5"/>
+    <path d="M64 34 L64 44 M59 39 L69 39"
+      fill="none" stroke="var(--color-debris-crystal-hi, #ffe7c4)"
+      stroke-width="3" stroke-linecap="round" opacity="0.95"/>
+  </g>
+</svg>
