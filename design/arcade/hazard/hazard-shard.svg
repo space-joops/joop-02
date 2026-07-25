@@ -2,9 +2,12 @@
   <!-- 위험 · 정규화 캔버스 100x100 -->
   <!-- 경고색 + 뾰족한 실루엣 = 위험 신호. 먹을 것(따뜻한 색/둥근 형태)과 반대로 간다.
        색상만으로 구분하지 않는다 — 색각 이상 사용자를 위해 형태가 1차 신호다. -->
-  <polygon points="50,4 62,34 94,32 70,52 82,84 50,66 18,84 30,52 6,32 38,34"
-    fill="var(--color-hazard, #ff3d6e)"
-    stroke="var(--color-hazard-deep, #b81742)" stroke-width="4" stroke-linejoin="miter"/>
-  <polygon points="50,20 57,40 74,39 60,50 50,44"
-    fill="var(--color-hazard-hi, #ffa8be)" opacity="0.7"/>
+  <!-- 잉크 반경을 45로 정규화 (design-guide.md 6절). 소비자는 scale(radius/45) 한 번만 걸면 된다. -->
+  <g transform="translate(50 50) scale(0.8036) translate(-50.00 -43.13)">
+    <polygon points="50,4 62,34 94,32 70,52 82,84 50,66 18,84 30,52 6,32 38,34"
+      fill="var(--color-hazard, #ff3d6e)"
+      stroke="var(--color-hazard-deep, #b81742)" stroke-width="8" stroke-linejoin="miter"/>
+    <polygon points="50,20 57,40 74,39 60,50 50,44"
+      fill="var(--color-hazard-hi, #ffa8be)" opacity="0.7"/>
+  </g>
 </svg>

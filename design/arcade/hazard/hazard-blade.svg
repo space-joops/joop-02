@@ -1,9 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="위험 파편: 절단 조각">
   <!-- 위험 · 정규화 캔버스 100x100 · 회전 애니메이션을 전제로 중심 대칭 -->
-  <g fill="var(--color-hazard, #ff3d6e)"
-     stroke="var(--color-hazard-deep, #b81742)" stroke-width="4" stroke-linejoin="miter">
-    <polygon points="50,2 64,36 98,50 64,64 50,98 36,64 2,50 36,36"/>
+  <!-- 잉크 반경을 45로 정규화 (design-guide.md 6절). 소비자는 scale(radius/45) 한 번만 걸면 된다. -->
+  <g transform="translate(50 50) scale(0.7692) translate(-50.00 -50.00)">
+    <g fill="var(--color-hazard, #ff3d6e)"
+       stroke="var(--color-hazard-deep, #b81742)" stroke-width="8" stroke-linejoin="miter">
+      <polygon points="50,2 64,36 98,50 64,64 50,98 36,64 2,50 36,36"/>
+    </g>
+    <circle cx="50" cy="50" r="9" fill="var(--color-hazard-deep, #b81742)"/>
+    <circle cx="47" cy="47" r="3.5" fill="var(--color-hazard-hi, #ffa8be)"/>
   </g>
-  <circle cx="50" cy="50" r="9" fill="var(--color-hazard-deep, #b81742)"/>
-  <circle cx="47" cy="47" r="3.5" fill="var(--color-hazard-hi, #ffa8be)"/>
 </svg>
