@@ -1,0 +1,57 @@
+/* 모바일 세로 화면 고정 게임의 바깥 틀.
+ * 데스크톱에서도 열리므로 세로형 폭을 유지한 채 가운데 정렬한다. */
+.shell {
+  position: relative;
+  width: 100%;
+  max-width: var(--shell-max-width);
+  /* dvh는 모바일 브라우저 주소창이 접히고 펴질 때의 높이 변화를 반영한다.
+   * vh를 쓰면 주소창 높이만큼 잘린다. */
+  height: 100dvh;
+  margin: 0 auto;
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    var(--color-space-700) 0%,
+    var(--color-space-900) 70%
+  );
+}
+
+/* 노치와 홈 인디케이터를 피한다. 조이스틱이 화면 맨 아래에 놓이므로
+ * 하단 inset이 특히 중요하다. */
+.safeArea {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+}
+
+/* 가로로 눕힌 좁은 화면에서는 게임이 성립하지 않는다.
+ * 데스크톱 가로 화면은 높이가 충분하므로 max-height로 걸러낸다. */
+.rotateNotice {
+  display: none;
+}
+
+@media (orientation: landscape) and (max-height: 32rem) {
+  .safeArea {
+    display: none;
+  }
+
+  .rotateNotice {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: var(--space-5);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .rotateIcon {
+    font-size: var(--font-size-2xl);
+  }
+}
