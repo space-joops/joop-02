@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>줍스 디자인 에셋 프리뷰</title>
+<link rel="stylesheet" href="./tokens/tokens.css">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: var(--sp-7) var(--sp-5) var(--sp-12);
+    background: var(--color-bg-mid);
+    color: var(--color-text-hi);
+    font-family: var(--font-ui);
+    line-height: var(--lh-base);
+  }
+  h1 { font-size: var(--fs-600); margin: 0 0 var(--sp-2); }
+  h2 {
+    font-size: var(--fs-400);
+    margin: var(--sp-11) 0 var(--sp-4);
+    padding-bottom: var(--sp-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+  p { color: var(--color-text-mid); max-width: 76ch; }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: var(--fs-200);
+    background: var(--color-surface-raised);
+    padding: 2px 6px;
+    border-radius: var(--r-xs);
+  }
+  .note {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-badge);
+    border-radius: var(--r-sm);
+    padding: var(--sp-4);
+    max-width: 76ch;
+  }
+  .note p { margin: 0 0 var(--sp-2); }
+  .note p:last-child { margin-bottom: 0; }
+  .grid { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: flex-start; }
+  .cell {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--r-md);
+    padding: var(--sp-3);
+    text-align: center;
+  }
+  .cell img { display: block; margin: 0 auto; }
+  .cell figcaption {
+    margin-top: var(--sp-2);
+    font-size: var(--fs-100);
+    color: var(--color-text-low);
+  }
+  .cell--icon { color: var(--color-eye); width: 104px; }
+  .cell--icon img { width: 34px; height: 34px; }
+
+  /* 표정 교체 데모 — 눈 슬롯이 실제로 맞는지 눈으로 확인하는 자리 */
+  .stage { position: relative; width: 240px; margin: 0 auto; }
+  .stage img.base { display: block; width: 100%; }
+  .stage img.eyes {
+    position: absolute;
+    left: 20%;      /*  40 / 200 */
+    top: 21.6667%;  /*  52 / 240 */
+    width: 60%;     /* 120 / 200 */
+    height: 25%;    /*  60 / 240 */
+  }
+  .stage--overlay img.accent { position: absolute; inset: 0; width: 100%; }
+  .controls { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-4); justify-content: center; }
+  button {
+    font: inherit;
+    font-size: var(--fs-200);
+    color: var(--color-text-mid);
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--r-full);
+    padding: var(--sp-2) var(--sp-4);
+    cursor: pointer;
+    transition: color var(--dur-fast) var(--ease-out),
+                border-color var(--dur-fast) var(--ease-out);
+  }
+  button:hover { color: var(--color-text-hi); border-color: var(--color-eye); }
+  button[aria-pressed="true"] { color: var(--color-bg-deep); background: var(--color-eye); border-color: var(--color-eye); }
+  .tag {
+    display: inline-block;
+    font-size: var(--fs-100);
+    color: var(--color-badge);
+    border: 1px solid var(--color-badge);
+    border-radius: var(--r-full);
+    padding: 1px var(--sp-2);
+    margin-left: var(--sp-2);
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<h1>줍스 디자인 에셋 프리뷰</h1>
+<p>
+  <code>design/</code> 아래 모든 에셋을 한 페이지에서 봅니다. 빌드나 의존성이 없으므로
+  <code>design/preview.html</code> 을 브라우저로 그냥 열면 됩니다.
+  사용 규칙은 <code>docs/design-guide.md</code> 를 보세요.
+</p>
+
+<div class="note">
+  <p><strong>이 페이지가 실제 앱과 다른 점</strong></p>
+  <p>
+    여기서는 SVG를 <code>&lt;img&gt;</code> 로 불러옵니다. 그래서 <code>tokens.css</code> 의 CSS 변수가
+    SVG 안으로 상속되지 않고, 각 SVG에 적어둔 <strong>폴백 색</strong>이 보입니다.
+    거꾸로 말하면 이 화면이 제대로 보인다는 것은 폴백이 전부 살아 있다는 뜻입니다.
+  </p>
+  <p>
+    같은 이유로 <code>currentColor</code> 로 그린 것들(아이콘, 배지 프레임)은 물려받을 부모가 없어
+    브라우저 기본 글자색으로 나옵니다. 앱에서 보게 될 색이 아닙니다.
+  </p>
+  <p>
+    앱에서는 SVG를 <strong>인라인</strong>으로 넣기 때문에 토큰과 <code>color</code> 가 그대로 적용되고,
+    <code>--color-eye</code> 같은 값을 런타임에 바꾸면 즉시 반영됩니다.
+  </p>
+</div>
+
+<h2>1. 디자인 토큰 팔레트</h2>
+<div class="grid">
+  <figure class="cell" style="margin:0">
+    <img src="./tokens/palette.svg" alt="디자인 토큰 팔레트" style="width:min(760px, 92vw)">
+    <figcaption>tokens/palette.svg — 값의 원본은 tokens/tokens.css</figcaption>
+  </figure>
+</div>
+
+<h2>2. 줍스 + 표정 교체</h2>
+<p>
+  버튼을 누르면 <strong>눈 도형만</strong> 갈립니다. 몸통(<code>jupsy-base.svg</code>)은 그대로입니다.
+  M3 완료 기준 “표정 추가가 눈 도형 교체만으로 가능하다”를 지금 확인하는 자리입니다.
+</p>
+<div class="stage">
+  <img class="base" src="./character/jupsy-base.svg" alt="줍스">
+  <img class="eyes" id="eyes" src="./character/expressions/eyes-normal.svg" alt="줍스의 표정">
+</div>
+<div class="controls" id="controls"></div>
+
+<h2>3. 표정 세트 8종</h2>
+<div class="grid" id="expressions"></div>
+
+<h2>4. 성격 유형 액센트 <span class="tag">제안 · 확정 아님</span></h2>
+<p>
+  성격 유형 4종을 게임에 어떻게 반영할지는 아직 정해지지 않았습니다(M6).
+  아래는 “이런 방향이 가능하다”는 시안이며, 몸체 원본을 복사하지 않고
+  <strong>액센트 레이어만</strong> 만들어 기본 줍스 위에 겹친 것입니다.
+</p>
+<div class="grid" id="types"></div>
+
+<h2>5. 아케이드 — 먹을 수 있는 쓰레기</h2>
+<p>전부 따뜻한 색 + 둥근 실루엣. 종류 구분은 색상이 아니라 형태로 합니다.</p>
+<div class="grid" id="debris"></div>
+
+<h2>6. 아케이드 — 위험 파편</h2>
+<p>경고색 + 뾰족한 실루엣. 위 먹이들과 나란히 놓고 한눈에 갈리는지 보세요.</p>
+<div class="grid" id="hazard"></div>
+
+<h2>7. 아케이드 — 이펙트</h2>
+<div class="grid" id="fx"></div>
+
+<h2>8. 아케이드 — 배경 레이어</h2>
+<div class="grid" id="bg"></div>
+
+<h2>9. UI 아이콘</h2>
+<p><code>stroke="currentColor"</code> 로 그려서 부모의 <code>color</code> 를 따라갑니다.</p>
+<div class="grid" id="icons"></div>
+
+<h2>10. 실적 · 브랜드</h2>
+<div class="grid" id="brand"></div>
+
+<script>
+const EXPRESSIONS = ['normal', 'happy', 'heart', 'hurt', 'sleepy', 'focus', 'blink', 'curious'];
+const TYPES = ['metal', 'crystal', 'archive', 'cable'];
+const DEBRIS = ['metal', 'crystal', 'archive', 'cable'];
+const HAZARD = ['shard', 'blade'];
+const FX = ['absorb-burst', 'hit-shock', 'signal-lost'];
+const BG = ['starfield', 'orbit-band', 'earth-limb'];
+const ICONS = ['joystick', 'signal', 'timer', 'weight', 'badge', 'play', 'profile', 'orbit'];
+
+const cell = (src, caption, width, extraClass = '') => `
+  <figure class="cell ${extraClass}" style="margin:0">
+    <img src="${src}" alt="${caption}" style="width:${width}px">
+    <figcaption>${caption}</figcaption>
+  </figure>`;
+
+const fill = (id, html) => { document.getElementById(id).innerHTML = html; };
+
+// 표정 교체 컨트롤
+const eyes = document.getElementById('eyes');
+document.getElementById('controls').innerHTML = EXPRESSIONS
+  .map((n, i) => `<button data-name="${n}" aria-pressed="${i === 0}">${n}</button>`)
+  .join('');
+document.getElementById('controls').addEventListener('click', (e) => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  eyes.src = `./character/expressions/eyes-${btn.dataset.name}.svg`;
+  document.querySelectorAll('#controls button')
+    .forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+});
+
+fill('expressions', EXPRESSIONS.map((n) => `
+  <figure class="cell" style="margin:0">
+    <img src="./character/expressions/eyes-${n}.svg" alt="${n}"
+         style="width:150px;background:var(--color-visor);border-radius:12px">
+    <figcaption>eyes-${n}.svg</figcaption>
+  </figure>`).join(''));
+
+fill('types', TYPES.map((n) => `
+  <figure class="cell" style="margin:0">
+    <div class="stage stage--overlay" style="width:170px">
+      <img class="base" src="./character/jupsy-base.svg" alt="">
+      <img class="accent" src="./character/explorations/type-${n}.svg" alt="${n} 액센트">
+    </div>
+    <figcaption>type-${n}.svg (제안)</figcaption>
+  </figure>`).join(''));
+
+fill('debris', DEBRIS.map((n) => cell(`./arcade/debris/debris-${n}.svg`, `debris-${n}.svg`, 92)).join(''));
+fill('hazard', HAZARD.map((n) => cell(`./arcade/hazard/hazard-${n}.svg`, `hazard-${n}.svg`, 92)).join(''));
+fill('fx', FX.map((n) => cell(`./arcade/fx/${n}.svg`, `${n}.svg`, n === 'signal-lost' ? 200 : 100)).join(''));
+fill('bg', BG.map((n) => cell(`./arcade/background/${n}.svg`, `${n}.svg`, n === 'earth-limb' ? 260 : 150)).join(''));
+fill('icons', ICONS.map((n) => cell(`./ui/icons/icon-${n}.svg`, `icon-${n}`, 34, 'cell--icon')).join(''));
+
+fill('brand', [
+  cell('./ui/badge/badge-frame.svg', 'badge-frame.svg (빈 틀)', 96),
+  cell('./ui/badge/badge-locked.svg', 'badge-locked.svg', 96),
+  cell('./ui/orbit-sector.svg', 'orbit-sector.svg', 180),
+  cell('./ui/logo-jupsy.svg', 'logo-jupsy.svg', 128),
+  cell('./ui/favicon.svg', 'favicon.svg (32px 기준)', 32),
+  cell('./ui/wordmark.svg', 'wordmark.svg (폰트 의존 · 임시)', 240),
+].join(''));
+</script>
+
+</body>
+</html>
