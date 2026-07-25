@@ -20,8 +20,8 @@
     </g>
   </g>
 
-  <text x="72" y="40" font-family="var(--font-ui, sans-serif)" font-size="34"
+  <text x="72" y="40" font-family="var(--font-family, sans-serif)" font-size="34"
     font-weight="700" letter-spacing="1" fill="var(--color-text-hi, #f2f6ff)">줍스</text>
-  <text x="74" y="60" font-family="var(--font-ui, sans-serif)" font-size="12"
+  <text x="74" y="60" font-family="var(--font-family, sans-serif)" font-size="12"
     letter-spacing="2.4" fill="var(--color-text-low, #8b99bc)">반려위성 우주청소</text>
 </svg>

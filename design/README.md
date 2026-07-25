@@ -22,5 +22,5 @@
 1. **몸체를 복사하지 마세요.** 표정은 `expressions/` 교체로, 유형 변주는 액센트 레이어 겹치기로 합니다
 2. **색은 `var(--토큰, #폴백)` 로 씁니다.** 폴백이 없으면 `preview.html` 에서 안 보입니다
 3. **SVG 주석에 `--` 를 쓰면 XML이 깨집니다.** 토큰 이름은 접두사를 빼고 적으세요
-4. `tokens.css` 를 고치면 `tokens/palette.svg` 도 같이 고쳐야 합니다 (자동 생성 아님)
-5. ⚠️ **앱(`app/globals.css`)에 다른 이름 체계의 토큰이 따로 있습니다.** 합치는 방향은 미결정 — [`../docs/roadmap.md`](../docs/roadmap.md) Q10
+4. **토큰 정본은 `app/globals.css` 입니다** (ADR-010). `design/tokens/tokens.css` 는 삭제됐습니다 — 색을 고칠 때는 그쪽을 고치고, 사본인 `tokens/palette.svg` 도 같이 고치세요 (자동 생성 아님)
+5. **파편·위험 SVG는 잉크 반경 45로 정규화되어 있습니다.** 소비자는 `scale(radius / 45)` 한 줄이면 됩니다. 새로 추가할 때도 45에 맞추세요
