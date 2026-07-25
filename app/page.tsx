@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './page.module.css';
 
 export default function HomePage() {
@@ -16,12 +17,12 @@ export default function HomePage() {
       </div>
 
       <nav className={styles.actions} aria-label="주요 메뉴">
-        {/* 아케이드 모드는 M1, 프로필은 M2에서 연결한다.
-            아직 없는 경로로 링크를 걸면 404가 나므로 비활성 버튼으로 둔다. */}
-        <button type="button" className={`${styles.action} ${styles.actionPrimary}`} disabled>
+        <Link href="/play" className={`${styles.action} ${styles.actionPrimary}`}>
           <span className={styles.actionLabel}>청소하러 가기</span>
-          <span className={styles.actionHint}>통신 연결을 준비하고 있어요</span>
-        </button>
+          <span className={styles.actionHint}>지금 통신이 연결돼 있어요</span>
+        </Link>
+        {/* 프로필은 M2에서 연결한다.
+            아직 없는 경로로 링크를 걸면 404가 나므로 비활성 버튼으로 둔다. */}
         <button type="button" className={styles.action} disabled>
           <span className={styles.actionLabel}>프로필 보기</span>
           <span className={styles.actionHint}>아직 기록이 없어요</span>
