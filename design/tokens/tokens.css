@@ -1,0 +1,257 @@
+/* ==========================================================================
+   줍스(Jupsy) 디자인 토큰
+   --------------------------------------------------------------------------
+   ADR-003(CSS Modules + CSS 변수)에 따른 단일 토큰 정의.
+
+   M0에서 이 파일의 내용을 `app/globals.css`의 `:root`로 이식합니다.
+   이식 절차와 사용 규칙은 `docs/design-guide.md` 2절 참고.
+
+   구조는 2계층입니다.
+     1) 원시 토큰 (--c-*, 색 이름 그대로)  ... 팔레트. 직접 쓰지 마세요.
+     2) 시맨틱 토큰 (--color-*, 용도 이름) ... 컴포넌트는 이것만 참조합니다.
+
+   왜 2계층인가: "줍스 셸 색을 바꾼다"가 --c-shell-000 한 곳 수정으로 끝나고,
+   "기분에 따라 코어 라이트 색을 바꾼다"가 --color-core 재할당 한 줄로 끝납니다.
+   ========================================================================== */
+
+:root {
+  /* ----------------------------------------------------------------------
+     1. 원시 토큰 — 팔레트
+     ---------------------------------------------------------------------- */
+
+  /* 우주 배경 — 깊은 남색에서 보라 기운으로 */
+  --c-void-950: #05070f;
+  --c-void-900: #0a0e1f;
+  --c-void-800: #121834;
+  --c-void-700: #1b2450;
+  --c-void-600: #26325f;
+  --c-nebula-600: #4a2e9e;
+  --c-nebula-500: #6c4bd8;
+  --c-nebula-400: #8b6bf0;
+
+  /* 줍스 셸 — 이음새 없는 매끈한 흰색. 하이라이트에서 그림자까지 */
+  --c-shell-000: #ffffff;
+  --c-shell-050: #f7faff;
+  --c-shell-100: #eaf0fa;
+  --c-shell-200: #d3deee;
+  --c-shell-300: #b2c1d8;
+  --c-shell-400: #8c9dba;
+
+  /* 바이저 — 눈이 발광할 어두운 디스플레이 면 */
+  --c-visor-900: #0b1120;
+  --c-visor-800: #141c31;
+  --c-visor-700: #212c4a;
+
+  /* 발광 — 눈, 코어 라이트 */
+  --c-glow-cyan-300: #b6f4ff;
+  --c-glow-cyan-400: #6fe3ff;
+  --c-glow-cyan-500: #2fc6ee;
+  --c-glow-rose-300: #ffc2d5;
+  --c-glow-rose-400: #ff8fb4;
+  --c-glow-rose-500: #f46392;
+  --c-glow-mint-400: #5fe3c0;
+  --c-glow-mint-500: #2fc7a4;
+
+  /* 먹을 수 있는 쓰레기 — 전부 따뜻한 색 계열로 묶는다.
+     아케이드 규칙(확정): "먹을 것은 따뜻한 색/부드러운 형태".
+     4종 구분은 색상(hue)이 아니라 형태·질감으로 한다 (design-guide.md 1절). */
+  --c-brass-300: #e8c88f; /* 금속 부품 */
+  --c-brass-500: #c9a05a;
+  --c-brass-700: #8e6d34;
+  --c-champagne-300: #ffe7c4; /* 반짝이는 파편 */
+  --c-champagne-500: #f5c98e;
+  --c-champagne-700: #c79a5e;
+  --c-sepia-300: #d9a87f; /* 오래된 필름·데이터 */
+  --c-sepia-500: #b07a50;
+  --c-sepia-700: #7c512f;
+  --c-amber-300: #ffd08a; /* 전선 */
+  --c-amber-500: #e89c3c;
+  --c-amber-700: #a96a18;
+
+  /* 위험 파편 — 경고색. 따뜻한 먹이 색과 색상환에서 확실히 떨어뜨린다 */
+  --c-hazard-300: #ffa8be;
+  --c-hazard-500: #ff3d6e;
+  --c-hazard-700: #b81742;
+
+  /* UI */
+  --c-ink-000: #f2f6ff;
+  --c-ink-200: #c3cee8;
+  --c-ink-400: #8b99bc;
+  --c-surface-800: #111834;
+  --c-surface-700: #1a2245;
+  --c-border-600: #2c3866;
+  --c-gold-400: #ffc94a;
+  --c-gold-600: #c99413;
+  --c-silver-400: #cdd8ea;
+  --c-bronze-400: #d59a63;
+
+  /* ----------------------------------------------------------------------
+     2. 시맨틱 토큰 — 컴포넌트는 여기서부터만 참조
+     ---------------------------------------------------------------------- */
+
+  /* 배경 레이어 */
+  --color-bg-deep: var(--c-void-950);
+  --color-bg-mid: var(--c-void-900);
+  --color-bg-near: var(--c-void-800);
+  --color-bg-orbit: var(--c-void-700);
+  --color-bg-nebula: var(--c-nebula-600);
+  --color-star: var(--c-shell-100);
+
+  /* 줍스 몸체 */
+  --color-shell: var(--c-shell-050);
+  --color-shell-hi: var(--c-shell-000);
+  --color-shell-shadow: var(--c-shell-200);
+  --color-shell-edge: var(--c-shell-300);
+  --color-shell-deep: var(--c-shell-400);
+  --color-visor: var(--c-visor-900);
+  --color-visor-hi: var(--c-visor-700);
+
+  /* 줍스 발광 — 감정 표현의 핵심. 런타임에 갈아끼우는 것을 전제로 한다 */
+  --color-eye: var(--c-glow-cyan-400);
+  --color-eye-soft: var(--c-glow-cyan-300);
+  --color-eye-deep: var(--c-glow-cyan-500);
+  --color-eye-joy: var(--c-glow-rose-400);
+  --color-eye-joy-soft: var(--c-glow-rose-300);
+  --color-core: var(--c-glow-mint-400);
+  --color-core-deep: var(--c-glow-mint-500);
+
+  /* 쓰레기 — 종류별 3단계(밝은 면/기본/그림자) */
+  --color-debris-metal-hi: var(--c-brass-300);
+  --color-debris-metal: var(--c-brass-500);
+  --color-debris-metal-shadow: var(--c-brass-700);
+  --color-debris-crystal-hi: var(--c-champagne-300);
+  --color-debris-crystal: var(--c-champagne-500);
+  --color-debris-crystal-shadow: var(--c-champagne-700);
+  --color-debris-archive-hi: var(--c-sepia-300);
+  --color-debris-archive: var(--c-sepia-500);
+  --color-debris-archive-shadow: var(--c-sepia-700);
+  --color-debris-cable-hi: var(--c-amber-300);
+  --color-debris-cable: var(--c-amber-500);
+  --color-debris-cable-shadow: var(--c-amber-700);
+
+  /* 위험 */
+  --color-hazard-hi: var(--c-hazard-300);
+  --color-hazard: var(--c-hazard-500);
+  --color-hazard-deep: var(--c-hazard-700);
+
+  /* 텍스트 · 표면 */
+  --color-text-hi: var(--c-ink-000);
+  --color-text-mid: var(--c-ink-200);
+  --color-text-low: var(--c-ink-400);
+  --color-surface: var(--c-surface-800);
+  --color-surface-raised: var(--c-surface-700);
+  --color-border: var(--c-border-600);
+
+  /* 실적 — 재화가 아니라 명예 표시용 (ADR-007) */
+  --color-badge: var(--c-gold-400);
+  --color-badge-deep: var(--c-gold-600);
+  --color-badge-tier-1: var(--c-bronze-400);
+  --color-badge-tier-2: var(--c-silver-400);
+  --color-badge-tier-3: var(--c-gold-400);
+
+  /* 통신 상태 */
+  --color-signal-ok: var(--c-glow-mint-400);
+  --color-signal-lost: var(--c-hazard-500);
+
+  /* ----------------------------------------------------------------------
+     3. 간격 — 4px 기준
+     ---------------------------------------------------------------------- */
+  --sp-0: 0;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-7: 32px;
+  --sp-8: 40px;
+  --sp-9: 48px;
+  --sp-10: 56px;
+  --sp-11: 72px;
+  --sp-12: 96px;
+
+  /* ----------------------------------------------------------------------
+     4. 반경
+     ---------------------------------------------------------------------- */
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-full: 999px;
+
+  /* ----------------------------------------------------------------------
+     5. 타이포
+     ---------------------------------------------------------------------- */
+  --font-ui:
+    'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+    'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+
+  --fs-100: 12px; /* 캡션, 단위 */
+  --fs-200: 14px; /* 보조 텍스트 */
+  --fs-300: 16px; /* 본문 */
+  --fs-400: 20px; /* 소제목 */
+  --fs-500: 24px; /* 제목 */
+  --fs-600: 32px; /* 화면 제목 */
+  --fs-700: 44px; /* 실적 수치 */
+
+  --lh-tight: 1.2;
+  --lh-base: 1.5;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+
+  /* ----------------------------------------------------------------------
+     6. z-index — 아케이드 화면의 레이어 순서
+     ---------------------------------------------------------------------- */
+  --z-bg: 0;
+  --z-orbit: 10;
+  --z-debris: 20;
+  --z-jupsy: 30;
+  --z-fx: 40;
+  --z-hud: 50;
+  --z-modal: 60;
+  --z-toast: 70;
+
+  /* ----------------------------------------------------------------------
+     7. 모션
+     ---------------------------------------------------------------------- */
+  --dur-instant: 80ms;
+  --dur-fast: 160ms;
+  --dur-base: 240ms;
+  --dur-slow: 480ms;
+  --dur-scene: 900ms;
+  --dur-bob: 3200ms; /* 부유(idle bobbing) 1주기 */
+  --dur-core-pulse: 2400ms; /* 코어 라이트 맥동 1주기 */
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1); /* 흡수 시 통통 튐 (오버슛) */
+
+  /* ----------------------------------------------------------------------
+     8. 레이아웃 — 모바일 세로 고정 (ADR-001)
+     ---------------------------------------------------------------------- */
+  --stage-max-w: 480px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+/* --------------------------------------------------------------------------
+   접근성 — M3 완료 기준: prefers-reduced-motion에서 애니메이션이 줄어든다.
+   토큰 레벨에서 duration을 죽여두면 개별 컴포넌트가 따로 대응하지 않아도 된다.
+   (연출의 '최종 상태'는 유지되고 '움직임'만 사라지는 것이 의도)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant: 1ms;
+    --dur-fast: 1ms;
+    --dur-base: 1ms;
+    --dur-slow: 1ms;
+    --dur-scene: 1ms;
+    --dur-bob: 1ms;
+    --dur-core-pulse: 1ms;
+  }
+}
