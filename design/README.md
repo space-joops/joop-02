@@ -10,7 +10,7 @@
 
 | 경로 | 무엇 |
 | --- | --- |
-| `tokens/tokens.css` | 색·간격·타이포·z-index·모션 토큰의 **원본** |
+| `tokens/palette.svg` | 팔레트 시각 참조. **토큰 정본은 `app/globals.css`** (ADR-010) |
 | `character/jupsy-base.svg` | 줍스 몸체의 **유일한 원본** |
 | `character/expressions/` | 바이저에 얹히는 눈 도형 8종 |
 | `character/explorations/` | **[제안]** 성격 유형 액센트 4종 — 확정 아님 |

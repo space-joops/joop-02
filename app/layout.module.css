@@ -9,11 +9,7 @@
   height: 100dvh;
   margin: 0 auto;
   overflow: hidden;
-  background: radial-gradient(
-    ellipse at 50% 0%,
-    var(--color-space-700) 0%,
-    var(--color-space-900) 70%
-  );
+  background: radial-gradient(ellipse at 50% 0%, var(--color-bg-near) 0%, var(--color-bg-deep) 70%);
 }
 
 /* 노치와 홈 인디케이터를 피한다. 조이스틱이 화면 맨 아래에 놓이므로
@@ -47,7 +43,7 @@
     justify-content: center;
     height: 100%;
     padding: var(--space-5);
-    color: var(--color-text-muted);
+    color: var(--color-text-mid);
     text-align: center;
   }
 

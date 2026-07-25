@@ -2,9 +2,9 @@
 
 `design/` 아래 에셋을 **어떻게 가져다 쓰는가**를 정리합니다. 왜 이렇게 정했는지는 [`decisions.md`](./decisions.md)의 ADR-002·ADR-003·ADR-009에 있습니다.
 
-> **지금 이 에셋들은 어떤 코드에도 연결되어 있지 않습니다.** M0가 이 작업과 병렬로 진행되어, 앱은 `app/globals.css` 에 **별도의 토큰 한 벌**을 따로 만든 상태입니다([`../CLAUDE.md`](../CLAUDE.md)의 `현재 상태` 참고).
+> **토큰은 통합되었습니다.** 정본은 `app/globals.css` 한 곳이고, 이 디렉터리의 SVG가 참조하는 `--color-*` 이름이 그대로 살아 있습니다 (경위는 ADR-010).
 >
-> 그래서 아래 2절의 "이식 절차"는 **아직 아무도 수행하지 않은, 앞으로 할 일**입니다. 어느 쪽 이름 체계로 합칠지가 먼저 정해져야 합니다 — [`roadmap.md`](./roadmap.md) Q10, 경위는 [`decisions.md`](./decisions.md) ADR-009.
+> 다만 **SVG 자체는 아직 컴포넌트로 옮겨지지 않았습니다.** M1의 `components/Jupsy.tsx` 와 파편 도형은 프로토타입 버전이고, 이 에셋으로 교체하는 것은 M3 작업입니다.
 
 **눈으로 먼저 보세요.** `design/preview.html` 을 브라우저로 열면 모든 에셋이 한 페이지에 나옵니다. 빌드도 의존성도 없습니다.
 
@@ -16,8 +16,7 @@
 design/
 ├─ preview.html                  모든 에셋을 한 화면에서 확인 (file:// 로 바로 열림)
 ├─ tokens/
-│  ├─ tokens.css                 ★ 색·간격·타이포·z-index·모션 토큰의 원본
-│  └─ palette.svg                팔레트 시각 참조 (사본. tokens.css 를 고치면 같이 고칠 것)
+│  └─ palette.svg                팔레트 시각 참조 (사본. app/globals.css 를 고치면 같이 고칠 것)
 ├─ character/
 │  ├─ jupsy-base.svg             ★ 몸체의 유일한 원본
 │  ├─ expressions/               눈 도형 8종 — 바이저에 얹히는 교체 레이어
@@ -65,32 +64,30 @@ design/
 
 색·간격 리터럴을 컴포넌트에 직접 쓰지 않는 것은 ADR-003이 정한 규칙이고, M0의 완료 기준이기도 합니다.
 
-### ⚠️ 토큰이 두 벌입니다 (Q10 미해결)
+### 토큰은 한 벌입니다 — 정본은 `app/globals.css`
 
-M0가 이 작업과 병렬로 진행되면서 `app/globals.css` 에 **다른 이름 체계의 토큰**이 이미 들어갔고, 그대로 배포되었습니다.
+Q10(토큰 두 벌)은 **ADR-010에서 결론이 났습니다.** 축을 갈라 합쳤습니다.
 
-| | `app/globals.css` (M0) | `design/tokens/tokens.css` |
+| 축 | 정본 | 이유 |
 | --- | --- | --- |
-| 배경 | `--color-space-900` | `--color-bg-deep` |
-| 줍스 눈 | `--color-jupsy-eye` | `--color-eye` |
-| 쓰레기 | `--color-debris-safe` 1종 | 4종으로 분화 |
-| 간격 | `--space-4` | `--sp-4` |
+| **색** (`--color-*`, `--c-*`) | 이 디렉터리가 쓰던 2계층 체계 | SVG 40개가 색 토큰을 **150회** 참조한다. 커버리지도 넓다 (쓰레기 4종·눈 변형·배지 티어) |
+| **간격·타이포·모서리·레이어·모션** | M0의 이름 (`--space-4`, `--font-size-xl`) | **SVG가 한 번도 참조하지 않는다.** 버려도 잃는 것이 없고 이름이 더 읽힌다 |
 
-**`design/` 의 SVG는 후자를 참조합니다.** 지금 상태로 SVG를 인라인하면 이름이 없어 전부 폴백 hex로 떨어지고, 토큰 레이어가 죽습니다.
+그 결과 **SVG는 한 글자도 바뀌지 않았고**, 앱 CSS 6개에서 색 토큰 21개만 치환했습니다.
 
-어느 쪽으로 합칠지는 [`roadmap.md`](./roadmap.md) Q10에서 결론이 나야 하고, **M1 착수 전에 정해야 합니다.** 그 전까지 아래 절차는 실행하지 마세요.
+**`design/tokens/tokens.css` 는 삭제되었습니다.** 같은 값이 두 파일에 남으면 Q10이 다시 생깁니다. `preview.html` 은 이제 정본을 직접 참조합니다.
 
-### 합치기로 결론이 난 뒤의 이식 절차
+```html
+<link rel="stylesheet" href="../app/globals.css" />
+```
 
-`tokens.css` 는 `:root { }` 블록 하나로 작성되어 있어 그대로 옮길 수 있습니다.
+빌드가 없으므로 `file://` 로 열어도 상대 경로가 그대로 동작합니다.
 
-1. Q10의 결론에 따라 이름 체계를 하나로 맞춘다 — 한쪽 이름으로 통일하되, 상대편에만 있던 토큰(쓰레기 4종 구분, 배지 티어, 눈 발광 단계 등)은 빠뜨리지 말고 가져온다
-2. 합친 결과를 `app/globals.css` 의 `:root` 에 둔다
-3. `@media (prefers-reduced-motion: reduce)` 블록도 같이 가져간다 (M3 완료 기준과 연결)
-4. 이름이 바뀐 쪽을 실제 참조처에 반영한다 — `design/**/*.svg` 의 `var()` 이름 또는 `app/*.module.css` 의 참조
-5. **`design/tokens/tokens.css` 는 지우지 않습니다.** `preview.html` 이 이 파일을 참조합니다
+### 토큰을 고칠 때
 
-> 이식 후에도 두 곳에 같은 값이 남습니다. 이건 알고 감수하는 중복입니다 — 이유와 대안은 ADR-009에 적어뒀습니다. 토큰을 고칠 때는 **두 파일 다** 고치세요.
+`app/globals.css` **한 곳만** 고치면 앱과 `preview.html` 에 동시에 반영됩니다.
+
+단, `design/tokens/palette.svg` 는 값을 **손으로 복사한 시각 참조**라 자동으로 따라오지 않습니다. 색 값을 바꿨다면 이 파일도 같이 고치세요 (파일 상단 주석에도 적혀 있습니다).
 
 ### 런타임에 값 바꾸기
 
@@ -146,7 +143,7 @@ python3 -c "import xml.dom.minidom,glob;[xml.dom.minidom.parse(f) for f in glob.
 
 # viewBox 누락 / width·height 하드코딩
 grep -L 'viewBox' design/**/*.svg
-grep -l '<svg[^>]* width=' design/**/*.svg
+grep -lE '<svg[^>]*[[:space:]]width=' design/**/*.svg   # stroke-width 오탐 주의
 ```
 
 ---
@@ -215,16 +212,16 @@ SVG 안에서는 `transform-box: fill-box` 를 함께 쓰거나 위 좌표를 �
 
 | 연출 | duration | easing |
 | --- | --- | --- |
-| 부유 | `--dur-bob` (3200ms) | `--ease-in-out` |
-| 코어 맥동 | `--dur-core-pulse` (2400ms) | `--ease-in-out` |
-| 흡수 시 통통 튐 | `--dur-fast` | `--ease-pop` (오버슛) |
-| 피격 흔들림 | `--dur-fast` | `--ease-out` |
-| 화면 전환 | `--dur-base` | `--ease-out` |
-| 신호 끊김 | `--dur-scene` | `--ease-in-out` |
+| 부유 | `--duration-bob` (3200ms) | `--ease-in-out` |
+| 코어 맥동 | `--duration-core-pulse` (2400ms) | `--ease-in-out` |
+| 흡수 시 통통 튐 | `--duration-fast` | `--ease-pop` (오버슛) |
+| 피격 흔들림 | `--duration-fast` | `--ease-out` |
+| 화면 전환 | `--duration-base` | `--ease-out` |
+| 신호 끊김 | `--duration-scene` | `--ease-in-out` |
 
 ### prefers-reduced-motion
 
-`tokens.css` 하단에서 **토큰의 duration을 전부 1ms로 죽입니다.** 개별 컴포넌트가 따로 대응할 필요가 없습니다. 연출의 최종 상태는 남고 움직임만 사라집니다.
+`app/globals.css` 하단에서 **토큰의 duration을 전부 1ms로 죽입니다.** 개별 컴포넌트가 따로 대응할 필요가 없습니다. 연출의 최종 상태는 남고 움직임만 사라집니다.
 
 새 애니메이션을 만들 때 duration을 토큰에서 가져오기만 하면 이 대응이 공짜로 따라옵니다. 리터럴로 `240ms` 라고 쓰면 안 따라옵니다.
 
@@ -232,10 +229,40 @@ SVG 안에서는 `transform-box: fill-box` 를 함께 쓰거나 위 좌표를 �
 
 ## 6. 성능
 
-ADR-002는 SVG를 선택하면서 **동시 오브젝트 수가 성능 상한이 된다**는 것을 감시 지점으로 남겼고, 실측은 M1에서 하기로 되어 있습니다(현재 `미측정`). 에셋 쪽에서 미리 지킨 것들:
+ADR-002는 SVG를 선택하면서 **동시 오브젝트 수가 성능 상한이 된다**는 것을 감시 지점으로 남겼고, **M1에서 실측이 끝났습니다.**
+
+| 오브젝트당 요소 수 | 60fps 유지 상한 |
+| --- | --- |
+| 1개 (M1 프로토타입 도형) | 약 200개 |
+| **3~4개 (이 디렉터리의 파편 에셋)** | **약 110개** |
+
+**요소 수가 늘면 상한이 그만큼 내려갑니다.** 현재 게임 설정은 동시 34개라 이 에셋을 그대로 써도 3배 여유가 있습니다. 다만 스폰 수를 올릴 계획이라면 위 표의 오른쪽 열이 기준입니다. 측정 조건과 단서는 [`decisions.md`](./decisions.md) ADR-002 참고 (headless Chromium 기준이라 실기기는 더 낮습니다).
+
+에셋 쪽에서 미리 지킨 것들:
 
 - 쓰레기·위험 파편은 **필터 없음**. 그림자·발광은 도형을 겹쳐서 냅니다
 - 쓰레기·위험 파편·이펙트는 전부 **`viewBox="0 0 100 100"` 정규화**. 크기 변화는 `transform: scale()` 로만 냅니다. 성장에 따라 줍스가 커지는 것(M1)도 마찬가지입니다
+
+### ⚠️ 게임 코드에 얹을 때의 좌표 변환
+
+에셋과 게임 코드의 기준이 다릅니다. **그냥 인라인하면 크기와 위치가 어긋납니다.**
+
+| | 원점 | 반지름 |
+| --- | --- | --- |
+| 이 디렉터리의 에셋 | `(50, 50)` | 약 34 (100×100 캔버스 안) |
+| `app/play/page.tsx` 의 오브젝트 | `(0, 0)` | **1** (부모가 `scale(radius)` 로 실제 크기를 줌) |
+
+게임 코드는 오브젝트를 **반지름 1** 로 그린다고 가정하고 `transform="translate(x y) scale(반지름)"` 하나만 매 프레임 갱신합니다. 그래서 에셋 마크업을 옮길 때는 안쪽에 한 겹 감싸 기준을 맞춥니다.
+
+```jsx
+<g transform={`translate(${pos.x} ${pos.y}) scale(${radius})`}>   {/* 게임 코드가 갱신 */}
+  <g transform="scale(0.0294) translate(-50 -50)">                 {/* 에셋 기준 보정 */}
+    ...에셋 마크업 그대로...
+  </g>
+</g>
+```
+
+`0.0294 = 1/34`. 에셋의 실루엣 반지름을 바꾸면 이 상수도 같이 바꿔야 합니다.
 - 배경은 3개 레이어(`starfield` / `orbit-band` / `earth-limb`)로 나눠뒀습니다. 시차 스크롤은 **레이어 그룹 하나를 통째로 `translate`** 하면 됩니다. 별을 개별로 움직이지 마세요
 - `starfield.svg` 안의 `#star-far` / `#star-mid` / `#star-near` 가 그 3단 깊이입니다
 

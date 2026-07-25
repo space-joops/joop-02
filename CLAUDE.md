@@ -8,30 +8,41 @@
 
 > 이 섹션은 **실제 구현 상태**만 적습니다. 앞으로 만들 것은 여기가 아니라 [`docs/roadmap.md`](./docs/roadmap.md)에 있습니다.
 
-- 진행 중인 마일스톤: **M0(프로젝트 기반) 완료**
-- 다음 작업: **M1(아케이드 모드 코어)** — 상세는 [`docs/roadmap.md`](./docs/roadmap.md) 참고
+- 진행 중인 마일스톤: **M1(아케이드 모드 코어) 완료**
+- 다음 작업: **M2(누적 실적 & 프로필)** — 상세는 [`docs/roadmap.md`](./docs/roadmap.md) 참고
+- **플레이 가능합니다**: 홈 → `청소하러 가기` → 60초 세션 → 결과 요약
 
 **실제로 존재하는 파일**
 
 ```
-app/layout.tsx          모바일 세로 셸 (safe-area, 회전 안내, 뷰포트 설정)
-app/layout.module.css   셸 스타일
-app/globals.css         디자인 토큰 (색·간격·타이포·레이어·모션)
-app/page.tsx            홈 화면
-app/page.module.css     홈 화면 스타일
-app/page.test.tsx       홈 화면 스모크 테스트
-design/                 디자인 에셋 원본 (SVG 40개 + 토큰 CSS + 프리뷰)
+app/layout.tsx           모바일 세로 셸 (safe-area, 회전 안내, 뷰포트 설정)
+app/globals.css          디자인 토큰 (색·간격·타이포·레이어·모션)
+app/page.tsx             홈 화면
+app/play/page.tsx        아케이드 모드 화면 + 세션 관리 + 결과 요약
+components/Joystick.tsx  가상 조이스틱 (포인터 이벤트)
+components/Jupsy.tsx     줍스 SVG — M1 프로토타입 버전. M3에서 고도화
+lib/useGameLoop.ts       rAF + delta time 루프
+lib/game/                게임 규칙 순수 함수
+  types.ts               Vec, Debris, Jupsy, SessionResult
+  constants.ts           필드 크기, 밸런스 수치 — 조정은 전부 여기서
+  vector.ts              벡터 연산
+  growth.ts              성장 곡선, 흡수 가능 판정, 위험 파편 패널티
+  physics.ts             관성 이동, 경계 처리, 파편 표류
+  collision.ts           접촉 판정
+  spawn.ts / random.ts   결정론적 스폰
+  format.ts              kg·시간 표기
+design/                  디자인 에셋 원본 (SVG 40개 + 프리뷰). 토큰은 globals.css로 통합됨
 ```
+
+각 `*.tsx`에는 같은 이름의 `.module.css`가 함께 있고, `lib/game/`의 대부분에는 `.test.ts`가 붙어 있습니다 (테스트 65건).
 
 설정 파일: `package.json`, `tsconfig.json`, `next.config.ts`, `eslint.config.mjs`, `.prettierrc.json`, `vitest.config.mts`, `vitest.setup.ts`, `.github/workflows/ci.yml`
 
-**아직 없는 것**: `components/`, `lib/`, `app/play/`, `app/profile/` — 전부 M1 이후에 만듭니다. **존재한다고 가정하고 읽으려 하지 마세요.**
+**아직 없는 것**: `app/profile/`, `lib/storage.ts` — M2에서 만듭니다. **존재한다고 가정하고 읽으려 하지 마세요.**
 
-홈 화면의 두 진입점(`청소하러 가기` / `프로필 보기`)은 아직 경로가 없어 **비활성 버튼**입니다. M1·M2에서 링크로 교체합니다.
+홈 화면의 `프로필 보기`는 아직 경로가 없어 **비활성 버튼**입니다. M2에서 링크로 교체합니다. **아케이드 세션 결과는 아직 저장되지 않습니다** — 한 판이 끝나면 사라집니다. M2에서 붙입니다.
 
-`design/` 에는 디자인 토큰(`tokens/tokens.css`), 줍스 캐릭터 SVG와 표정 8종, 아케이드 오브젝트, UI 아이콘·배지 틀이 있습니다. **아직 어떤 코드에도 연결되어 있지 않은 원본 파일들입니다.** `design/preview.html` 을 브라우저로 열면 전부 볼 수 있고, 사용 규칙은 [`docs/design-guide.md`](./docs/design-guide.md)에 있습니다.
-
-> ⚠️ **토큰이 두 벌입니다.** M0의 `app/globals.css` 와 `design/tokens/tokens.css` 가 서로 다른 이름 체계로 병렬 존재합니다. M0와 디자인 작업이 동시에 진행되어 생긴 상태이고, **아직 정리되지 않았습니다.** 경위와 선택지는 [`docs/decisions.md`](./docs/decisions.md) ADR-009 참고.
+`design/` 에는 줍스 캐릭터 SVG와 표정 8종, 아케이드 오브젝트, UI 아이콘·배지 틀이 있습니다. **토큰은 이미 앱과 통합되어 `app/globals.css` 가 정본입니다.** SVG 자체는 아직 컴포넌트로 옮겨지지 않았습니다 — M3 작업입니다. `design/preview.html` 을 브라우저로 열면 전부 볼 수 있고, 사용 규칙은 [`docs/design-guide.md`](./docs/design-guide.md)에 있습니다.
 
 ## 문서 맵
 
@@ -110,7 +121,8 @@ design/                 디자인 에셋 원본 (SVG 40개 + 토큰 CSS + 프리
 | 패키지 매니저 | **npm** | — |
 | 품질 도구 | **ESLint + Prettier + Vitest + GitHub Actions CI** (`format:check → lint → typecheck → test → build`) | ADR-006 |
 | 보상 설계 | **재화·상점 배제.** 누적 실적·배지만 | ADR-007 |
-| 디자인 에셋 | **코드보다 먼저, 레포 안 `design/` 에 SVG·CSS 원본으로.** 빌드 없음 | ADR-009 |
+| 디자인 에셋 | **코드보다 먼저, 레포 안 `design/` 에 SVG 원본으로.** 빌드 없음 | ADR-009 |
+| 토큰 정본 | **`app/globals.css` 한 곳.** 색은 2계층(`--c-*` → `--color-*`), 간격·타이포는 M0 이름 | ADR-010 |
 
 ### 코드 규칙
 
@@ -132,11 +144,10 @@ design/                 디자인 에셋 원본 (SVG 40개 + 토큰 CSS + 프리
 
 ## 아직 만들지 않은 것
 
-전부 미구현입니다 (`현재 상태` 참고). 순서와 완료 기준은 [`docs/roadmap.md`](./docs/roadmap.md)에 있습니다.
+M0·M1은 완료되었습니다 (`현재 상태` 참고). 아래는 남은 것들이고, 순서와 완료 기준은 [`docs/roadmap.md`](./docs/roadmap.md)에 있습니다.
 
-- 아케이드 모드 (M1)
 - 누적 실적 저장과 프로필 대시보드 (M2)
-- 캐릭터 컴포넌트 `components/Jupsy.tsx` 와 애니메이션 (M3) — **SVG 원본과 표정 8종은 `design/character/` 에 이미 있습니다.** 없는 것은 이를 컴포넌트로 옮기고 CSS 애니메이션을 붙이는 작업입니다
+- 캐릭터 비주얼 고도화 (M3) — `components/Jupsy.tsx` 는 M1 프로토타입 버전입니다. **고퀄리티 SVG 원본과 표정 8종은 `design/character/` 에 이미 있고**, 남은 일은 이를 컴포넌트로 옮기고 CSS 애니메이션을 붙이는 것입니다
 - 입양~발사 온보딩 플로우 (M4)
 - 통신 가능 시간 스케줄링과 알림 (M5)
 - 성격 유형 분화 (M6)

@@ -23,7 +23,7 @@
 
 .tagline {
   margin: 0;
-  color: var(--color-text-muted);
+  color: var(--color-text-mid);
   font-size: var(--font-size-sm);
 }
 
@@ -44,7 +44,7 @@
   height: 8.5rem;
   border: 1px dashed var(--color-border);
   border-radius: var(--radius-full);
-  color: var(--color-text-faint);
+  color: var(--color-text-low);
   font-size: var(--font-size-xs);
   background: var(--color-surface);
 }
@@ -74,7 +74,7 @@
 
 .action:not(:disabled):hover,
 .action:focus-visible {
-  background: var(--color-surface-strong);
+  background: var(--color-surface-raised);
 }
 
 /* M1·M2에서 경로가 생기기 전까지의 상태.
@@ -91,12 +91,12 @@
 
 .actionPrimary {
   border-color: var(--color-accent-deep);
-  background: linear-gradient(135deg, var(--color-accent-deep), var(--color-space-600));
+  background: linear-gradient(135deg, var(--color-accent-deep), var(--color-bg-orbit));
 }
 
 .actionPrimary:not(:disabled):hover,
 .actionPrimary:focus-visible {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-space-500));
+  background: linear-gradient(135deg, var(--color-accent), var(--color-bg-lift));
 }
 
 .actionLabel {
@@ -105,7 +105,7 @@
 }
 
 .actionHint {
-  color: var(--color-text-muted);
+  color: var(--color-text-mid);
   font-size: var(--font-size-xs);
 }
 
