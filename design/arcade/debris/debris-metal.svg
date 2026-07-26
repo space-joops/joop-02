@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="금속 부품 조각">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="금속 부품 조각 (카세트 퓨처리즘)">
   <!-- 먹을 수 있음 · 금속 부품 · 정규화 캔버스 100x100 (크기는 transform: scale() 로만 조절) -->
-  <!-- 따뜻한 색 + 둥근 실루엣 = 안전 신호 (아케이드 규칙 확정 사항) -->
+  <!-- 따뜻한 색 + 둥근 실루엣 = 안전 신호 (아케이드 규칙 확정 사항). 카세트 퓨처리즘
+       반영이라도 이 규칙은 지킨다 — 색은 그대로, 스캔라인·리벳 디테일만 얹었다 -->
   <!-- 잉크 반경을 45로 정규화 (design-guide.md 6절). 소비자는 scale(radius/45) 한 번만 걸면 된다. -->
   <g transform="translate(50 50) scale(1.1111) translate(-50.00 -50.00)">
     <g stroke-linejoin="round" stroke-linecap="round">
@@ -10,6 +11,15 @@
       <polygon points="50,26 70,38 70,62 50,74 30,62 30,38"
         fill="none"
         stroke="var(--color-debris-metal-hi, #e8c88f)" stroke-width="4" opacity="0.75"/>
+      <!-- 리벳 — 카세트 퓨처리즘 디테일 -->
+      <g fill="var(--color-debris-metal-shadow, #8e6d34)">
+        <circle cx="50" cy="30" r="2.4"/>
+        <circle cx="68" cy="41" r="2.4"/>
+        <circle cx="68" cy="59" r="2.4"/>
+        <circle cx="50" cy="70" r="2.4"/>
+        <circle cx="32" cy="59" r="2.4"/>
+        <circle cx="32" cy="41" r="2.4"/>
+      </g>
       <circle cx="50" cy="50" r="12" fill="var(--color-debris-metal-shadow, #8e6d34)"/>
       <path d="M36 34 L44 27" stroke="var(--color-debris-metal-hi, #e8c88f)" stroke-width="5" opacity="0.9"/>
     </g>

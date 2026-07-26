@@ -1,12 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" role="img" aria-label="줍스 표정: 집중">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" role="img" aria-label="줍스 표정: 집중 (카세트 퓨처리즘)">
   <!-- 눈 슬롯 규격: 120 x 60 / 눈 중심 (42,30) (78,30) / jupsy-base.svg 의 translate(40 52) 자리 -->
-  <!-- 집중 — 아케이드 모드 진입 직후, 큰 파편을 노릴 때. 가늘게 뜬 눈 -->
-  <g fill="var(--color-eye, #6fe3ff)">
-    <ellipse cx="42" cy="31" rx="10" ry="5.5"/>
-    <ellipse cx="78" cy="31" rx="10" ry="5.5"/>
+  <!-- 집중 — PR #5 카세트 퓨처리즘 방향 반영. 레이더 타겟 도트 + 조준 틱마크.
+       아케이드 모드 진입 직후, 큰 파편을 노릴 때 -->
+  <g fill="var(--color-eye, #39ff14)">
+    <rect x="36" y="25" width="12" height="10"/>
+    <rect x="72" y="25" width="12" height="10"/>
   </g>
-  <g fill="none" stroke="var(--color-eye-deep, #2fc6ee)" stroke-width="2.6" stroke-linecap="round">
-    <path d="M31 20 L51 23"/>
-    <path d="M89 20 L69 23"/>
+  <g stroke="var(--color-eye-deep, #1fb800)" stroke-width="2.2" stroke-linecap="square">
+    <path d="M30 19 L40 24"/>
+    <path d="M54 19 L44 24"/>
+    <path d="M66 19 L76 24"/>
+    <path d="M90 19 L80 24"/>
   </g>
 </svg>

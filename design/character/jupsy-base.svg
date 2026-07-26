@@ -1,11 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" role="img" aria-label="반려위성 줍스">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" role="img" aria-label="반려위성 줍스 — 카세트 퓨처리즘">
   <!--
     줍스 — 캐릭터 원본 (단일 진실 원본)
 
-    캔버스: 200 x 240
-    눈 슬롯: x=40 y=52 w=120 h=60  (expressions/*.svg 가 그대로 얹히는 자리)
+    비주얼 방향: 카세트 퓨처리즘 (PR #5 검토 반영, CLAUDE.md 캐릭터 디자인 갱신).
+    이전(월-E 이브 참고) 대비 바뀐 것은 형태 언어와 색뿐이다 — 구조는 그대로다:
+      · 몸통 = 이음새 없는 매끈한 셸  →  각진 레트로 단말기 케이싱(라운드 코너 사각)
+      · 발광 눈 = 차가운 시안         →  인광(phosphor) 초록/앰버
+    바이저가 하나의 디스플레이라는 규칙, 팔이 분리되어 뜬다는 규칙, 고양이 귀·등
+    가시·가슴 코어라는 부위 구성은 전부 유지한다(CLAUDE.md 확정 사항).
 
-    파트별 transform-origin (M3 애니메이션용):
+    캔버스: 200 x 240 (변경 없음)
+    눈 슬롯: x=40 y=52 w=120 h=60  (expressions/*.svg 가 그대로 얹히는 자리, 변경 없음)
+
+    파트별 transform-origin (M3 애니메이션용, 변경 없음):
       #jupsy-root        100px 120px   부유(bobbing), 피격 흔들림
       #jupsy-head        100px 100px   갸웃거림
       #jupsy-arm-left     36px 170px   팔 흔들기
@@ -15,39 +22,44 @@
 
     파트를 개별 파일로 쪼개지 마세요. 이 파일이 몸체의 유일한 원본입니다.
     표정만 expressions/ 에서 교체합니다. 자세한 규칙은 docs/design-guide.md.
+
+    참고: expressions/ 8종 중 focus·happy·hurt 3종만 이번에 카세트 퓨처리즘으로
+    갱신했습니다(PR #5가 스케치한 범위). 아래 #jupsy-eyes 기본값(= eyes-normal.svg
+    자리)도 새 방향으로 맞춰뒀지만, normal·blink·curious·heart·sleepy 5종의 정식
+    파일 갱신은 후속 이슈로 넘겼습니다.
   -->
   <defs>
     <linearGradient id="jupsy-shell-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="var(--color-shell-hi, #ffffff)"/>
-      <stop offset="55%" stop-color="var(--color-shell, #f7faff)"/>
-      <stop offset="100%" stop-color="var(--color-shell-shadow, #d3deee)"/>
+      <stop offset="0%" stop-color="var(--color-shell-hi, #fdf6e8)"/>
+      <stop offset="55%" stop-color="var(--color-shell, #ecdfc0)"/>
+      <stop offset="100%" stop-color="var(--color-shell-shadow, #c9b98c)"/>
     </linearGradient>
 
     <linearGradient id="jupsy-body-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="var(--color-shell-hi, #ffffff)"/>
-      <stop offset="60%" stop-color="var(--color-shell, #f7faff)"/>
-      <stop offset="100%" stop-color="var(--color-shell-edge, #b2c1d8)"/>
+      <stop offset="0%" stop-color="var(--color-shell-hi, #fdf6e8)"/>
+      <stop offset="60%" stop-color="var(--color-shell, #ecdfc0)"/>
+      <stop offset="100%" stop-color="var(--color-shell-edge, #a8976a)"/>
     </linearGradient>
 
     <linearGradient id="jupsy-visor-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="var(--color-visor-hi, #212c4a)"/>
-      <stop offset="70%" stop-color="var(--color-visor, #0b1120)"/>
+      <stop offset="0%" stop-color="var(--color-visor-hi, #123a1c)"/>
+      <stop offset="70%" stop-color="var(--color-visor, #05130a)"/>
     </linearGradient>
 
     <radialGradient id="jupsy-core-grad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="var(--color-shell-hi, #ffffff)"/>
-      <stop offset="35%" stop-color="var(--color-core, #5fe3c0)"/>
-      <stop offset="100%" stop-color="var(--color-core-deep, #2fc7a4)"/>
+      <stop offset="0%" stop-color="var(--color-shell-hi, #fdf6e8)"/>
+      <stop offset="35%" stop-color="var(--color-core, #ffb000)"/>
+      <stop offset="100%" stop-color="var(--color-core-deep, #cc8800)"/>
     </radialGradient>
 
     <radialGradient id="jupsy-core-halo" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="var(--color-core, #5fe3c0)" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="var(--color-core, #5fe3c0)" stop-opacity="0"/>
+      <stop offset="0%" stop-color="var(--color-core, #ffb000)" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="var(--color-core, #ffb000)" stop-opacity="0"/>
     </radialGradient>
 
     <radialGradient id="jupsy-thruster-grad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="var(--color-core, #5fe3c0)" stop-opacity="0.45"/>
-      <stop offset="100%" stop-color="var(--color-core, #5fe3c0)" stop-opacity="0"/>
+      <stop offset="0%" stop-color="var(--color-core, #ffb000)" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="var(--color-core, #ffb000)" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
@@ -58,95 +70,105 @@
     </g>
 
     <!-- 등 가시 (고슴도치 요소) — 몸통 뒤에서 어깨선 위로 삐져나온다 -->
-    <g id="jupsy-quills" fill="var(--color-shell-deep, #8c9dba)" stroke-linejoin="round">
+    <g id="jupsy-quills" fill="var(--color-shell-deep, #7c6d4c)" stroke-linejoin="round">
       <path d="M71 142 L52 135 L67 154 Z"/>
       <path d="M65 156 L46 154 L63 167 Z"/>
       <path d="M129 142 L148 135 L133 154 Z"/>
       <path d="M135 156 L154 154 L137 167 Z"/>
     </g>
 
-    <!-- 몸통 -->
+    <!-- 몸통 — 라운드 코너 사각형 케이싱(단말기 섀시) -->
     <g id="jupsy-body">
-      <path
-        d="M100 134 C124 134 140 152 140 174 C140 198 122 216 100 216 C78 216 60 198 60 174 C60 152 76 134 100 134 Z"
-        fill="url(#jupsy-body-grad)"/>
-      <!-- 셸 스페큘러 -->
-      <ellipse cx="82" cy="154" rx="13" ry="8" fill="var(--color-shell-hi, #ffffff)" opacity="0.8"
-        transform="rotate(-28 82 154)"/>
+      <rect x="60" y="134" width="80" height="82" rx="18" fill="url(#jupsy-body-grad)"/>
+      <!-- 섀시 스페큘러 -->
+      <rect x="70" y="144" rx="3" width="26" height="8" fill="var(--color-shell-hi, #fdf6e8)" opacity="0.8"/>
 
-      <!-- 가슴 코어 라이트 -->
+      <!-- 스피커 그릴 슬릿 (카세트 데크 요소) -->
+      <g fill="var(--color-shell-shadow, #c9b98c)" opacity="0.6">
+        <rect x="70" y="198" width="30" height="3" rx="1.5"/>
+        <rect x="70" y="205" width="30" height="3" rx="1.5"/>
+        <rect x="70" y="212" width="20" height="3" rx="1.5"/>
+      </g>
+
+      <!-- 가슴 코어 라이트 — 전원 인디케이터 -->
       <g id="jupsy-core">
         <circle cx="100" cy="176" r="26" fill="url(#jupsy-core-halo)"/>
-        <circle cx="100" cy="176" r="13" fill="var(--color-visor, #0b1120)" opacity="0.35"/>
+        <rect x="86" y="162" width="28" height="28" rx="6" fill="var(--color-visor, #05130a)" opacity="0.35"/>
         <circle cx="100" cy="176" r="11" fill="url(#jupsy-core-grad)"/>
       </g>
     </g>
 
-    <!-- 몸통에서 분리되어 떠 있는 팔 -->
+    <!-- 몸통에서 분리되어 떠 있는 팔 — 컨트롤 노브 형태 -->
     <g id="jupsy-arm-left">
-      <ellipse cx="36" cy="180" rx="13" ry="20" fill="url(#jupsy-shell-grad)"
+      <rect x="23" y="160" width="26" height="40" rx="9" fill="url(#jupsy-shell-grad)"
         transform="rotate(-14 36 180)"/>
-      <ellipse cx="32" cy="170" rx="4.5" ry="6.5" fill="var(--color-shell-hi, #ffffff)" opacity="0.85"
-        transform="rotate(-14 32 170)"/>
+      <rect x="27" y="165" width="9" height="8" rx="2.5" fill="var(--color-shell-hi, #fdf6e8)" opacity="0.85"
+        transform="rotate(-14 36 180)"/>
     </g>
     <g id="jupsy-arm-right">
-      <ellipse cx="164" cy="180" rx="13" ry="20" fill="url(#jupsy-shell-grad)"
+      <rect x="151" y="160" width="26" height="40" rx="9" fill="url(#jupsy-shell-grad)"
         transform="rotate(14 164 180)"/>
-      <ellipse cx="160" cy="170" rx="4.5" ry="6.5" fill="var(--color-shell-hi, #ffffff)" opacity="0.85"
-        transform="rotate(14 160 170)"/>
+      <rect x="164" y="165" width="9" height="8" rx="2.5" fill="var(--color-shell-hi, #fdf6e8)" opacity="0.85"
+        transform="rotate(14 164 180)"/>
     </g>
 
     <!-- 머리 (몸통과 분리되어 떠 있다) -->
     <g id="jupsy-head">
       <!-- 고양이 귀 형태의 짧은 센서 — 셸보다 먼저 그려 뿌리를 감춘다 -->
       <g id="jupsy-ears" stroke-linejoin="round">
-        <path d="M53 66 L64 14 L94 42 Z" fill="var(--color-shell-edge, #b2c1d8)"/>
-        <path d="M147 66 L136 14 L106 42 Z" fill="var(--color-shell-edge, #b2c1d8)"/>
-        <path d="M63 58 L67 27 L83 45 Z" fill="var(--color-eye-deep, #2fc6ee)" opacity="0.45"/>
-        <path d="M137 58 L133 27 L117 45 Z" fill="var(--color-eye-deep, #2fc6ee)" opacity="0.45"/>
+        <path d="M53 66 L64 14 L94 42 Z" fill="var(--color-shell-edge, #a8976a)"/>
+        <path d="M147 66 L136 14 L106 42 Z" fill="var(--color-shell-edge, #a8976a)"/>
+        <path d="M63 58 L67 27 L83 45 Z" fill="var(--color-eye-deep, #1fb800)" opacity="0.45"/>
+        <path d="M137 58 L133 27 L117 45 Z" fill="var(--color-eye-deep, #1fb800)" opacity="0.45"/>
       </g>
 
-      <!-- 수염 같은 와이어 -->
+      <!-- 수염 같은 와이어 — 안테나 겸용 -->
       <g id="jupsy-whiskers" fill="none"
-        stroke="var(--color-shell-edge, #b2c1d8)" stroke-width="2.4" stroke-linecap="round">
+        stroke="var(--color-shell-edge, #a8976a)" stroke-width="2.4" stroke-linecap="round">
         <path d="M54 86 C42 80 32 79 23 82"/>
         <path d="M55 97 C44 98 34 103 27 110"/>
         <path d="M146 86 C158 80 168 79 177 82"/>
         <path d="M145 97 C156 98 166 103 173 110"/>
       </g>
-      <g fill="var(--color-eye-deep, #2fc6ee)">
+      <g fill="var(--color-eye-deep, #1fb800)">
         <circle cx="21" cy="82" r="3"/>
         <circle cx="25" cy="111" r="3"/>
         <circle cx="179" cy="82" r="3"/>
         <circle cx="175" cy="111" r="3"/>
       </g>
 
-      <!-- 이음새 없는 매끈한 흰색 달걀형 셸 -->
-      <path
-        d="M100 34 C126 34 152 58 152 86 C152 110 128 126 100 126 C72 126 48 110 48 86 C48 58 74 34 100 34 Z"
-        fill="url(#jupsy-shell-grad)"/>
-      <ellipse cx="72" cy="54" rx="15" ry="9" fill="var(--color-shell-hi, #ffffff)" opacity="0.9"
-        transform="rotate(-32 72 54)"/>
+      <!-- 머리 케이싱 — 라운드 코너 사각형 단말기 하우징 -->
+      <rect x="48" y="34" width="104" height="92" rx="26" fill="url(#jupsy-shell-grad)"/>
+      <rect x="58" y="44" rx="3" width="30" height="8" fill="var(--color-shell-hi, #fdf6e8)" opacity="0.9"/>
 
-      <!-- 바이저 = 디스플레이. 눈은 이 위에 얹힌다 -->
-      <rect x="58" y="62" width="84" height="40" rx="20" fill="url(#jupsy-visor-grad)"/>
-      <rect x="66" y="67" width="52" height="8" rx="4" fill="var(--color-shell-hi, #ffffff)"
-        opacity="0.14"/>
+      <!-- 바이저 = 디스플레이(CRT 스크린). 눈은 이 위에 얹힌다 -->
+      <rect x="58" y="62" width="84" height="40" rx="10" fill="url(#jupsy-visor-grad)"/>
+      <!-- 스캔라인 디테일 — 필터가 아니라 얇은 사각형을 반복해 흉내낸다 -->
+      <g fill="var(--color-shell-hi, #fdf6e8)" opacity="0.06">
+        <rect x="58" y="68" width="84" height="1.5"/>
+        <rect x="58" y="76" width="84" height="1.5"/>
+        <rect x="58" y="84" width="84" height="1.5"/>
+        <rect x="58" y="92" width="84" height="1.5"/>
+      </g>
+      <rect x="66" y="67" width="52" height="6" rx="3" fill="var(--color-shell-hi, #fdf6e8)"
+        opacity="0.12"/>
 
       <!--
         눈 슬롯 (x=40 y=52 w=120 h=60).
         아래 <g id="jupsy-eyes"> 안의 내용을 expressions/*.svg 의 내용으로 통째로 갈아끼웁니다.
         몸통 구조는 건드리지 않습니다.
-        기본값은 eyes-normal.svg 와 동일합니다.
+        기본값은 eyes-normal.svg 와 같은 자리를 씁니다 — 단, eyes-normal.svg 자체는
+        아직 카세트 퓨처리즘으로 갱신되지 않았습니다(후속 이슈). 이 인라인 기본값만
+        새 팔레트로 먼저 맞춰뒀습니다.
       -->
       <g id="jupsy-eyes" transform="translate(40 52)">
-        <g fill="var(--color-eye, #6fe3ff)">
-          <ellipse cx="42" cy="30" rx="9.5" ry="12"/>
-          <ellipse cx="78" cy="30" rx="9.5" ry="12"/>
+        <g fill="var(--color-eye, #39ff14)">
+          <rect x="32.5" y="24" width="19" height="12" rx="1.5"/>
+          <rect x="68.5" y="24" width="19" height="12" rx="1.5"/>
         </g>
-        <g fill="var(--color-eye-soft, #b6f4ff)" opacity="0.9">
-          <ellipse cx="39" cy="25" rx="3.4" ry="4.2"/>
-          <ellipse cx="75" cy="25" rx="3.4" ry="4.2"/>
+        <g fill="var(--color-eye-soft, #b6ffb0)" opacity="0.85">
+          <rect x="32.5" y="24" width="19" height="3"/>
+          <rect x="68.5" y="24" width="19" height="3"/>
         </g>
       </g>
     </g>

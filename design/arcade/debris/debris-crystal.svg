@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="반짝이는 파편">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="반짝이는 파편 (카세트 퓨처리즘)">
   <!-- 먹을 수 있음 · 반짝이는 파편 · 정규화 캔버스 100x100 -->
   <!-- 주의: 크리스탈이지만 차가운 파랑을 쓰지 않는다. 먹을 것은 전부 따뜻한 색.
-       종류 구분은 색상이 아니라 형태로 한다. (docs/design-guide.md 1절) -->
+       종류 구분은 색상이 아니라 형태로 한다. (docs/design-guide.md 1절)
+       카세트 퓨처리즘 반영이라도 색은 그대로, 오실로스코프풍 조준선만 얹었다 -->
   <!-- 잉크 반경을 45로 정규화 (design-guide.md 6절). 소비자는 scale(radius/45) 한 번만 걸면 된다. -->
   <g transform="translate(50 50) scale(1.0976) translate(-50.00 -49.00)">
     <g stroke-linejoin="round" stroke-linecap="round">
@@ -13,6 +14,12 @@
       <path d="M50 20 L50 80 M27 42 L50 52 M73 42 L50 52"
         fill="none" stroke="var(--color-debris-crystal-shadow, #c79a5e)"
         stroke-width="3" opacity="0.5"/>
+      <!-- 조준선 틱마크 — 카세트 퓨처리즘 디테일 -->
+      <g stroke="var(--color-debris-crystal-shadow, #c79a5e)" stroke-width="2.4" opacity="0.6">
+        <path d="M14 40 L20 40"/>
+        <path d="M80 40 L86 40"/>
+        <path d="M50 6 L50 12"/>
+      </g>
       <path d="M64 34 L64 44 M59 39 L69 39"
         fill="none" stroke="var(--color-debris-crystal-hi, #ffe7c4)"
         stroke-width="3" stroke-linecap="round" opacity="0.95"/>

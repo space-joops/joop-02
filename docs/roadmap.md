@@ -125,12 +125,14 @@ M0~M3은 **"플레이 가능한 하나의 세로 슬라이스"** 를 만드는 �
 
 **범위**
 
-- `components/Jupsy.tsx`: 확정된 디자인 언어를 SVG로 구현 — 매끈한 흰색 달걀형 셸, 어두운 바이저, 몸통에서 **분리되어 떠 있는 팔**, 고양이 귀 센서, 등 가시, 수염 와이어, 가슴 코어 라이트
+- `components/Jupsy.tsx`: 확정된 디자인 언어를 SVG로 구현 — 아이보리색 라운드-코너 케이싱, CRT 스크린풍 바이저, 몸통에서 **분리되어 떠 있는 팔**, 고양이 귀 센서, 등 가시, 수염 와이어(안테나 겸용), 가슴 코어 라이트(앰버 인디케이터)
 - 바이저 표정 세트: `normal` / `happy` / `hurt` / `heart` — 바이저를 디스플레이로 취급해 **눈 도형만 교체**
 - CSS 애니메이션: 부유(idle bobbing), 흡수 시 통통 튐, 피격 시 흔들림, 코어 라이트 맥동
 - `prefers-reduced-motion` 대응
 
-> **SVG 원본과 표정 8종은 `design/character/` 에 이미 있습니다.** 이 마일스톤의 일은 새로 그리는 것이 아니라 컴포넌트로 옮기고 애니메이션을 붙이는 것입니다. 눈 슬롯 규격·파트별 `transform-origin`·표정↔이벤트 매핑은 [`design-guide.md`](./design-guide.md) 4·5절에 있습니다.
+> **SVG 원본은 `design/character/` 에 있습니다.** 이 마일스톤의 일은 새로 그리는 것이 아니라 컴포넌트로 옮기고 애니메이션을 붙이는 것입니다. 눈 슬롯 규격·파트별 `transform-origin`·표정↔이벤트 매핑은 [`design-guide.md`](./design-guide.md) 4·5절에 있습니다.
+>
+> **디자인 방향 전환(PR #5 검토 반영)**: 협업자가 제안한 4개 테마 디자인 PR 검토 후, 캐릭터를 포함한 비주얼 언어를 **카세트 퓨처리즘**으로 교체했습니다(이전: 월-E 이브 참고 스타일). `jupsy-base.svg`와 표정 8종 중 `focus`·`happy`·`hurt` 3종, 그리고 아케이드 파편 2종(`debris-metal`·`debris-crystal`)·위험요소 1종(`hazard-blade`)·배경 1겹(`starfield`)이 새 방향으로 갱신됐습니다. 나머지 표정 5종(`normal`·`blink`·`curious`·`heart`·`sleepy`), 파편 2종(`debris-archive`·`debris-cable`), 위험요소 1종(`hazard-shard`), 배경 2겹(`earth-limb`·`orbit-band`), 이펙트 3종, UI(궤도 정화율·배지)는 협업자에게 요청한 후속 GitHub 이슈에서 채워질 때까지 이전 스타일로 남아 있습니다 — M3 착수 전 이 이슈가 먼저 해소되어야 완전한 세트로 시작할 수 있습니다.
 
 **완료 기준 (DoD)**
 
