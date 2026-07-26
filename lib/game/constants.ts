@@ -46,6 +46,19 @@ export const HAZARD_MASS_LOSS_RATIO = 0.18;
 /** 피격 후 무적 시간(초). 한 번 스친 파편에 연속으로 맞는 것을 막는다. */
 export const HAZARD_INVULNERABLE_SECONDS = 0.8;
 
+// ── 누적 실적 ──
+
+/**
+ * 담당 궤도 구역을 100% 치우는 데 필요한 누적 청소량.
+ *
+ * 한 판에 약 10kg가 모이므로 대략 50판이다. 정화율이 눈에 띄게 움직이되
+ * 금방 끝나 버리지 않는 지점으로 잡았다. 조정은 여기서만 한다.
+ */
+export const SECTOR_TARGET_KG = 500;
+
+/** 궤도 구역 시각화의 쓰레기 점 개수 (design/ui/orbit-sector.svg 와 일치) */
+export const SECTOR_DOT_COUNT = 36;
+
 // ── 스폰 ──
 
 export const SPAWN_INTERVAL_SECONDS = 0.45;
