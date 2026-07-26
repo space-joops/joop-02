@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" role="img" aria-label="줍스 표정: 기쁨">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" role="img" aria-label="줍스 표정: 기쁨 (카세트 퓨처리즘)">
   <!-- 눈 슬롯 규격: 120 x 60 / 눈 중심 (42,30) (78,30) / jupsy-base.svg 의 translate(40 52) 자리 -->
-  <!-- 기쁨 — 쓰레기 흡수 성공, 세션 성과 요약 -->
-  <g fill="none" stroke="var(--color-eye, #6fe3ff)" stroke-width="7"
-     stroke-linecap="round" stroke-linejoin="round">
-    <path d="M31 35 Q42 20 53 35"/>
-    <path d="M67 35 Q78 20 89 35"/>
+  <!-- 기쁨 — PR #5 카세트 퓨처리즘 방향 반영. 화면 가득 켜진 두꺼운 바 신호.
+       쓰레기 흡수 성공, 세션 성과 요약 -->
+  <g fill="var(--color-eye, #39ff14)">
+    <rect x="33" y="24" width="18" height="12" rx="1.5"/>
+    <rect x="69" y="24" width="18" height="12" rx="1.5"/>
   </g>
-  <g fill="var(--color-eye-soft, #b6f4ff)" opacity="0.75">
-    <circle cx="24" cy="40" r="2.6"/>
-    <circle cx="96" cy="40" r="2.6"/>
+  <g fill="var(--color-eye-soft, #b6ffb0)" opacity="0.85">
+    <rect x="33" y="24" width="18" height="3"/>
+    <rect x="69" y="24" width="18" height="3"/>
   </g>
 </svg>
