@@ -1,0 +1,45 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  align-items: center;
+  text-align: center;
+}
+
+.icon {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+/* 티어는 파일이 아니라 color로 지정한다. 프레임이 currentColor를 따른다. */
+.tier1 {
+  color: var(--color-badge-tier-1);
+}
+
+.tier2 {
+  color: var(--color-badge-tier-2);
+}
+
+.tier3 {
+  color: var(--color-badge-tier-3);
+}
+
+.locked {
+  color: var(--color-border);
+}
+
+.name {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+}
+
+.locked ~ .name {
+  color: var(--color-text-low);
+}
+
+.description {
+  color: var(--color-text-low);
+  font-size: 0.6875rem;
+  line-height: var(--line-height-tight);
+}

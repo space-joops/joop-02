@@ -16,6 +16,7 @@ import { formatMass, formatTime } from '@/lib/game/format';
 import { applyHazardPenalty, canAbsorb, radiusForMass } from '@/lib/game/growth';
 import { stepDebris, stepJupsy } from '@/lib/game/physics';
 import { createSpawner } from '@/lib/game/spawn';
+import { saveSession, type Records } from '@/lib/storage';
 import type { Debris, SessionResult, Vec } from '@/lib/game/types';
 import styles from './page.module.css';
 
@@ -67,6 +68,9 @@ export default function PlayPage() {
   /** 마지막으로 화면에 반영한 남은 초. 정수가 바뀔 때만 리렌더한다. */
   const shownSecond = useRef(SESSION_SECONDS);
 
+  /** 세션 결과를 이미 저장했는가. 중복 누적 방지. */
+  const saved = useRef(false);
+
   // DOM 참조 레지스트리. 파편 id → SVG 그룹.
   const debrisNodes = useRef(new Map<number, SVGGElement>());
   const jupsyNode = useRef<SVGGElement>(null);
@@ -76,6 +80,7 @@ export default function PlayPage() {
   const [mood, setMood] = useState<JupsyMood>('normal');
   const [remaining, setRemaining] = useState(SESSION_SECONDS);
   const [result, setResult] = useState<SessionResult | null>(null);
+  const [records, setRecords] = useState<Records | null>(null);
 
   const registerDebrisNode = useCallback((id: number, node: SVGGElement | null) => {
     if (node) debrisNodes.current.set(id, node);
@@ -95,11 +100,23 @@ export default function PlayPage() {
     // ── 타이머 ──
     const left = SESSION_SECONDS - elapsed.current;
     if (left <= 0) {
-      setResult({
-        collectedKg: collectedKg.current,
-        absorbedCount: absorbedCount.current,
-        hazardHits: hazardHits.current,
-      });
+      /*
+       * 저장은 한 번만.
+       *
+       * setPhase가 반영되기 전에 rAF가 한 프레임 더 돌 수 있다. 가드가
+       * 없으면 같은 세션이 두 번 누적된다 — 실적이 곧 보상인 게임에서
+       * 조용히 틀린 값이 쌓이는 건 치명적이다.
+       */
+      if (!saved.current) {
+        saved.current = true;
+        const result: SessionResult = {
+          collectedKg: collectedKg.current,
+          absorbedCount: absorbedCount.current,
+          hazardHits: hazardHits.current,
+        };
+        setResult(result);
+        setRecords(saveSession(result));
+      }
       setPhase('ended');
       return;
     }
@@ -233,7 +250,7 @@ export default function PlayPage() {
         <Joystick onChange={handleInput} />
       </footer>
 
-      {phase === 'ended' && result && <SessionSummary result={result} />}
+      {phase === 'ended' && result && <SessionSummary result={result} records={records} />}
     </div>
   );
 }
@@ -277,7 +294,7 @@ function DebrisShape({
 }
 
 /** 통신이 끊기고 결과를 정리해 보여준다. */
-function SessionSummary({ result }: { result: SessionResult }) {
+function SessionSummary({ result, records }: { result: SessionResult; records: Records | null }) {
   return (
     <div className={styles.summary} role="dialog" aria-label="세션 결과">
       <div className={styles.summaryCard}>
@@ -296,12 +313,20 @@ function SessionSummary({ result }: { result: SessionResult }) {
           </div>
         </dl>
 
-        {/* 누적 실적 저장은 M2에서 붙인다. 지금은 한 판이 끝나면 사라진다. */}
-        <p className={styles.summaryNotice}>누적 기록은 다음 단계에서 저장돼요.</p>
+        {records && (
+          <p className={styles.summaryTotal}>
+            지금까지 <strong>{formatMass(records.totalKg)}</strong> · 교신 {records.sessions}회
+          </p>
+        )}
 
-        <Link href="/" className={styles.summaryButton}>
-          돌아가기
-        </Link>
+        <div className={styles.summaryActions}>
+          <Link href="/profile" className={styles.summaryButton}>
+            기록 보기
+          </Link>
+          <Link href="/" className={styles.summaryButtonGhost}>
+            돌아가기
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -8,9 +8,9 @@
 
 > 이 섹션은 **실제 구현 상태**만 적습니다. 앞으로 만들 것은 여기가 아니라 [`docs/roadmap.md`](./docs/roadmap.md)에 있습니다.
 
-- 진행 중인 마일스톤: **M1(아케이드 모드 코어) 완료**
-- 다음 작업: **M2(누적 실적 & 프로필)** — 상세는 [`docs/roadmap.md`](./docs/roadmap.md) 참고
-- **플레이 가능합니다**: 홈 → `청소하러 가기` → 60초 세션 → 결과 요약
+- 진행 중인 마일스톤: **M2(누적 실적 & 프로필) 완료**
+- 다음 작업: **M3(캐릭터 비주얼 고도화)** — 상세는 [`docs/roadmap.md`](./docs/roadmap.md) 참고
+- **플레이 가능합니다**: 홈 → `청소하러 가기` → 60초 세션 → 결과 요약 → `기록 보기`. **기록이 누적됩니다.**
 
 **실제로 존재하는 파일**
 
@@ -19,8 +19,12 @@ app/layout.tsx           모바일 세로 셸 (safe-area, 회전 안내, 뷰포�
 app/globals.css          디자인 토큰 (색·간격·타이포·레이어·모션)
 app/page.tsx             홈 화면
 app/play/page.tsx        아케이드 모드 화면 + 세션 관리 + 결과 요약
+app/profile/page.tsx     누적 실적 대시보드 (청소량·정화율·배지)
 components/Joystick.tsx  가상 조이스틱 (포인터 이벤트)
 components/Jupsy.tsx     줍스 SVG — M1 프로토타입 버전. M3에서 고도화
+components/OrbitSector.tsx  담당 궤도 구역 정화율 시각화
+components/Badge.tsx     실적 배지
+lib/storage.ts           localStorage 접근 지점 (스키마 버전·외부 저장소 구독)
 lib/useGameLoop.ts       rAF + delta time 루프
 lib/game/                게임 규칙 순수 함수
   types.ts               Vec, Debris, Jupsy, SessionResult
@@ -31,6 +35,7 @@ lib/game/                게임 규칙 순수 함수
   collision.ts           접촉 판정
   spawn.ts / random.ts   결정론적 스폰
   format.ts              kg·시간 표기
+  records.ts             환산 비유 사다리, 정화율, 배지 정의
 design/                  디자인 에셋 원본 (SVG 40개 + 프리뷰). 토큰은 globals.css로 통합됨
 ```
 
@@ -38,9 +43,7 @@ design/                  디자인 에셋 원본 (SVG 40개 + 프리뷰). 토큰
 
 설정 파일: `package.json`, `tsconfig.json`, `next.config.ts`, `eslint.config.mjs`, `.prettierrc.json`, `vitest.config.mts`, `vitest.setup.ts`, `.github/workflows/ci.yml`
 
-**아직 없는 것**: `app/profile/`, `lib/storage.ts` — M2에서 만듭니다. **존재한다고 가정하고 읽으려 하지 마세요.**
-
-홈 화면의 `프로필 보기`는 아직 경로가 없어 **비활성 버튼**입니다. M2에서 링크로 교체합니다. **아케이드 세션 결과는 아직 저장되지 않습니다** — 한 판이 끝나면 사라집니다. M2에서 붙입니다.
+홈 화면의 두 진입점이 모두 살아 있습니다. 세션 결과는 `localStorage`에 누적되고, 프로필에서 누적 청소량·환산 비유·궤도 정화율·배지를 봅니다.
 
 `design/` 에는 줍스 캐릭터 SVG와 표정 8종, 아케이드 오브젝트, UI 아이콘·배지 틀이 있습니다. **토큰은 이미 앱과 통합되어 `app/globals.css` 가 정본입니다.** SVG 자체는 아직 컴포넌트로 옮겨지지 않았습니다 — M3 작업입니다. `design/preview.html` 을 브라우저로 열면 전부 볼 수 있고, 사용 규칙은 [`docs/design-guide.md`](./docs/design-guide.md)에 있습니다.
 
@@ -122,6 +125,7 @@ design/                  디자인 에셋 원본 (SVG 40개 + 프리뷰). 토큰
 | 품질 도구 | **ESLint + Prettier + Vitest + GitHub Actions CI** (`format:check → lint → typecheck → test → build`) | ADR-006 |
 | 보상 설계 | **재화·상점 배제.** 누적 실적·배지만 | ADR-007 |
 | 디자인 에셋 | **코드보다 먼저, 레포 안 `design/` 에 SVG 원본으로.** 빌드 없음 | ADR-009 |
+| 저장 스키마 | **`version` 필드 포함. 읽을 수 없으면 백업 키로 이동.** hydration은 `useSyncExternalStore` | ADR-011 |
 | 토큰 정본 | **`app/globals.css` 한 곳.** 색은 2계층(`--c-*` → `--color-*`), 간격·타이포는 M0 이름 | ADR-010 |
 
 ### 코드 규칙
@@ -144,9 +148,8 @@ design/                  디자인 에셋 원본 (SVG 40개 + 프리뷰). 토큰
 
 ## 아직 만들지 않은 것
 
-M0·M1은 완료되었습니다 (`현재 상태` 참고). 아래는 남은 것들이고, 순서와 완료 기준은 [`docs/roadmap.md`](./docs/roadmap.md)에 있습니다.
+M0~M2는 완료되었습니다 (`현재 상태` 참고). 아래는 남은 것들이고, 순서와 완료 기준은 [`docs/roadmap.md`](./docs/roadmap.md)에 있습니다.
 
-- 누적 실적 저장과 프로필 대시보드 (M2)
 - 캐릭터 비주얼 고도화 (M3) — `components/Jupsy.tsx` 는 M1 프로토타입 버전입니다. **고퀄리티 SVG 원본과 표정 8종은 `design/character/` 에 이미 있고**, 남은 일은 이를 컴포넌트로 옮기고 CSS 애니메이션을 붙이는 것입니다
 - 입양~발사 온보딩 플로우 (M4)
 - 통신 가능 시간 스케줄링과 알림 (M5)
