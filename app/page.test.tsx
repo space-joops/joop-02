@@ -18,17 +18,18 @@ describe('홈 화면', () => {
   it('두 개의 진입점을 보여준다', () => {
     render(<HomePage />);
     expect(screen.getByRole('link', { name: /청소하러 가기/ })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /프로필 보기/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /프로필 보기/ })).toBeInTheDocument();
   });
 
-  it('청소하러 가기는 아케이드 모드로 이어진다', () => {
+  it('각 진입점이 올바른 경로로 이어진다', () => {
     render(<HomePage />);
     expect(screen.getByRole('link', { name: /청소하러 가기/ })).toHaveAttribute('href', '/play');
+    expect(screen.getByRole('link', { name: /프로필 보기/ })).toHaveAttribute('href', '/profile');
   });
 
-  it('경로가 아직 없는 진입점은 비활성 상태다', () => {
-    // 프로필은 M2에서 경로가 생긴다. 그때 이 테스트도 함께 바뀐다.
+  it('비활성 버튼이 남아 있지 않다', () => {
+    // M2에서 프로필 경로가 생기며 마지막 비활성 진입점이 사라졌다.
     render(<HomePage />);
-    expect(screen.getByRole('button', { name: /프로필 보기/ })).toBeDisabled();
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 });

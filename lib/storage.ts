@@ -104,6 +104,68 @@ function archiveUnreadable(raw: string): void {
   }
 }
 
+/*
+ * ── 외부 저장소 구독 (useSyncExternalStore용) ──
+ *
+ * localStorage는 React 밖의 상태다. `useEffect`에서 읽어 `setState` 하는
+ * 방식도 동작하지만, React 19는 그걸 권장하지 않는다(effect에서의 setState는
+ * 추가 렌더를 부른다). `useSyncExternalStore` 는 이런 외부 저장소를 위해
+ * 있는 API이고, **`getServerSnapshot` 이 SSR/hydration을 위해 따로 있다.**
+ *
+ * 서버 스냅샷은 항상 빈 실적이다. 그래서 서버 렌더와 클라이언트 첫 렌더가
+ * 일치하고(=hydration mismatch 없음), 하이드레이션이 끝난 뒤 React가
+ * 실제 값으로 다시 그린다.
+ */
+
+/** 서버 스냅샷은 참조가 고정되어야 한다. 매번 새 객체를 주면 무한 렌더가 난다. */
+const SERVER_SNAPSHOT: Records = emptyRecords();
+
+let cachedRaw: string | null | undefined;
+let cachedRecords: Records = SERVER_SNAPSHOT;
+
+const listeners = new Set<() => void>();
+
+function emitChange(): void {
+  for (const l of listeners) l();
+}
+
+export function subscribeRecords(onChange: () => void): () => void {
+  listeners.add(onChange);
+  // 다른 탭에서 플레이해도 이 화면이 따라온다.
+  window.addEventListener('storage', onChange);
+  return () => {
+    listeners.delete(onChange);
+    window.removeEventListener('storage', onChange);
+  };
+}
+
+/**
+ * 현재 스냅샷.
+ *
+ * **같은 내용이면 같은 참조를 돌려줘야 한다.** `useSyncExternalStore` 는
+ * `Object.is` 로 비교하므로 매번 새 객체를 만들면 무한 렌더에 빠진다.
+ * 그래서 원본 문자열이 바뀌었을 때만 다시 해석한다.
+ */
+export function getRecordsSnapshot(): Records {
+  if (typeof window === 'undefined') return SERVER_SNAPSHOT;
+
+  let raw: string | null = null;
+  try {
+    raw = window.localStorage.getItem(KEY);
+  } catch {
+    return SERVER_SNAPSHOT;
+  }
+
+  if (raw === cachedRaw) return cachedRecords;
+  cachedRaw = raw;
+  cachedRecords = readRecords();
+  return cachedRecords;
+}
+
+export function getServerRecordsSnapshot(): Records {
+  return SERVER_SNAPSHOT;
+}
+
 /** 저장된 실적을 읽는다. 없거나 못 읽으면 빈 실적을 돌려준다. */
 export function readRecords(): Records {
   // 서버 렌더 중에는 window가 없다. 프로필 화면은 이 값을 첫 렌더에
@@ -156,6 +218,9 @@ export function saveSession(result: SessionResult): Records {
     // 저장에 실패해도 이번 판의 결과 화면은 보여준다.
     // 화면에 쓸 값은 돌려주되 다음 세션에서 사라질 뿐이다.
   }
+  // 캐시를 무효화해 다음 스냅샷이 새로 읽게 하고, 구독자에게 알린다.
+  cachedRaw = undefined;
+  emitChange();
   return next;
 }
 
@@ -167,4 +232,6 @@ export function clearRecords(): void {
   } catch {
     // 접근이 막힌 환경에서는 지울 것도 없다.
   }
+  cachedRaw = undefined;
+  emitChange();
 }

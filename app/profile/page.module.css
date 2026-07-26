@@ -1,0 +1,176 @@
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-6);
+  /* 이 화면은 내용이 길어 세로 스크롤을 허용한다.
+   * 아케이드 화면과 달리 조이스틱 드래그와 충돌할 일이 없다. */
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-5) var(--space-7);
+  -webkit-overflow-scrolling: touch;
+}
+
+.header {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 터치 타겟 최소 크기 */
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-left: calc(var(--space-3) * -1);
+  border-radius: var(--radius-full);
+  color: var(--color-text-mid);
+  font-size: var(--font-size-xl);
+}
+
+.back:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+}
+
+/* ── 누적 청소량 ── */
+
+.total {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  align-items: center;
+  padding: var(--space-5) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  background: var(--color-surface);
+}
+
+.totalLabel {
+  margin: 0;
+  color: var(--color-text-low);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+
+.totalValue {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: var(--line-height-tight);
+}
+
+.totalComparison {
+  margin: 0;
+  color: var(--color-text-mid);
+  font-size: var(--font-size-sm);
+}
+
+/* ── 궤도 구역 ── */
+
+.sectionTitle {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+}
+
+.sector {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectorRate {
+  margin: var(--space-3) 0 0;
+  color: var(--color-text-mid);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.sectorRate strong {
+  color: var(--color-text-hi);
+  font-size: var(--font-size-lg);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 기록 ── */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.stats div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  align-items: center;
+  padding: var(--space-3) var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+  background: var(--color-surface);
+}
+
+.stats dt {
+  color: var(--color-text-low);
+  font-size: var(--font-size-xs);
+}
+
+.stats dd {
+  margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 배지 ── */
+
+.badgeCount {
+  color: var(--color-text-low);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.badges {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+  gap: var(--space-4) var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ── 하단 진입 ── */
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  margin-top: auto;
+  border: 1px solid var(--color-accent-deep);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--color-accent-deep), var(--color-bg-orbit));
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
