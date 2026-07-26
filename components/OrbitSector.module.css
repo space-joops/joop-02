@@ -1,0 +1,14 @@
+.root {
+  display: block;
+  width: 100%;
+  max-width: 16rem;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* 치운 쓰레기. DOM에서 빼지 않고 지운다 —
+ * 빼버리면 정화율이 오를 때마다 SVG가 재구성되어 전환을 걸 수 없다. */
+.cleared {
+  opacity: 0;
+  transition: opacity var(--duration-scene) var(--ease-out);
+}
