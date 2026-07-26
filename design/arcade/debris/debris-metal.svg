@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="금속 부품 조각">
+  <!-- 먹을 수 있음 · 금속 부품 · 정규화 캔버스 100x100 (크기는 transform: scale() 로만 조절) -->
+  <!-- 따뜻한 색 + 둥근 실루엣 = 안전 신호 (아케이드 규칙 확정 사항) -->
+  <!-- 잉크 반경을 45로 정규화 (design-guide.md 6절). 소비자는 scale(radius/45) 한 번만 걸면 된다. -->
+  <g transform="translate(50 50) scale(1.1111) translate(-50.00 -50.00)">
+    <g stroke-linejoin="round" stroke-linecap="round">
+      <polygon points="50,16 79,33 79,67 50,84 21,67 21,33"
+        fill="var(--color-debris-metal, #c9a05a)"
+        stroke="var(--color-debris-metal, #c9a05a)" stroke-width="13"/>
+      <polygon points="50,26 70,38 70,62 50,74 30,62 30,38"
+        fill="none"
+        stroke="var(--color-debris-metal-hi, #e8c88f)" stroke-width="4" opacity="0.75"/>
+      <circle cx="50" cy="50" r="12" fill="var(--color-debris-metal-shadow, #8e6d34)"/>
+      <path d="M36 34 L44 27" stroke="var(--color-debris-metal-hi, #e8c88f)" stroke-width="5" opacity="0.9"/>
+    </g>
+  </g>
+</svg>

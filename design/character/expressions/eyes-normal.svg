@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" role="img" aria-label="줍스 표정: 기본">
+  <!-- 눈 슬롯 규격: 120 x 60 / 눈 중심 (42,30) (78,30) / jupsy-base.svg 의 translate(40 52) 자리 -->
+  <!-- 기본 — 평상시, 홈 화면, 아케이드 진행 중 -->
+  <g fill="var(--color-eye, #6fe3ff)">
+    <ellipse cx="42" cy="30" rx="9.5" ry="12"/>
+    <ellipse cx="78" cy="30" rx="9.5" ry="12"/>
+  </g>
+  <g fill="var(--color-eye-soft, #b6f4ff)" opacity="0.9">
+    <ellipse cx="39" cy="25" rx="3.4" ry="4.2"/>
+    <ellipse cx="75" cy="25" rx="3.4" ry="4.2"/>
+  </g>
+</svg>

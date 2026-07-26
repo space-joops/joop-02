@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="줍스">
+  <!--
+    파비콘 · 32px 기준으로 다시 그린 버전입니다. 로고를 축소한 것이 아닙니다.
+    이 크기에서는 수염·가시·그라디언트가 전부 뭉개지므로 귀 + 바이저 + 눈만 남깁니다.
+  -->
+  <rect width="32" height="32" rx="8" fill="var(--color-bg-orbit, #1b2450)"/>
+  <g fill="var(--color-shell-edge, #b2c1d8)">
+    <path d="M9 14 L11 5 L16 10 Z"/>
+    <path d="M23 14 L21 5 L16 10 Z"/>
+  </g>
+  <ellipse cx="16" cy="17" rx="11" ry="9" fill="var(--color-shell-hi, #ffffff)"/>
+  <rect x="8" y="13" width="16" height="8" rx="4" fill="var(--color-visor, #0b1120)"/>
+  <g fill="var(--color-eye, #6fe3ff)">
+    <circle cx="13" cy="17" r="2.4"/>
+    <circle cx="19" cy="17" r="2.4"/>
+  </g>
+</svg>

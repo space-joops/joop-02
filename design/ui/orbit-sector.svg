@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="담당 궤도 구역의 정화 상태">
+  <!--
+    담당 궤도 구역 정화율 시각화 (M2)
+
+    확정된 보상 구조: "담당 궤도 구역이 점점 깨끗해지는(쓰레기 점이 사라지는) 형태의 진행 시각화".
+
+    쓰레기 점은 #orbit-debris 안에 orbit-dot-01 ~ orbit-dot-36 로 개별 id가 붙어 있습니다.
+    누적 청소량 비율만큼 앞에서부터 지우면 됩니다. 번호 순서가 곧 사라지는 순서입니다.
+    예) 정화율 25% -> orbit-dot-01 ~ orbit-dot-09 를 opacity 0 으로.
+
+    점을 지우는 것은 DOM 조작이 아니라 CSS 클래스/opacity 로 처리하세요 (리플로우 회피).
+  -->
+  <defs>
+    <radialGradient id="orbit-core-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-eye-soft, #b6f4ff)"/>
+      <stop offset="60%" stop-color="var(--color-eye-deep, #2fc6ee)"/>
+      <stop offset="100%" stop-color="var(--color-bg-nebula, #4a2e9e)"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="100" cy="100" r="96" fill="var(--color-bg-deep, #05070f)"/>
+
+  <!-- 담당 구역 띠 -->
+  <circle cx="100" cy="100" r="73" fill="none"
+    stroke="var(--color-bg-orbit, #1b2450)" stroke-width="30"/>
+  <circle cx="100" cy="100" r="58" fill="none"
+    stroke="var(--color-border, #2c3866)" stroke-width="1.5" stroke-dasharray="4 6"/>
+  <circle cx="100" cy="100" r="88" fill="none"
+    stroke="var(--color-border, #2c3866)" stroke-width="1.5" stroke-dasharray="4 6"/>
+
+  <!-- 지구 -->
+  <circle cx="100" cy="100" r="38" fill="url(#orbit-core-grad)"/>
+  <g fill="var(--color-shell-hi, #ffffff)" opacity="0.18">
+    <ellipse cx="88" cy="86" rx="18" ry="6"/>
+    <ellipse cx="110" cy="106" rx="14" ry="5"/>
+    <ellipse cx="94" cy="120" rx="20" ry="6"/>
+  </g>
+
+  <!-- 남아 있는 우주 쓰레기 -->
+  <g id="orbit-debris" fill="var(--color-debris-metal, #c9a05a)">
+      <circle id="orbit-dot-01" cx="71.4" cy="157.2" r="3.4"/>
+      <circle id="orbit-dot-02" cx="166.4" cy="132.5" r="2.9"/>
+      <circle id="orbit-dot-03" cx="168.4" cy="126.1" r="2.3"/>
+      <circle id="orbit-dot-04" cx="43.5" cy="125.0" r="2.4"/>
+      <circle id="orbit-dot-05" cx="27.5" cy="137.2" r="2.4"/>
+      <circle id="orbit-dot-06" cx="112.8" cy="175.2" r="3.9"/>
+      <circle id="orbit-dot-07" cx="37.8" cy="67.3" r="4.0"/>
+      <circle id="orbit-dot-08" cx="178.8" cy="123.8" r="2.7"/>
+      <circle id="orbit-dot-09" cx="138.9" cy="149.6" r="2.8"/>
+      <circle id="orbit-dot-10" cx="126.1" cy="40.8" r="3.2"/>
+      <circle id="orbit-dot-11" cx="55.2" cy="46.6" r="3.2"/>
+      <circle id="orbit-dot-12" cx="156.8" cy="123.7" r="2.6"/>
+      <circle id="orbit-dot-13" cx="69.9" cy="35.6" r="2.8"/>
+      <circle id="orbit-dot-14" cx="38.3" cy="63.2" r="2.7"/>
+      <circle id="orbit-dot-15" cx="121.5" cy="24.8" r="2.6"/>
+      <circle id="orbit-dot-16" cx="34.3" cy="66.8" r="3.8"/>
+      <circle id="orbit-dot-17" cx="91.3" cy="33.1" r="4.0"/>
+      <circle id="orbit-dot-18" cx="152.2" cy="147.9" r="3.6"/>
+      <circle id="orbit-dot-19" cx="142.0" cy="159.4" r="2.3"/>
+      <circle id="orbit-dot-20" cx="60.7" cy="30.4" r="3.2"/>
+      <circle id="orbit-dot-21" cx="148.3" cy="52.0" r="3.5"/>
+      <circle id="orbit-dot-22" cx="37.7" cy="58.0" r="3.0"/>
+      <circle id="orbit-dot-23" cx="145.3" cy="28.6" r="3.1"/>
+      <circle id="orbit-dot-24" cx="68.4" cy="47.2" r="3.5"/>
+      <circle id="orbit-dot-25" cx="48.3" cy="31.5" r="3.7"/>
+      <circle id="orbit-dot-26" cx="84.9" cy="168.4" r="3.4"/>
+      <circle id="orbit-dot-27" cx="171.3" cy="110.2" r="2.5"/>
+      <circle id="orbit-dot-28" cx="145.6" cy="141.3" r="3.6"/>
+      <circle id="orbit-dot-29" cx="145.7" cy="148.2" r="2.9"/>
+      <circle id="orbit-dot-30" cx="142.9" cy="55.1" r="3.0"/>
+      <circle id="orbit-dot-31" cx="21.0" cy="74.6" r="3.7"/>
+      <circle id="orbit-dot-32" cx="144.1" cy="49.3" r="2.9"/>
+      <circle id="orbit-dot-33" cx="47.6" cy="164.4" r="3.9"/>
+      <circle id="orbit-dot-34" cx="137.7" cy="152.5" r="2.6"/>
+      <circle id="orbit-dot-35" cx="107.6" cy="172.2" r="3.3"/>
+      <circle id="orbit-dot-36" cx="95.2" cy="159.9" r="3.0"/>
+  </g>
+
+  <!-- 줍스의 현재 위치 -->
+  <g id="orbit-jupsy-marker">
+    <circle cx="100" cy="27" r="9" fill="var(--color-core, #5fe3c0)" opacity="0.25"/>
+    <circle cx="100" cy="27" r="5" fill="var(--color-core, #5fe3c0)"/>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" role="img" aria-label="[제안] 아카이브형 줍스 액센트">
+  <!--
+    ⚠️ 제안(proposal)입니다. 확정된 디자인이 아닙니다. (roadmap.md M6에서 결론)
+    사용 방식: jupsy-base.svg 위에 겹치는 액센트 레이어 단독. 몸체를 복사하지 않습니다.
+
+    아카이브형 — 오래된 필름·데이터 선호 / 그리움 많음 / 세피아톤
+    세피아톤은 셸을 다시 칠하는 대신 낮은 불투명도의 색 오버레이로 냅니다.
+    (셸 색을 바꾸려면 color-shell 토큰을 런타임에 재할당하는 편이 더 쌉니다 — design-guide.md 2절)
+  -->
+  <g id="type-archive-accent">
+    <!-- 세피아 틴트 (셸 영역에만 얹히도록 몸체 실루엣과 같은 도형을 씁니다) -->
+    <g fill="var(--color-debris-archive, #b07a50)" opacity="0.22">
+      <path d="M100 34 C126 34 152 58 152 86 C152 110 128 126 100 126 C72 126 48 110 48 86 C48 58 74 34 100 34 Z"/>
+      <path d="M100 134 C124 134 140 152 140 174 C140 198 122 216 100 216 C78 216 60 198 60 174 C60 152 76 134 100 134 Z"/>
+    </g>
+    <!-- 몸통을 감은 필름 띠 -->
+    <path d="M62 190 C78 200 122 200 138 190 L138 200 C122 210 78 210 62 200 Z"
+      fill="var(--color-debris-archive, #b07a50)"/>
+    <g fill="var(--color-debris-archive-shadow, #7c512f)">
+      <rect x="72" y="195" width="5" height="6" rx="1.5"/>
+      <rect x="88" y="198" width="5" height="6" rx="1.5"/>
+      <rect x="106" y="198" width="5" height="6" rx="1.5"/>
+      <rect x="122" y="195" width="5" height="6" rx="1.5"/>
+    </g>
+  </g>
+</svg>

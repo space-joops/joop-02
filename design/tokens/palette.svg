@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 806 1358" role="img" aria-label="줍스 디자인 토큰 팔레트">
+  <!--
+    팔레트 시각 참조 · 값의 원본은 app/globals.css 입니다 (ADR-010). 이 파일은 사본이므로
+    토큰을 고치면 여기도 같이 고쳐야 합니다 (자동 생성이 아닙니다).
+    라벨을 <text>로 두어 폰트에 따라 글자 모양이 달라집니다 — 참조용이라 그대로 둡니다.
+
+    본문 텍스트 대비비 (WCAG, 배경 c-void-900 #0a0e1f 기준):
+      c-ink-000  17.7:1   c-ink-200  12.2:1   c-ink-400   6.7:1
+      c-gold-400 12.5:1   c-glow-cyan-400 12.9:1   c-hazard-500 5.6:1
+    전부 AA(4.5:1) 통과.
+  -->
+  <rect width="806" height="1358" fill="#0a0e1f"/>
+  <text x="24" y="30" font-family="sans-serif" font-size="18" font-weight="700" fill="#f2f6ff">줍스 디자인 토큰 — 원시 팔레트</text>
+  <text x="24" y="54" font-family="sans-serif" font-size="15" font-weight="700" fill="#f2f6ff">우주 배경</text>
+  <rect x="24" y="68" width="118" height="64" rx="8" fill="#05070f" stroke="#2c3866"/>
+  <text x="33" y="121" font-family="monospace" font-size="12" fill="#f2f6ff">#05070f</text>
+  <text x="24" y="148" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-void-950</text>
+  <rect x="152" y="68" width="118" height="64" rx="8" fill="#0a0e1f" stroke="#2c3866"/>
+  <text x="161" y="121" font-family="monospace" font-size="12" fill="#f2f6ff">#0a0e1f</text>
+  <text x="152" y="148" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-void-900</text>
+  <rect x="280" y="68" width="118" height="64" rx="8" fill="#121834" stroke="#2c3866"/>
+  <text x="289" y="121" font-family="monospace" font-size="12" fill="#f2f6ff">#121834</text>
+  <text x="280" y="148" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-void-800</text>
+  <rect x="408" y="68" width="118" height="64" rx="8" fill="#1b2450" stroke="#2c3866"/>
+  <text x="417" y="121" font-family="monospace" font-size="12" fill="#f2f6ff">#1b2450</text>
+  <text x="408" y="148" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-void-700</text>
+  <rect x="536" y="68" width="118" height="64" rx="8" fill="#26325f" stroke="#2c3866"/>
+  <text x="545" y="121" font-family="monospace" font-size="12" fill="#f2f6ff">#26325f</text>
+  <text x="536" y="148" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-void-600</text>
+  <rect x="664" y="68" width="118" height="64" rx="8" fill="#4a2e9e" stroke="#2c3866"/>
+  <text x="673" y="121" font-family="monospace" font-size="12" fill="#f2f6ff">#4a2e9e</text>
+  <text x="664" y="148" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-nebula-600</text>
+  <rect x="24" y="166" width="118" height="64" rx="8" fill="#6c4bd8" stroke="#2c3866"/>
+  <text x="33" y="219" font-family="monospace" font-size="12" fill="#f2f6ff">#6c4bd8</text>
+  <text x="24" y="246" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-nebula-500</text>
+  <rect x="152" y="166" width="118" height="64" rx="8" fill="#8b6bf0" stroke="#2c3866"/>
+  <text x="161" y="219" font-family="monospace" font-size="12" fill="#0a0e1f">#8b6bf0</text>
+  <text x="152" y="246" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-nebula-400</text>
+  <text x="24" y="286" font-family="sans-serif" font-size="15" font-weight="700" fill="#f2f6ff">줍스 셸 · 바이저</text>
+  <rect x="24" y="300" width="118" height="64" rx="8" fill="#ffffff" stroke="#2c3866"/>
+  <text x="33" y="353" font-family="monospace" font-size="12" fill="#0a0e1f">#ffffff</text>
+  <text x="24" y="380" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-shell-000</text>
+  <rect x="152" y="300" width="118" height="64" rx="8" fill="#f7faff" stroke="#2c3866"/>
+  <text x="161" y="353" font-family="monospace" font-size="12" fill="#0a0e1f">#f7faff</text>
+  <text x="152" y="380" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-shell-050</text>
+  <rect x="280" y="300" width="118" height="64" rx="8" fill="#eaf0fa" stroke="#2c3866"/>
+  <text x="289" y="353" font-family="monospace" font-size="12" fill="#0a0e1f">#eaf0fa</text>
+  <text x="280" y="380" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-shell-100</text>
+  <rect x="408" y="300" width="118" height="64" rx="8" fill="#d3deee" stroke="#2c3866"/>
+  <text x="417" y="353" font-family="monospace" font-size="12" fill="#0a0e1f">#d3deee</text>
+  <text x="408" y="380" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-shell-200</text>
+  <rect x="536" y="300" width="118" height="64" rx="8" fill="#b2c1d8" stroke="#2c3866"/>
+  <text x="545" y="353" font-family="monospace" font-size="12" fill="#0a0e1f">#b2c1d8</text>
+  <text x="536" y="380" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-shell-300</text>
+  <rect x="664" y="300" width="118" height="64" rx="8" fill="#8c9dba" stroke="#2c3866"/>
+  <text x="673" y="353" font-family="monospace" font-size="12" fill="#0a0e1f">#8c9dba</text>
+  <text x="664" y="380" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-shell-400</text>
+  <rect x="24" y="398" width="118" height="64" rx="8" fill="#0b1120" stroke="#2c3866"/>
+  <text x="33" y="451" font-family="monospace" font-size="12" fill="#f2f6ff">#0b1120</text>
+  <text x="24" y="478" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-visor-900</text>
+  <rect x="152" y="398" width="118" height="64" rx="8" fill="#212c4a" stroke="#2c3866"/>
+  <text x="161" y="451" font-family="monospace" font-size="12" fill="#f2f6ff">#212c4a</text>
+  <text x="152" y="478" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-visor-700</text>
+  <text x="24" y="518" font-family="sans-serif" font-size="15" font-weight="700" fill="#f2f6ff">발광 (눈 · 코어)</text>
+  <rect x="24" y="532" width="118" height="64" rx="8" fill="#b6f4ff" stroke="#2c3866"/>
+  <text x="33" y="585" font-family="monospace" font-size="12" fill="#0a0e1f">#b6f4ff</text>
+  <text x="24" y="612" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-glow-cyan-300</text>
+  <rect x="152" y="532" width="118" height="64" rx="8" fill="#6fe3ff" stroke="#2c3866"/>
+  <text x="161" y="585" font-family="monospace" font-size="12" fill="#0a0e1f">#6fe3ff</text>
+  <text x="152" y="612" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-glow-cyan-400</text>
+  <rect x="280" y="532" width="118" height="64" rx="8" fill="#2fc6ee" stroke="#2c3866"/>
+  <text x="289" y="585" font-family="monospace" font-size="12" fill="#0a0e1f">#2fc6ee</text>
+  <text x="280" y="612" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-glow-cyan-500</text>
+  <rect x="408" y="532" width="118" height="64" rx="8" fill="#ffc2d5" stroke="#2c3866"/>
+  <text x="417" y="585" font-family="monospace" font-size="12" fill="#0a0e1f">#ffc2d5</text>
+  <text x="408" y="612" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-glow-rose-300</text>
+  <rect x="536" y="532" width="118" height="64" rx="8" fill="#ff8fb4" stroke="#2c3866"/>
+  <text x="545" y="585" font-family="monospace" font-size="12" fill="#0a0e1f">#ff8fb4</text>
+  <text x="536" y="612" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-glow-rose-400</text>
+  <rect x="664" y="532" width="118" height="64" rx="8" fill="#f46392" stroke="#2c3866"/>
+  <text x="673" y="585" font-family="monospace" font-size="12" fill="#0a0e1f">#f46392</text>
+  <text x="664" y="612" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-glow-rose-500</text>
+  <rect x="24" y="630" width="118" height="64" rx="8" fill="#5fe3c0" stroke="#2c3866"/>
+  <text x="33" y="683" font-family="monospace" font-size="12" fill="#0a0e1f">#5fe3c0</text>
+  <text x="24" y="710" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-glow-mint-400</text>
+  <rect x="152" y="630" width="118" height="64" rx="8" fill="#2fc7a4" stroke="#2c3866"/>
+  <text x="161" y="683" font-family="monospace" font-size="12" fill="#0a0e1f">#2fc7a4</text>
+  <text x="152" y="710" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-glow-mint-500</text>
+  <text x="24" y="750" font-family="sans-serif" font-size="15" font-weight="700" fill="#f2f6ff">먹을 것 — 전부 따뜻한 색</text>
+  <rect x="24" y="764" width="118" height="64" rx="8" fill="#e8c88f" stroke="#2c3866"/>
+  <text x="33" y="817" font-family="monospace" font-size="12" fill="#0a0e1f">#e8c88f</text>
+  <text x="24" y="844" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-brass-300</text>
+  <rect x="152" y="764" width="118" height="64" rx="8" fill="#c9a05a" stroke="#2c3866"/>
+  <text x="161" y="817" font-family="monospace" font-size="12" fill="#0a0e1f">#c9a05a</text>
+  <text x="152" y="844" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-brass-500</text>
+  <rect x="280" y="764" width="118" height="64" rx="8" fill="#8e6d34" stroke="#2c3866"/>
+  <text x="289" y="817" font-family="monospace" font-size="12" fill="#f2f6ff">#8e6d34</text>
+  <text x="280" y="844" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-brass-700</text>
+  <rect x="408" y="764" width="118" height="64" rx="8" fill="#ffe7c4" stroke="#2c3866"/>
+  <text x="417" y="817" font-family="monospace" font-size="12" fill="#0a0e1f">#ffe7c4</text>
+  <text x="408" y="844" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-champagne-300</text>
+  <rect x="536" y="764" width="118" height="64" rx="8" fill="#f5c98e" stroke="#2c3866"/>
+  <text x="545" y="817" font-family="monospace" font-size="12" fill="#0a0e1f">#f5c98e</text>
+  <text x="536" y="844" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-champagne-500</text>
+  <rect x="664" y="764" width="118" height="64" rx="8" fill="#c79a5e" stroke="#2c3866"/>
+  <text x="673" y="817" font-family="monospace" font-size="12" fill="#0a0e1f">#c79a5e</text>
+  <text x="664" y="844" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-champagne-700</text>
+  <rect x="24" y="862" width="118" height="64" rx="8" fill="#d9a87f" stroke="#2c3866"/>
+  <text x="33" y="915" font-family="monospace" font-size="12" fill="#0a0e1f">#d9a87f</text>
+  <text x="24" y="942" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-sepia-300</text>
+  <rect x="152" y="862" width="118" height="64" rx="8" fill="#b7865f" stroke="#2c3866"/>
+  <text x="161" y="915" font-family="monospace" font-size="12" fill="#f2f6ff">#b7865f</text>
+  <text x="152" y="942" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-sepia-500</text>
+  <rect x="280" y="862" width="118" height="64" rx="8" fill="#7c512f" stroke="#2c3866"/>
+  <text x="289" y="915" font-family="monospace" font-size="12" fill="#f2f6ff">#7c512f</text>
+  <text x="280" y="942" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-sepia-700</text>
+  <rect x="408" y="862" width="118" height="64" rx="8" fill="#ffd08a" stroke="#2c3866"/>
+  <text x="417" y="915" font-family="monospace" font-size="12" fill="#0a0e1f">#ffd08a</text>
+  <text x="408" y="942" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-amber-300</text>
+  <rect x="536" y="862" width="118" height="64" rx="8" fill="#e89c3c" stroke="#2c3866"/>
+  <text x="545" y="915" font-family="monospace" font-size="12" fill="#0a0e1f">#e89c3c</text>
+  <text x="536" y="942" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-amber-500</text>
+  <rect x="664" y="862" width="118" height="64" rx="8" fill="#a96a18" stroke="#2c3866"/>
+  <text x="673" y="915" font-family="monospace" font-size="12" fill="#f2f6ff">#a96a18</text>
+  <text x="664" y="942" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-amber-700</text>
+  <text x="24" y="982" font-family="sans-serif" font-size="15" font-weight="700" fill="#f2f6ff">위험 — 경고색</text>
+  <rect x="24" y="996" width="118" height="64" rx="8" fill="#ff8fac" stroke="#2c3866"/>
+  <text x="33" y="1049" font-family="monospace" font-size="12" fill="#0a0e1f">#ff8fac</text>
+  <text x="24" y="1076" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-hazard-300</text>
+  <rect x="152" y="996" width="118" height="64" rx="8" fill="#c00031" stroke="#2c3866"/>
+  <text x="161" y="1049" font-family="monospace" font-size="12" fill="#0a0e1f">#c00031</text>
+  <text x="152" y="1076" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-hazard-500</text>
+  <rect x="280" y="996" width="118" height="64" rx="8" fill="#6d001c" stroke="#2c3866"/>
+  <text x="289" y="1049" font-family="monospace" font-size="12" fill="#f2f6ff">#6d001c</text>
+  <text x="280" y="1076" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-hazard-700</text>
+  <text x="24" y="1116" font-family="sans-serif" font-size="15" font-weight="700" fill="#f2f6ff">UI</text>
+  <rect x="24" y="1130" width="118" height="64" rx="8" fill="#f2f6ff" stroke="#2c3866"/>
+  <text x="33" y="1183" font-family="monospace" font-size="12" fill="#0a0e1f">#f2f6ff</text>
+  <text x="24" y="1210" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-ink-000</text>
+  <rect x="152" y="1130" width="118" height="64" rx="8" fill="#c3cee8" stroke="#2c3866"/>
+  <text x="161" y="1183" font-family="monospace" font-size="12" fill="#0a0e1f">#c3cee8</text>
+  <text x="152" y="1210" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-ink-200</text>
+  <rect x="280" y="1130" width="118" height="64" rx="8" fill="#8b99bc" stroke="#2c3866"/>
+  <text x="289" y="1183" font-family="monospace" font-size="12" fill="#0a0e1f">#8b99bc</text>
+  <text x="280" y="1210" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-ink-400</text>
+  <rect x="408" y="1130" width="118" height="64" rx="8" fill="#111834" stroke="#2c3866"/>
+  <text x="417" y="1183" font-family="monospace" font-size="12" fill="#f2f6ff">#111834</text>
+  <text x="408" y="1210" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-surface-800</text>
+  <rect x="536" y="1130" width="118" height="64" rx="8" fill="#1a2245" stroke="#2c3866"/>
+  <text x="545" y="1183" font-family="monospace" font-size="12" fill="#f2f6ff">#1a2245</text>
+  <text x="536" y="1210" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-surface-700</text>
+  <rect x="664" y="1130" width="118" height="64" rx="8" fill="#2c3866" stroke="#2c3866"/>
+  <text x="673" y="1183" font-family="monospace" font-size="12" fill="#f2f6ff">#2c3866</text>
+  <text x="664" y="1210" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-border-600</text>
+  <rect x="24" y="1228" width="118" height="64" rx="8" fill="#ffc94a" stroke="#2c3866"/>
+  <text x="33" y="1281" font-family="monospace" font-size="12" fill="#0a0e1f">#ffc94a</text>
+  <text x="24" y="1308" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-gold-400</text>
+  <rect x="152" y="1228" width="118" height="64" rx="8" fill="#c99413" stroke="#2c3866"/>
+  <text x="161" y="1281" font-family="monospace" font-size="12" fill="#f2f6ff">#c99413</text>
+  <text x="152" y="1308" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-gold-600</text>
+  <rect x="280" y="1228" width="118" height="64" rx="8" fill="#cdd8ea" stroke="#2c3866"/>
+  <text x="289" y="1281" font-family="monospace" font-size="12" fill="#0a0e1f">#cdd8ea</text>
+  <text x="280" y="1308" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-silver-400</text>
+  <rect x="408" y="1228" width="118" height="64" rx="8" fill="#d59a63" stroke="#2c3866"/>
+  <text x="417" y="1281" font-family="monospace" font-size="12" fill="#0a0e1f">#d59a63</text>
+  <text x="408" y="1308" font-family="monospace" font-size="10.5" fill="#8b99bc">--c-bronze-400</text>
+</svg>

@@ -1,49 +1,178 @@
-/*
- * 디자인 토큰
- *
- * 컴포넌트에서 색상·간격·타이포 리터럴을 직접 쓰지 않는다 (ADR-003).
- * 반드시 여기 정의한 변수를 거친다. 줍스의 기분에 따라 화면 색조를 바꾸는
- * 연출을 런타임에 변수 재정의만으로 처리하기 위한 기반이기도 하다.
- */
+/* ==========================================================================
+   줍스(Jupsy) 디자인 토큰 — 단일 정본
+
+   Q10(토큰 두 벌) 결론에 따라 축을 갈라 합쳤습니다 (ADR-010).
+     · 색   → design/tokens/tokens.css 의 2계층 체계를 정본으로 채택
+     · 그 외 → M0의 이름 유지 (--space-*, --font-size-*, --radius-*, --z-*)
+
+   왜 이렇게 갈랐나: design/ 의 SVG 40개는 --color-* 만 참조하고
+   --sp-* / --fs-* 는 한 번도 쓰지 않습니다. 그래서 색은 SVG 쪽에 맞추고
+   간격·타이포는 앱 쪽 이름을 그대로 두면 양쪽 다 고칠 것이 거의 없습니다.
+
+   색은 2계층입니다.
+     1) 원시 토큰 (--c-*)     팔레트. 컴포넌트에서 직접 쓰지 마세요.
+     2) 시맨틱 토큰 (--color-*) 용도 이름. 컴포넌트는 이것만 참조합니다.
+
+   2계층인 이유: "줍스 셸 색을 바꾼다"가 --c-shell-050 한 곳 수정으로 끝나고,
+   "기분에 따라 코어 라이트 색을 바꾼다"가 --color-core 재할당 한 줄로 끝납니다.
+   ========================================================================== */
 
 :root {
-  /* ── 색: 우주 배경 (어두운 쪽부터) ── */
-  --color-space-900: #04060f;
-  --color-space-800: #070b18;
-  --color-space-700: #0d1428;
-  --color-space-600: #16203c;
-  --color-space-500: #243154;
+  /* ----------------------------------------------------------------------
+     1. 원시 토큰 — 팔레트
+     ---------------------------------------------------------------------- */
 
-  /* ── 색: 텍스트 ── */
-  --color-text: #f2f5ff;
-  --color-text-muted: #9aa6c9;
-  --color-text-faint: #5f6b8c;
+  /* 우주 배경 — 깊은 남색에서 보라 기운으로 */
+  --c-void-950: #05070f;
+  --c-void-900: #0a0e1f;
+  --c-void-800: #121834;
+  --c-void-700: #1b2450;
+  --c-void-600: #26325f;
+  --c-nebula-600: #4a2e9e;
+  --c-nebula-500: #6c4bd8;
+  --c-nebula-400: #8b6bf0;
 
-  /* ── 색: 줍스 ── */
-  --color-jupsy-shell: #f4f7ff;
-  --color-jupsy-shell-shade: #c9d3ec;
-  --color-jupsy-visor: #101728;
-  --color-jupsy-eye: #6ff2e4;
-  --color-jupsy-core: #7cc4ff;
+  /* 줍스 셸 — 이음새 없는 매끈한 흰색. 하이라이트에서 그림자까지 */
+  --c-shell-000: #ffffff;
+  --c-shell-050: #f7faff;
+  --c-shell-100: #eaf0fa;
+  --c-shell-200: #d3deee;
+  --c-shell-300: #b2c1d8;
+  --c-shell-400: #8c9dba;
 
-  /* ── 색: 게임 오브젝트 ──
-   * 먹을 것은 따뜻한 색, 위험한 것은 경고색. 형태(둥긂/뾰족함)와 함께
-   * 이중으로 구분해 색각 이상 사용자도 판별할 수 있게 한다. */
-  --color-debris-safe: #ffc978;
-  --color-debris-safe-deep: #ff9d4d;
-  --color-debris-hazard: #ff5d73;
-  --color-debris-hazard-deep: #d92d4a;
+  /* 바이저 — 눈이 발광할 어두운 디스플레이 면 */
+  --c-visor-900: #0b1120;
+  --c-visor-800: #141c31;
+  --c-visor-700: #212c4a;
 
-  /* ── 색: 강조 / 상태 ── */
-  --color-accent: #6ff2e4;
-  --color-accent-deep: #2bb6a8;
-  --color-success: #7ce8a4;
-  --color-warning: #ffc978;
+  /* 발광 — 눈, 코어 라이트 */
+  --c-glow-cyan-300: #b6f4ff;
+  --c-glow-cyan-400: #6fe3ff;
+  --c-glow-cyan-500: #2fc6ee;
+  --c-glow-rose-300: #ffc2d5;
+  --c-glow-rose-400: #ff8fb4;
+  --c-glow-rose-500: #f46392;
+  --c-glow-mint-400: #5fe3c0;
+  --c-glow-mint-500: #2fc7a4;
 
-  /* ── 색: 표면 ── */
-  --color-surface: rgb(255 255 255 / 6%);
-  --color-surface-strong: rgb(255 255 255 / 11%);
-  --color-border: rgb(255 255 255 / 14%);
+  /* 먹을 수 있는 쓰레기 — 전부 따뜻한 색 계열로 묶는다.
+     아케이드 규칙(확정): "먹을 것은 따뜻한 색/부드러운 형태".
+     4종 구분은 색상(hue)이 아니라 형태·질감으로 한다 (design-guide.md 1절). */
+  --c-brass-300: #e8c88f; /* 금속 부품 */
+  --c-brass-500: #c9a05a;
+  --c-brass-700: #8e6d34;
+  --c-champagne-300: #ffe7c4; /* 반짝이는 파편 */
+  --c-champagne-500: #f5c98e;
+  --c-champagne-700: #c79a5e;
+  --c-sepia-300: #d9a87f; /* 오래된 필름·데이터 */
+  --c-sepia-500: #b7865f; /* 위험색과 2:1 휘도를 확보하되 세피아톤 유지 */
+  --c-sepia-700: #7c512f;
+  --c-amber-300: #ffd08a; /* 전선 */
+  --c-amber-500: #e89c3c;
+  --c-amber-700: #a96a18;
+
+  /* 위험 파편 — 경고색.
+   *
+   * 색상만으로는 부족하다. 색각이상 시뮬레이션에서 원래 값(#ff3d6e)은
+   * 케이블 쓰레기(#e89c3c)와 RGB 거리 7.9로 사실상 같은 색이 됐다.
+   * 먹으면 패널티를 받는 판정이라 실손해로 이어진다.
+   *
+   * 그래서 휘도를 벌렸다. 먹이와의 최소 휘도비 1.07:1 → 2.01:1,
+   * 색각이상 시야에서의 케이블 구분은 7.9 → 94.5.
+   * 3:1은 계산상 불가능하다 — 배경 대비를 지키려면 휘도 0.1143 이상이어야
+   * 하는데 archive와 3:1 하려면 0.0458 이하여서 교집합이 없다.
+   * 2:1로 낮추고 세피아톤을 지키는 쪽을 골랐다 (design-guide 7절). */
+  --c-hazard-300: #ff8fac;
+  --c-hazard-500: #c00031;
+  /* 700은 굵은 외곽선용이다. 색과 무관한 형태 단서라 본체와 확실히
+   * 갈려야 한다. 기존 #b81742는 새 본체와 1.01:1이라 테두리가 사라진다. */
+  --c-hazard-700: #6d001c;
+
+  /* UI */
+  --c-ink-000: #f2f6ff;
+  --c-ink-200: #c3cee8;
+  --c-ink-400: #8b99bc;
+  --c-surface-800: #111834;
+  --c-surface-700: #1a2245;
+  --c-border-600: #2c3866;
+  --c-gold-400: #ffc94a;
+  --c-gold-600: #c99413;
+  --c-silver-400: #cdd8ea;
+  --c-bronze-400: #d59a63;
+
+  /* ----------------------------------------------------------------------
+     2. 시맨틱 토큰 — 컴포넌트는 여기서부터만 참조
+     ---------------------------------------------------------------------- */
+
+  /* 배경 레이어 */
+  --color-bg-deep: var(--c-void-950);
+  --color-bg-mid: var(--c-void-900);
+  --color-bg-near: var(--c-void-800);
+  --color-bg-orbit: var(--c-void-700);
+  --color-bg-nebula: var(--c-nebula-600);
+  --color-bg-lift: var(--c-void-600);
+  --color-star: var(--c-shell-100);
+
+  /* 줍스 몸체 */
+  --color-shell: var(--c-shell-050);
+  --color-shell-hi: var(--c-shell-000);
+  --color-shell-shadow: var(--c-shell-200);
+  --color-shell-edge: var(--c-shell-300);
+  --color-shell-deep: var(--c-shell-400);
+  --color-visor: var(--c-visor-900);
+  --color-visor-hi: var(--c-visor-700);
+
+  /* 줍스 발광 — 감정 표현의 핵심. 런타임에 갈아끼우는 것을 전제로 한다 */
+  --color-eye: var(--c-glow-cyan-400);
+  --color-eye-soft: var(--c-glow-cyan-300);
+  --color-eye-deep: var(--c-glow-cyan-500);
+  --color-eye-joy: var(--c-glow-rose-400);
+  --color-eye-joy-soft: var(--c-glow-rose-300);
+  --color-core: var(--c-glow-mint-400);
+  --color-core-deep: var(--c-glow-mint-500);
+
+  /* 쓰레기 — 종류별 3단계(밝은 면/기본/그림자) */
+  --color-debris-metal-hi: var(--c-brass-300);
+  --color-debris-metal: var(--c-brass-500);
+  --color-debris-metal-shadow: var(--c-brass-700);
+  --color-debris-crystal-hi: var(--c-champagne-300);
+  --color-debris-crystal: var(--c-champagne-500);
+  --color-debris-crystal-shadow: var(--c-champagne-700);
+  --color-debris-archive-hi: var(--c-sepia-300);
+  --color-debris-archive: var(--c-sepia-500);
+  --color-debris-archive-shadow: var(--c-sepia-700);
+  --color-debris-cable-hi: var(--c-amber-300);
+  --color-debris-cable: var(--c-amber-500);
+  --color-debris-cable-shadow: var(--c-amber-700);
+
+  /* 위험 */
+  --color-hazard-hi: var(--c-hazard-300);
+  --color-hazard: var(--c-hazard-500);
+  --color-hazard-deep: var(--c-hazard-700);
+
+  /* 텍스트 · 표면 */
+  --color-text-hi: var(--c-ink-000);
+  --color-text-mid: var(--c-ink-200);
+  --color-text-low: var(--c-ink-400);
+  --color-surface: var(--c-surface-800);
+  --color-surface-raised: var(--c-surface-700);
+  --color-border: var(--c-border-600);
+
+  /* UI 강조 — 버튼·포커스 링. 코어 라이트와 같은 원시 색을 쓰지만
+     역할이 달라 별도 시맨틱으로 둔다 (한쪽만 바꿀 수 있어야 한다) */
+  --color-accent: var(--c-glow-mint-400);
+  --color-accent-deep: var(--c-glow-mint-500);
+
+  /* 실적 — 재화가 아니라 명예 표시용 (ADR-007) */
+  --color-badge: var(--c-gold-400);
+  --color-badge-deep: var(--c-gold-600);
+  --color-badge-tier-1: var(--c-bronze-400);
+  --color-badge-tier-2: var(--c-silver-400);
+  --color-badge-tier-3: var(--c-gold-400);
+
+  /* 통신 상태 */
+  --color-signal-ok: var(--c-glow-mint-400);
+  --color-signal-lost: var(--c-hazard-500);
 
   /* ── 간격 (4px 스케일) ── */
   --space-1: 0.25rem;
@@ -82,12 +211,21 @@
   --z-overlay: 30;
   --z-modal: 40;
 
-  /* ── 모션 ── */
+  /* ── 모션 ──
+   * 앞의 넷은 UI 전환용, 뒤의 셋은 연출 1주기용이다.
+   * 연출 duration을 토큰으로 두면 아래 prefers-reduced-motion 블록에서
+   * 한 번에 죽일 수 있다. 리터럴로 적으면 그 대응이 따라오지 않는다. */
+  --duration-instant: 80ms;
   --duration-fast: 120ms;
   --duration-base: 240ms;
   --duration-slow: 520ms;
+  --duration-scene: 900ms; /* 신호 끊김 등 장면 전환 */
+  --duration-bob: 3200ms; /* 부유(idle bobbing) 1주기 */
+  --duration-core-pulse: 2400ms; /* 코어 라이트 맥동 1주기 */
+
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1); /* 흡수 시 통통 튐 (오버슛) */
 
   /* ── 레이아웃 ──
    * 모바일 세로 고정 게임이지만 데스크톱에서도 열리므로, 세로형 비율을
@@ -112,8 +250,8 @@ body {
   /* 게임 화면이 세로로 스크롤되면 조이스틱 드래그와 충돌한다. */
   overflow: hidden;
   overscroll-behavior: none;
-  background: var(--color-space-900);
-  color: var(--color-text);
+  background: var(--color-bg-deep);
+  color: var(--color-text-hi);
   font-family: var(--font-family);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
@@ -136,6 +274,20 @@ a {
 /* 전정기관 장애가 있는 사용자에게 부유·맥동 애니메이션은 불편을 준다.
  * 개별 컴포넌트에서 잊더라도 전역에서 한 번 걸러낸다. */
 @media (prefers-reduced-motion: reduce) {
+  /* 토큰 레벨에서 먼저 죽인다. duration을 토큰에서 읽어 쓰는 쪽(JS 포함)이
+   * 별도 대응 없이 따라오게 하기 위함이다. 연출의 최종 상태는 남고
+   * 움직임만 사라지는 것이 의도다. */
+  :root {
+    --duration-instant: 1ms;
+    --duration-fast: 1ms;
+    --duration-base: 1ms;
+    --duration-slow: 1ms;
+    --duration-scene: 1ms;
+    --duration-bob: 1ms;
+    --duration-core-pulse: 1ms;
+  }
+
+  /* 토큰을 안 거친 리터럴까지 잡는 안전망 */
   *,
   *::before,
   *::after {

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="흡수 이펙트">
+  <!--
+    흡수 성공 이펙트 · 쓰레기를 먹은 자리에 1회 재생
+    사용법: 이 SVG 자체를 scale(0.4 → 1.4) + opacity(1 → 0) 로 dur-fast 동안 한 번.
+    필터를 쓰지 않았습니다 — 동시에 여러 개가 뜨는 이펙트라 필터 비용을 피합니다(ADR-002).
+  -->
+  <g id="fx-ring" fill="none" stroke="var(--color-core, #5fe3c0)" stroke-width="5">
+    <circle cx="50" cy="50" r="30"/>
+  </g>
+  <g id="fx-sparks" fill="var(--color-core, #5fe3c0)">
+    <circle cx="50" cy="12" r="4"/>
+    <circle cx="77" cy="23" r="3.2"/>
+    <circle cx="88" cy="50" r="4"/>
+    <circle cx="77" cy="77" r="3.2"/>
+    <circle cx="50" cy="88" r="4"/>
+    <circle cx="23" cy="77" r="3.2"/>
+    <circle cx="12" cy="50" r="4"/>
+    <circle cx="23" cy="23" r="3.2"/>
+  </g>
+</svg>

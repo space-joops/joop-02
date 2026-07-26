@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" role="img" aria-label="신호 끊김">
+  <!--
+    신호 끊김 · 세션(패스 타임) 종료 연출
+    확정된 세션 구조: 시간이 끝나면 "신호 끊김 연출" 후 성과 요약으로 넘어간다.
+    왼쪽의 온전한 파형이 오른쪽으로 갈수록 끊긴 조각이 되는 구성입니다.
+  -->
+  <g fill="none" stroke-linecap="round" stroke-width="5">
+    <path d="M6 50 L20 50 L28 26 L36 74 L44 38 L52 62 L60 50 L78 50"
+      stroke="var(--color-signal-ok, #5fe3c0)"/>
+    <path d="M88 50 L100 50" stroke="var(--color-signal-ok, #5fe3c0)" opacity="0.55"/>
+    <path d="M112 50 L118 50 M130 50 L134 50 M148 50 L151 50"
+      stroke="var(--color-signal-lost, #ff3d6e)" opacity="0.85"/>
+    <path d="M166 50 L168 50" stroke="var(--color-signal-lost, #ff3d6e)" opacity="0.5"/>
+  </g>
+  <g fill="var(--color-signal-lost, #ff3d6e)" opacity="0.7">
+    <rect x="176" y="46" width="4" height="8" rx="2"/>
+    <rect x="186" y="48" width="3" height="4" rx="1.5"/>
+  </g>
+</svg>

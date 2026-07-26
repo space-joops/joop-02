@@ -5,25 +5,25 @@
 }
 
 .shell {
-  fill: var(--color-jupsy-shell);
+  fill: var(--color-shell);
 }
 
 .ear {
-  fill: var(--color-jupsy-shell-shade);
+  fill: var(--color-shell-shadow);
 }
 
 .visor {
-  fill: var(--color-jupsy-visor);
+  fill: var(--color-visor);
 }
 
 .eye {
-  fill: var(--color-jupsy-eye);
-  stroke: var(--color-jupsy-eye);
+  fill: var(--color-eye);
+  stroke: var(--color-eye);
   stroke-width: 0;
 }
 
 .core {
-  fill: var(--color-jupsy-core);
+  fill: var(--color-core);
   animation: pulse 2.4s var(--ease-in-out) infinite;
 }
 

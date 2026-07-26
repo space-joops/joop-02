@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="오래된 필름 릴">
+  <!-- 먹을 수 있음 · 오래된 필름·데이터 · 정규화 캔버스 100x100 -->
+  <!-- 구멍은 '뚫린 자리'로 읽혀야 하므로 배경색(bg-deep 폴백)으로 칠합니다.
+       인라인으로 넣으면 실제 배경 토큰을 따라갑니다. -->
+  <!-- 잉크 반경을 45로 정규화 (design-guide.md 6절). 소비자는 scale(radius/45) 한 번만 걸면 된다. -->
+  <g transform="translate(50 50) scale(1.1111) translate(-53.50 -50.00)">
+    <g stroke-linejoin="round" stroke-linecap="round">
+      <circle cx="50" cy="50" r="37" fill="var(--color-debris-archive, #b07a50)"/>
+      <circle cx="50" cy="50" r="33" fill="none"
+        stroke="var(--color-debris-archive-hi, #d9a87f)" stroke-width="4" opacity="0.85"/>
+
+      <!-- 릴 창 (필름이 감긴 사이로 보이는 빈 곳) -->
+      <g fill="var(--color-bg-deep, #05070f)">
+        <circle cx="50" cy="30" r="9"/>
+        <circle cx="67" cy="60" r="9"/>
+        <circle cx="33" cy="60" r="9"/>
+      </g>
+
+      <!-- 허브 -->
+      <circle cx="50" cy="50" r="11" fill="var(--color-debris-archive-shadow, #7c512f)"/>
+      <circle cx="50" cy="50" r="4.5" fill="var(--color-debris-archive-hi, #d9a87f)"/>
+
+      <!-- 풀린 필름 꼬리 -->
+      <path d="M85 42 C93 48 92 60 84 66"
+        fill="none" stroke="var(--color-debris-archive-shadow, #7c512f)" stroke-width="7"/>
+      <path d="M85 42 C93 48 92 60 84 66"
+        fill="none" stroke="var(--color-debris-archive, #b07a50)" stroke-width="4"/>
+    </g>
+  </g>
+</svg>

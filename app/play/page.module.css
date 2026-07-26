@@ -24,7 +24,7 @@
 }
 
 .hudLabel {
-  color: var(--color-text-faint);
+  color: var(--color-text-low);
   font-size: var(--font-size-xs);
 }
 
@@ -53,9 +53,13 @@
   touch-action: none;
 }
 
+/* M1의 파편은 단색 도형이라 팔레트의 밝은 단계를 본체로 쓴다.
+ * 중간톤(--color-debris-metal)을 그대로 쓰면 어두운 배경에서 탁해진다.
+ * design/ 의 실제 에셋은 hi/기본/shadow 3단계를 겹쳐 입체를 내므로
+ * M3에서 교체할 때 이 규칙은 사라진다. */
 .safe {
-  fill: var(--color-debris-safe);
-  stroke: var(--color-debris-safe-deep);
+  fill: var(--color-debris-metal-hi);
+  stroke: var(--color-debris-metal);
   /* scale이 걸린 그룹 안이라 stroke도 함께 확대된다.
    * non-scaling-stroke로 파편 크기와 무관하게 선 두께를 일정하게 유지한다. */
   stroke-width: 1.5;
@@ -64,8 +68,8 @@
 }
 
 .hazard {
-  fill: var(--color-debris-hazard);
-  stroke: var(--color-debris-hazard-deep);
+  fill: var(--color-hazard);
+  stroke: var(--color-hazard-deep);
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
   will-change: transform;
@@ -113,12 +117,12 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   text-align: center;
-  background: var(--color-space-700);
+  background: var(--color-bg-near);
 }
 
 .summarySignal {
   margin: 0;
-  color: var(--color-text-faint);
+  color: var(--color-text-low);
   font-size: var(--font-size-sm);
   letter-spacing: 0.04em;
 }
@@ -133,7 +137,7 @@
 
 .summaryCaption {
   margin: 0 0 var(--space-3);
-  color: var(--color-text-muted);
+  color: var(--color-text-mid);
   font-size: var(--font-size-sm);
 }
 
@@ -152,7 +156,7 @@
 }
 
 .summaryStats dt {
-  color: var(--color-text-faint);
+  color: var(--color-text-low);
   font-size: var(--font-size-xs);
 }
 
@@ -164,7 +168,7 @@
 
 .summaryNotice {
   margin: 0 0 var(--space-4);
-  color: var(--color-text-faint);
+  color: var(--color-text-low);
   font-size: var(--font-size-xs);
 }
 
@@ -175,7 +179,7 @@
   border-radius: var(--radius-lg);
   font-weight: 600;
   line-height: 1.5rem;
-  background: linear-gradient(135deg, var(--color-accent-deep), var(--color-space-500));
+  background: linear-gradient(135deg, var(--color-accent-deep), var(--color-bg-lift));
 }
 
 .summaryButton:focus-visible {

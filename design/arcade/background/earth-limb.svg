@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" preserveAspectRatio="xMidYMax slice" role="img" aria-label="지구의 지평선">
+  <!--
+    지구 지평선 · 화면 하단에 고정해 "궤도 위에 있다"는 위치감을 준다.
+    담당 궤도 구역 진행 시각화(M2)와는 다른 에셋입니다. 그쪽은 ui/orbit-sector.svg.
+
+    그라디언트에 gradientUnits="userSpaceOnUse" 를 쓴 이유:
+    지구는 화면 아래로 대부분 잘려 나가는 거대한 원이라, 기본값(objectBoundingBox)으로 두면
+    보이는 80px 구간이 그라디언트의 앞 10%만 차지해 단색으로 보입니다.
+    좌표를 직접 지정해 '보이는 구간'에 색 변화를 몰아넣습니다.
+  -->
+  <defs>
+    <linearGradient id="earth-surface" gradientUnits="userSpaceOnUse" x1="0" y1="158" x2="0" y2="300">
+      <stop offset="0%" stop-color="var(--color-eye-deep, #2fc6ee)"/>
+      <stop offset="28%" stop-color="var(--color-bg-nebula, #4a2e9e)"/>
+      <stop offset="100%" stop-color="var(--color-bg-deep, #05070f)"/>
+    </linearGradient>
+    <linearGradient id="earth-rim" gradientUnits="userSpaceOnUse" x1="0" y1="132" x2="0" y2="176">
+      <stop offset="0%" stop-color="var(--color-eye-soft, #b6f4ff)" stop-opacity="0"/>
+      <stop offset="100%" stop-color="var(--color-eye-soft, #b6f4ff)" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="earth-halo" gradientUnits="userSpaceOnUse" x1="0" y1="96" x2="0" y2="164">
+      <stop offset="0%" stop-color="var(--color-eye, #6fe3ff)" stop-opacity="0"/>
+      <stop offset="100%" stop-color="var(--color-eye, #6fe3ff)" stop-opacity="0.28"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 바깥 대기 산란 -->
+  <ellipse cx="200" cy="472" rx="368" ry="356" fill="url(#earth-halo)"/>
+  <!-- 대기 림 -->
+  <ellipse cx="200" cy="470" rx="348" ry="332" fill="url(#earth-rim)"/>
+  <!-- 지표면 -->
+  <ellipse cx="200" cy="480" rx="340" ry="320" fill="url(#earth-surface)"/>
+  <!-- 구름 띠 -->
+  <g fill="var(--color-shell-hi, #ffffff)" opacity="0.14">
+    <ellipse cx="128" cy="196" rx="62" ry="7"/>
+    <ellipse cx="272" cy="214" rx="48" ry="6"/>
+    <ellipse cx="196" cy="232" rx="84" ry="8"/>
+  </g>
+</svg>

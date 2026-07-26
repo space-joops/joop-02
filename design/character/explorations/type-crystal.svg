@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" role="img" aria-label="[제안] 크리스탈형 줍스 액센트">
+  <!--
+    ⚠️ 제안(proposal)입니다. 확정된 디자인이 아닙니다. (roadmap.md M6에서 결론)
+    사용 방식: jupsy-base.svg 위에 겹치는 액센트 레이어 단독. 몸체를 복사하지 않습니다.
+
+    크리스탈형 — 반짝이는 파편 선호 / 수다스러움 / 크리스탈 장식
+  -->
+  <g id="type-crystal-accent">
+    <!-- 등에서 자란 결정 (가시 위에 겹친다) -->
+    <g fill="var(--color-debris-crystal, #f5c98e)" opacity="0.92">
+      <polygon points="58,150 50,124 66,140"/>
+      <polygon points="52,168 40,150 60,158"/>
+      <polygon points="142,150 150,124 134,140"/>
+      <polygon points="148,168 160,150 140,158"/>
+    </g>
+    <!-- 머리 위 작은 결정 -->
+    <polygon points="100,36 108,20 112,38" fill="var(--color-debris-crystal-hi, #ffe7c4)"/>
+    <!-- 반짝임 -->
+    <g fill="none" stroke="var(--color-debris-crystal-hi, #ffe7c4)" stroke-width="2.4" stroke-linecap="round">
+      <path d="M44 128 L44 138 M39 133 L49 133"/>
+      <path d="M158 142 L158 150 M154 146 L162 146"/>
+    </g>
+  </g>
+</svg>
