@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useCallback, useRef, useState } from 'react';
 import { Joystick } from '@/components/Joystick';
-import { Jupsy, type JupsyMood } from '@/components/Jupsy';
+import { Joops, type JoopsMood } from '@/components/Joops';
 import { useGameLoop } from '@/lib/useGameLoop';
 import { resolveContacts } from '@/lib/game/collision';
 import {
@@ -14,7 +14,7 @@ import {
 } from '@/lib/game/constants';
 import { formatMass, formatTime } from '@/lib/game/format';
 import { applyHazardPenalty, canAbsorb, radiusForMass } from '@/lib/game/growth';
-import { stepDebris, stepJupsy } from '@/lib/game/physics';
+import { stepDebris, stepJoops } from '@/lib/game/physics';
 import { createSpawner } from '@/lib/game/spawn';
 import { saveSession, type Records } from '@/lib/storage';
 import type { Debris, SessionResult, Vec } from '@/lib/game/types';
@@ -36,7 +36,7 @@ export default function PlayPage() {
    *
    * 좌표를 state에 두면 초당 60회 리렌더가 나서 60fps가 무너진다.
    */
-  const jupsyMotion = useRef({
+  const joopsMotion = useRef({
     pos: { x: FIELD.width / 2, y: FIELD.height / 2 },
     vel: { x: 0, y: 0 },
   });
@@ -73,11 +73,11 @@ export default function PlayPage() {
 
   // DOM 참조 레지스트리. 파편 id → SVG 그룹.
   const debrisNodes = useRef(new Map<number, SVGGElement>());
-  const jupsyNode = useRef<SVGGElement>(null);
+  const joopsNode = useRef<SVGGElement>(null);
   const massNode = useRef<HTMLParagraphElement>(null);
 
   const [phase, setPhase] = useState<Phase>('playing');
-  const [mood, setMood] = useState<JupsyMood>('normal');
+  const [mood, setMood] = useState<JoopsMood>('normal');
   const [remaining, setRemaining] = useState(SESSION_SECONDS);
   const [result, setResult] = useState<SessionResult | null>(null);
   const [records, setRecords] = useState<Records | null>(null);
@@ -136,7 +136,7 @@ export default function PlayPage() {
 
     // ── 줍스 이동 ──
     const radius = radiusForMass(collectedKg.current);
-    jupsyMotion.current = stepJupsy(jupsyMotion.current, input.current, dt, radius);
+    joopsMotion.current = stepJoops(joopsMotion.current, input.current, dt, radius);
 
     // ── 파편 이동 ──
     let current = rosterRef.current;
@@ -151,7 +151,7 @@ export default function PlayPage() {
     // ── 충돌 ──
     invulnerableFor.current = Math.max(0, invulnerableFor.current - dt);
     const contacts = resolveContacts(
-      { ...jupsyMotion.current, radius },
+      { ...joopsMotion.current, radius },
       current,
       canAbsorb,
       invulnerableFor.current > 0,
@@ -194,10 +194,10 @@ export default function PlayPage() {
 
     // ── 그리기: React를 거치지 않고 DOM을 직접 갱신한다 ──
     const nextRadius = radiusForMass(collectedKg.current);
-    if (jupsyNode.current) {
-      const { x, y } = jupsyMotion.current.pos;
-      jupsyNode.current.setAttribute('transform', `translate(${x} ${y}) scale(${nextRadius})`);
-      jupsyNode.current.style.opacity = invulnerableFor.current > 0 ? '0.55' : '1';
+    if (joopsNode.current) {
+      const { x, y } = joopsMotion.current.pos;
+      joopsNode.current.setAttribute('transform', `translate(${x} ${y}) scale(${nextRadius})`);
+      joopsNode.current.style.opacity = invulnerableFor.current > 0 ? '0.55' : '1';
     }
     for (const debris of current) {
       const node = debrisNodes.current.get(debris.id);
@@ -242,7 +242,7 @@ export default function PlayPage() {
               <DebrisShape key={debris.id} debris={debris} register={registerDebrisNode} />
             ))}
           </g>
-          <Jupsy mood={mood} groupRef={jupsyNode} />
+          <Joops mood={mood} groupRef={joopsNode} />
         </svg>
       </div>
 

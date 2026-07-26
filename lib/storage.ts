@@ -7,8 +7,8 @@ import type { SessionResult } from './game/types';
  * 만지기 시작하면 M7의 서버 마이그레이션 때 손댈 곳을 찾을 수 없게 됩니다.
  */
 
-const KEY = 'jupsy:records';
-const BACKUP_PREFIX = 'jupsy:records:backup:';
+const KEY = 'joops:records';
+const BACKUP_PREFIX = 'joops:records:backup:';
 
 /** 현재 스키마 버전. 형식을 바꾸면 올리고 마이그레이션을 붙입니다. */
 export const SCHEMA_VERSION = 1;

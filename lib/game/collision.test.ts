@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { isTouching, resolveContacts } from './collision';
 import { canAbsorb } from './growth';
-import type { Debris, DebrisKind, Jupsy } from './types';
+import type { Debris, DebrisKind, Joops } from './types';
 
-const 줍스 = (x: number, y: number, radius = 6): Jupsy => ({
+const 줍스 = (x: number, y: number, radius = 6): Joops => ({
   pos: { x, y },
   vel: { x: 0, y: 0 },
   radius,

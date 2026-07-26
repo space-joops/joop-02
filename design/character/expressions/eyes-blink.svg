@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" role="img" aria-label="줍스 표정: 깜빡임">
-  <!-- 눈 슬롯 규격: 120 x 60 / 눈 중심 (42,30) (78,30) / jupsy-base.svg 의 translate(40 52) 자리 -->
+  <!-- 눈 슬롯 규격: 120 x 60 / 눈 중심 (42,30) (78,30) / joops-base.svg 의 translate(40 52) 자리 -->
   <!-- 깜빡임 — 아이들 중 짧게 끼워넣는 한 프레임. 단독 감정이 아니다 -->
   <g fill="var(--color-eye, #6fe3ff)">
     <rect x="32" y="27" width="20" height="6" rx="3"/>

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" role="img" aria-label="줍스 표정: 호기심">
-  <!-- 눈 슬롯 규격: 120 x 60 / 눈 중심 (42,30) (78,30) / jupsy-base.svg 의 translate(40 52) 자리 -->
+  <!-- 눈 슬롯 규격: 120 x 60 / 눈 중심 (42,30) (78,30) / joops-base.svg 의 translate(40 52) 자리 -->
   <!-- 호기심 — 처음 보는 쓰레기, 온보딩 안내. 짝눈으로 갸웃 -->
   <g fill="var(--color-eye, #6fe3ff)">
     <ellipse cx="42" cy="29" rx="11" ry="13.5"/>

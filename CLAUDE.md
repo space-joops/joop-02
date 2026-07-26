@@ -1,4 +1,4 @@
-# 줍스 (Jupsy) — 반려위성 우주청소 게임
+# 줍스 (Joops) — 반려위성 우주청소 게임
 
 이 문서는 이 프로젝트의 **확정된 기획과 결정**을 담습니다. 이어서 작업할 때 아래 내용을 전제로 진행하면 됩니다. 사용자에게 다시 설명을 요구하지 말고, 여기 없는 부분만 새로 물어보세요.
 
@@ -21,13 +21,13 @@ app/page.tsx             홈 화면
 app/play/page.tsx        아케이드 모드 화면 + 세션 관리 + 결과 요약
 app/profile/page.tsx     누적 실적 대시보드 (청소량·정화율·배지)
 components/Joystick.tsx  가상 조이스틱 (포인터 이벤트)
-components/Jupsy.tsx     줍스 SVG — M1 프로토타입 버전. M3에서 고도화
+components/Joops.tsx     줍스 SVG — M1 프로토타입 버전. M3에서 고도화
 components/OrbitSector.tsx  담당 궤도 구역 정화율 시각화
 components/Badge.tsx     실적 배지
 lib/storage.ts           localStorage 접근 지점 (스키마 버전·외부 저장소 구독)
 lib/useGameLoop.ts       rAF + delta time 루프
 lib/game/                게임 규칙 순수 함수
-  types.ts               Vec, Debris, Jupsy, SessionResult
+  types.ts               Vec, Debris, Joops, SessionResult
   constants.ts           필드 크기, 밸런스 수치 — 조정은 전부 여기서
   vector.ts              벡터 연산
   growth.ts              성장 곡선, 흡수 가능 판정, 위험 파편 패널티
@@ -150,7 +150,7 @@ design/                  디자인 에셋 원본 (SVG 40개 + 프리뷰). 토큰
 
 M0~M2는 완료되었습니다 (`현재 상태` 참고). 아래는 남은 것들이고, 순서와 완료 기준은 [`docs/roadmap.md`](./docs/roadmap.md)에 있습니다.
 
-- 캐릭터 비주얼 고도화 (M3) — `components/Jupsy.tsx` 는 M1 프로토타입 버전입니다. **고퀄리티 SVG 원본과 표정 8종은 `design/character/` 에 이미 있고**, 남은 일은 이를 컴포넌트로 옮기고 CSS 애니메이션을 붙이는 것입니다
+- 캐릭터 비주얼 고도화 (M3) — `components/Joops.tsx` 는 M1 프로토타입 버전입니다. **고퀄리티 SVG 원본과 표정 8종은 `design/character/` 에 이미 있고**, 남은 일은 이를 컴포넌트로 옮기고 CSS 애니메이션을 붙이는 것입니다
 - 입양~발사 온보딩 플로우 (M4)
 - 통신 가능 시간 스케줄링과 알림 (M5)
 - 성격 유형 분화 (M6)

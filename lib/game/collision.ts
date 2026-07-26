@@ -1,4 +1,4 @@
-import type { Debris, Jupsy } from './types';
+import type { Debris, Joops } from './types';
 import { isWithinDistance } from './vector';
 
 /**
@@ -7,8 +7,8 @@ import { isWithinDistance } from './vector';
  * 두 원의 중심 거리가 반지름 합 이하이면 접촉이다.
  * 제곱근 없이 제곱끼리 비교한다 (vector.isWithinDistance 참고).
  */
-export function isTouching(jupsy: Jupsy, debris: Debris): boolean {
-  return isWithinDistance(jupsy.pos, debris.pos, jupsy.radius + debris.radius);
+export function isTouching(joops: Joops, debris: Debris): boolean {
+  return isWithinDistance(joops.pos, debris.pos, joops.radius + debris.radius);
 }
 
 export interface ContactResult {
@@ -29,16 +29,16 @@ export interface ContactResult {
  * @param invulnerable 무적 시간 중이면 위험 파편을 무시한다
  */
 export function resolveContacts(
-  jupsy: Jupsy,
+  joops: Joops,
   debrisList: readonly Debris[],
-  canAbsorbDebris: (jupsyRadius: number, debrisRadius: number) => boolean,
+  canAbsorbDebris: (joopsRadius: number, debrisRadius: number) => boolean,
   invulnerable: boolean,
 ): ContactResult {
   const absorbed: number[] = [];
   let hazardHit: number | null = null;
 
   for (const debris of debrisList) {
-    if (!isTouching(jupsy, debris)) continue;
+    if (!isTouching(joops, debris)) continue;
 
     if (debris.kind === 'hazard') {
       if (!invulnerable && hazardHit === null) hazardHit = debris.id;
@@ -46,7 +46,7 @@ export function resolveContacts(
     }
 
     // 아직 작아서 못 먹는 파편은 그냥 지나친다. 패널티는 없다.
-    if (canAbsorbDebris(jupsy.radius, debris.radius)) absorbed.push(debris.id);
+    if (canAbsorbDebris(joops.radius, debris.radius)) absorbed.push(debris.id);
   }
 
   return { absorbed, hazardHit };

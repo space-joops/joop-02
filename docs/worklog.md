@@ -252,7 +252,7 @@ M2 자기 검증 질문이 "hydration mismatch 해결책 세 가지의 트레이
 
 - **코드보다 먼저 디자인 레이어를 만들었다.** `design/` 에 SVG 40개 + 토큰 CSS 1개 + 프리뷰 페이지 1개.
   - `tokens/tokens.css` — 2계층 토큰(원시 `--c-*` → 시맨틱 `--color-*`). 색·간격·타이포·z-index·모션. M0에서 `app/globals.css` 로 이식할 수 있게 `:root` 블록 하나로 작성.
-  - `character/jupsy-base.svg` — 확정된 디자인 언어대로 매끈한 흰 셸, 분리되어 떠 있는 머리와 팔, 고양이 귀 센서, 등 가시, 수염 와이어, 가슴 코어 라이트.
+  - `character/joops-base.svg` — 확정된 디자인 언어대로 매끈한 흰 셸, 분리되어 떠 있는 머리와 팔, 고양이 귀 센서, 등 가시, 수염 와이어, 가슴 코어 라이트.
   - `character/expressions/` 8종 — 눈 슬롯 `120×60`, 캐릭터 캔버스의 `translate(40 52)` 자리에 드롭인 교체.
   - `arcade/` — 쓰레기 4종, 위험 파편 2종, 배경 3레이어, 이펙트 3종.
   - `ui/` — 아이콘 8종, 배지 빈 틀, 궤도 정화율 시각화, 로고·파비콘·워드마크.
@@ -352,7 +352,7 @@ M2 자기 검증 질문이 "hydration mismatch 해결책 세 가지의 트레이
 
 ### 한 일
 
-- **CLAUDE.md가 존재하지 않는 구현을 서술하고 있던 문제를 바로잡았다.** 기존 문서는 "1차 프로토타입 범위: 아케이드 모드 + 프로필 대시보드까지 구현 완료"라고 적고 `app/page.tsx`, `app/play/page.tsx`, `app/profile/page.tsx`, `components/Jupsy.tsx`, `components/Joystick.tsx`, `lib/storage.ts` 6개 파일 목록을 코드 블록으로 제시했으나, **이 파일들은 어떤 브랜치·커밋에도 존재하지 않았다.** 레포에는 `CLAUDE.md` 한 파일과 커밋 하나(`d8b6789 init`)뿐이었다.
+- **CLAUDE.md가 존재하지 않는 구현을 서술하고 있던 문제를 바로잡았다.** 기존 문서는 "1차 프로토타입 범위: 아케이드 모드 + 프로필 대시보드까지 구현 완료"라고 적고 `app/page.tsx`, `app/play/page.tsx`, `app/profile/page.tsx`, `components/Joops.tsx`, `components/Joystick.tsx`, `lib/storage.ts` 6개 파일 목록을 코드 블록으로 제시했으나, **이 파일들은 어떤 브랜치·커밋에도 존재하지 않았다.** 레포에는 `CLAUDE.md` 한 파일과 커밋 하나(`d8b6789 init`)뿐이었다.
 - 기획 내용(세계관·코어 루프·캐릭터 디자인·아케이드 규칙·보상 구조)은 전부 보존하고, 사실관계가 틀린 부분만 제거·교체했다.
 - `docs/` 문서 체계를 만들었다 — 로드맵, ADR, 작업 로그, 성장 로드맵, 인덱스.
 - 정해지지 않았던 기술 선택 세 가지를 확정했다: **CSS Modules + CSS 변수**(Tailwind 배제), **rAF + delta time 게임 루프**, **ESLint + Prettier + Vitest + GitHub Actions**.
