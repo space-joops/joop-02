@@ -1,4 +1,4 @@
-# 줍스 (Jupsy)
+# 줍스 (Joops)
 
 우주 쓰레기를 먹어치우는 반려위성을 입양해 지구에서 유대를 쌓고, 우주로 발사한 뒤 정기적으로 통신이 연결되는 시간에 함께 궤도를 청소하는 게임.
 
@@ -47,7 +47,7 @@ app/            App Router 페이지와 레이아웃
   layout.tsx    모바일 세로 셸 (safe-area, 회전 안내)
   play/         아케이드 모드 화면
   profile/      누적 실적 대시보드
-components/     Joystick, Jupsy, OrbitSector, Badge
+components/     Joystick, Joops, OrbitSector, Badge
 lib/
   storage.ts      localStorage 접근 지점 (스키마 버전 포함)
   useGameLoop.ts  rAF + delta time 루프

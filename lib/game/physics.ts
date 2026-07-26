@@ -28,7 +28,7 @@ export interface MotionState {
  * @param dt 이전 프레임과의 시간 차(초)
  * @param radius 경계 판정에 쓰는 줍스 반지름
  */
-export function stepJupsy(state: MotionState, input: Vec, dt: number, radius: number): MotionState {
+export function stepJoops(state: MotionState, input: Vec, dt: number, radius: number): MotionState {
   const accelerated: Vec = {
     x: state.vel.x + input.x * JUPSY_ACCEL * dt,
     y: state.vel.y + input.y * JUPSY_ACCEL * dt,

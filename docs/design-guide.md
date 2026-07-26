@@ -4,7 +4,7 @@
 
 > **토큰은 통합되었습니다.** 정본은 `app/globals.css` 한 곳이고, 이 디렉터리의 SVG가 참조하는 `--color-*` 이름이 그대로 살아 있습니다 (경위는 ADR-010).
 >
-> 다만 **SVG 자체는 아직 컴포넌트로 옮겨지지 않았습니다.** M1의 `components/Jupsy.tsx` 와 파편 도형은 프로토타입 버전이고, 이 에셋으로 교체하는 것은 M3 작업입니다.
+> 다만 **SVG 자체는 아직 컴포넌트로 옮겨지지 않았습니다.** M1의 `components/Joops.tsx` 와 파편 도형은 프로토타입 버전이고, 이 에셋으로 교체하는 것은 M3 작업입니다.
 
 **눈으로 먼저 보세요.** `design/preview.html` 을 브라우저로 열면 모든 에셋이 한 페이지에 나옵니다. 빌드도 의존성도 없습니다.
 
@@ -18,7 +18,7 @@ design/
 ├─ tokens/
 │  └─ palette.svg                팔레트 시각 참조 (사본. app/globals.css 를 고치면 같이 고칠 것)
 ├─ character/
-│  ├─ jupsy-base.svg             ★ 몸체의 유일한 원본
+│  ├─ joops-base.svg             ★ 몸체의 유일한 원본
 │  ├─ expressions/               눈 도형 8종 — 바이저에 얹히는 교체 레이어
 │  └─ explorations/              [제안] 성격 유형 액센트 4종 · 확정 아님
 ├─ arcade/
@@ -30,7 +30,7 @@ design/
    ├─ icons/                     currentColor 기반 아이콘 8종
    ├─ badge/                     배지 빈 틀 + 미획득 상태
    ├─ orbit-sector.svg           담당 궤도 구역 정화율 시각화 (M2)
-   ├─ logo-jupsy.svg             앱 아이콘 128
+   ├─ logo-joops.svg             앱 아이콘 128
    ├─ favicon.svg                32px 기준으로 다시 그린 버전
    └─ wordmark.svg               워드마크 (폰트 의존 · 임시)
 ```
@@ -131,7 +131,7 @@ element.style.setProperty('--color-core', 'var(--c-glow-rose-400)');
   fill="var(--color-shell, #f7faff)"
   ```
   폴백이 있어야 `<img src="...svg">` 로 열었을 때나 토큰이 아직 없는 환경에서도 제대로 보입니다. `preview.html` 이 실제로 그 상태이고, 그 화면이 멀쩡하다는 것이 폴백이 살아 있다는 증거입니다
-- **id에 접두사를 붙인다** — `jupsy-`, `orbit-`, `earth-`, `logo-`, `fx-`. SVG를 인라인하면 id가 **문서 전역**이 됩니다. `<linearGradient id="grad">` 두 개가 한 페이지에 있으면 나중 것이 먼저 것을 덮어써서 그라디언트가 엉킵니다
+- **id에 접두사를 붙인다** — `joops-`, `orbit-`, `earth-`, `logo-`, `fx-`. SVG를 인라인하면 id가 **문서 전역**이 됩니다. `<linearGradient id="grad">` 두 개가 한 페이지에 있으면 나중 것이 먼저 것을 덮어써서 그라디언트가 엉킵니다
 
 ### 하지 말 것
 
@@ -166,7 +166,7 @@ M3의 완료 기준은 **"표정 추가가 눈 도형 교체만으로 가능하�
 | 표정 파일 viewBox | `0 0 120 60` (전부 동일) |
 | 눈 중심 | 슬롯 로컬 좌표 `(42, 30)` / `(78, 30)` |
 
-`jupsy-base.svg` 안의 `<g id="jupsy-eyes" transform="translate(40 52)">` 내용을 표정 파일의 내용으로 통째로 갈아끼우면 됩니다. 좌표를 다시 계산할 일이 없습니다.
+`joops-base.svg` 안의 `<g id="joops-eyes" transform="translate(40 52)">` 내용을 표정 파일의 내용으로 통째로 갈아끼우면 됩니다. 좌표를 다시 계산할 일이 없습니다.
 
 `preview.html` 2절에서 이 교체가 실제로 맞아떨어지는 것을 확인할 수 있습니다.
 
@@ -187,7 +187,7 @@ M3의 완료 기준은 **"표정 추가가 눈 도형 교체만으로 가능하�
 
 ### 표정을 새로 추가할 때
 
-`viewBox="0 0 120 60"` 로 새 파일을 만들고 눈 중심 `(42,30)`/`(78,30)` 근처에 그리면 끝입니다. **`jupsy-base.svg` 는 건드리지 않습니다.** 몸통을 수정해야 표정이 추가된다면 그건 이 구조가 깨졌다는 신호입니다.
+`viewBox="0 0 120 60"` 로 새 파일을 만들고 눈 중심 `(42,30)`/`(78,30)` 근처에 그리면 끝입니다. **`joops-base.svg` 는 건드리지 않습니다.** 몸통을 수정해야 표정이 추가된다면 그건 이 구조가 깨졌다는 신호입니다.
 
 ---
 
@@ -195,16 +195,16 @@ M3의 완료 기준은 **"표정 추가가 눈 도형 교체만으로 가능하�
 
 ### transform-origin
 
-`jupsy-base.svg` 파일 상단 주석에도 같은 표가 있습니다.
+`joops-base.svg` 파일 상단 주석에도 같은 표가 있습니다.
 
 | 파트 id | transform-origin | 용도 |
 | --- | --- | --- |
-| `#jupsy-root` | `100px 120px` | 부유(idle bobbing), 피격 흔들림 |
-| `#jupsy-head` | `100px 100px` | 갸웃거림 |
-| `#jupsy-arm-left` | `36px 180px` | 팔 흔들기 |
-| `#jupsy-arm-right` | `164px 180px` | 팔 흔들기 |
-| `#jupsy-core` | `100px 176px` | 코어 라이트 맥동 |
-| `#jupsy-thruster` | `100px 224px` | 추진 깜빡임 |
+| `#joops-root` | `100px 120px` | 부유(idle bobbing), 피격 흔들림 |
+| `#joops-head` | `100px 100px` | 갸웃거림 |
+| `#joops-arm-left` | `36px 180px` | 팔 흔들기 |
+| `#joops-arm-right` | `164px 180px` | 팔 흔들기 |
+| `#joops-core` | `100px 176px` | 코어 라이트 맥동 |
+| `#joops-thruster` | `100px 224px` | 추진 깜빡임 |
 
 SVG 안에서는 `transform-box: fill-box` 를 함께 쓰거나 위 좌표를 그대로 쓰세요.
 
@@ -340,14 +340,14 @@ transform: translate(cx, cy) scale(radius / 45)
 
 | 마일스톤 | 쓰는 에셋 |
 | --- | --- |
-| **M0** 기반 ✅ | **토큰 통합 완료**(ADR-010, 정본 `app/globals.css`). `ui/favicon.svg`, `ui/logo-jupsy.svg` 는 아직 붙지 않았습니다 |
+| **M0** 기반 ✅ | **토큰 통합 완료**(ADR-010, 정본 `app/globals.css`). `ui/favicon.svg`, `ui/logo-joops.svg` 는 아직 붙지 않았습니다 |
 | **M1** 아케이드 | `arcade/debris/*`, `arcade/hazard/*`, `arcade/background/*`, `arcade/fx/*`, `ui/icons/icon-joystick·timer·weight` |
 | **M2** 누적 실적 | `ui/orbit-sector.svg`, `ui/badge/*`, `ui/icons/icon-badge·orbit·profile` |
-| **M3** 캐릭터 | `character/jupsy-base.svg`, `character/expressions/*` |
+| **M3** 캐릭터 | `character/joops-base.svg`, `character/expressions/*` |
 | **M4** 온보딩 | `character/expressions/eyes-curious·heart`, `arcade/background/earth-limb.svg` |
 | **M5** 통신 시간 | `character/expressions/eyes-sleepy`, `ui/icons/icon-signal`, `arcade/fx/signal-lost.svg` |
 | **M6** 성격 유형 | `character/explorations/*` — **제안 상태. 그대로 쓰면 안 됩니다** (9절) |
-| **M7** 서버·바이럴 | `ui/wordmark.svg`, `ui/logo-jupsy.svg` (공유 카드용) |
+| **M7** 서버·바이럴 | `ui/wordmark.svg`, `ui/logo-joops.svg` (공유 카드용) |
 
 ---
 

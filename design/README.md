@@ -1,6 +1,6 @@
 # design/
 
-줍스(Jupsy)의 디자인 에셋 원본입니다. SVG와 CSS 토큰만 있고, 빌드 과정이 없습니다.
+줍스(Joops)의 디자인 에셋 원본입니다. SVG와 CSS 토큰만 있고, 빌드 과정이 없습니다.
 
 - **눈으로 보기** → `preview.html` 을 브라우저로 그냥 여세요 (의존성 없음)
 - **사용 규칙** → [`../docs/design-guide.md`](../docs/design-guide.md)
@@ -11,7 +11,7 @@
 | 경로 | 무엇 |
 | --- | --- |
 | `tokens/palette.svg` | 팔레트 시각 참조. **토큰 정본은 `app/globals.css`** (ADR-010) |
-| `character/jupsy-base.svg` | 줍스 몸체의 **유일한 원본** |
+| `character/joops-base.svg` | 줍스 몸체의 **유일한 원본** |
 | `character/expressions/` | 바이저에 얹히는 눈 도형 8종 |
 | `character/explorations/` | **[제안]** 성격 유형 액센트 4종 — 확정 아님 |
 | `arcade/` | 쓰레기·위험 파편·배경·이펙트 |

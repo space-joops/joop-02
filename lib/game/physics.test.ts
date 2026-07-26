@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { clampToField, stepDebris, stepJupsy, type MotionState } from './physics';
+import { clampToField, stepDebris, stepJoops, type MotionState } from './physics';
 import { FIELD, JUPSY_MAX_SPEED } from './constants';
 import { length } from './vector';
 
@@ -17,19 +17,19 @@ function 시뮬레이션(
 ) {
   let current = state;
   for (let t = 0; t < seconds; t += dt) {
-    current = stepJupsy(current, input, dt, 4);
+    current = stepJoops(current, input, dt, 4);
   }
   return current;
 }
 
-describe('stepJupsy', () => {
+describe('stepJoops', () => {
   it('입력이 있으면 그 방향으로 움직인다', () => {
-    const 결과 = stepJupsy(정지상태(), { x: 1, y: 0 }, 1 / 60, 4);
+    const 결과 = stepJoops(정지상태(), { x: 1, y: 0 }, 1 / 60, 4);
     expect(결과.pos.x).toBeGreaterThan(FIELD.width / 2);
   });
 
   it('입력이 없으면 가속하지 않는다', () => {
-    const 결과 = stepJupsy(정지상태(), { x: 0, y: 0 }, 1 / 60, 4);
+    const 결과 = stepJoops(정지상태(), { x: 0, y: 0 }, 1 / 60, 4);
     expect(결과.vel.x).toBe(0);
     expect(결과.vel.y).toBe(0);
   });

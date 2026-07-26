@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" role="img" aria-label="[제안] 케이블형 줍스 액센트">
   <!--
     ⚠️ 제안(proposal)입니다. 확정된 디자인이 아닙니다. (roadmap.md M6에서 결론)
-    사용 방식: jupsy-base.svg 위에 겹치는 액센트 레이어 단독. 몸체를 복사하지 않습니다.
+    사용 방식: joops-base.svg 위에 겹치는 액센트 레이어 단독. 몸체를 복사하지 않습니다.
 
     케이블형 — 전선 선호 / 장난기 많음 / 케이블이 표정처럼 움직임
     #cable-left / #cable-right 를 각각 흔들면 기분에 따라 움직이는 연출이 됩니다.
-    (기본 수염 와이어 jupsy-whiskers 는 그대로 두고 그 위에 겹칩니다)
+    (기본 수염 와이어 joops-whiskers 는 그대로 두고 그 위에 겹칩니다)
   -->
   <g id="type-cable-accent" fill="none"
      stroke="var(--color-debris-cable, #e89c3c)" stroke-width="3.2" stroke-linecap="round">

@@ -77,7 +77,7 @@
   </g>
 
   <!-- 줍스의 현재 위치 -->
-  <g id="orbit-jupsy-marker">
+  <g id="orbit-joops-marker">
     <circle cx="100" cy="27" r="9" fill="var(--color-core, #5fe3c0)" opacity="0.25"/>
     <circle cx="100" cy="27" r="5" fill="var(--color-core, #5fe3c0)"/>
   </g>

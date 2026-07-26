@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { clearRecords, emptyRecords, readRecords, saveSession, SCHEMA_VERSION } from './storage';
 import type { SessionResult } from './game/types';
 
-const KEY = 'jupsy:records';
+const KEY = 'joops:records';
 
 const 세션 = (over: Partial<SessionResult> = {}): SessionResult => ({
   collectedKg: 10,
@@ -11,7 +11,7 @@ const 세션 = (over: Partial<SessionResult> = {}): SessionResult => ({
   ...over,
 });
 
-const 백업키 = () => Object.keys(localStorage).filter((k) => k.startsWith('jupsy:records:backup:'));
+const 백업키 = () => Object.keys(localStorage).filter((k) => k.startsWith('joops:records:backup:'));
 
 beforeEach(() => {
   localStorage.clear();

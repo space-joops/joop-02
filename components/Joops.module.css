@@ -1,0 +1,86 @@
+.root {
+  /* 게임 루프가 transform을 매 프레임 덮어쓴다. */
+  will-change: transform;
+}
+
+/* 
+ * 애니메이션 
+ * 부유(idle bobbing), 코어 라이트 맥동, 피격 흔들림, 흡수 시 통통 튐 
+ */
+.character {
+  transform-origin: 100px 120px;
+  animation: bob var(--duration-bob, 3.2s) var(--ease-in-out, ease-in-out) infinite alternate;
+}
+
+.character[data-mood="happy"],
+.character[data-mood="heart"] {
+  /* 흡수 성공 시 짧게 튄다. */
+  animation: bounce var(--duration-fast, 0.2s) var(--ease-pop, cubic-bezier(0.175, 0.885, 0.32, 1.275));
+}
+
+.character[data-mood="hurt"] {
+  /* 피격 시 짧게 흔들린다. */
+  animation: shake var(--duration-fast, 0.2s) var(--ease-out, ease-out);
+}
+
+.head {
+  transform-origin: 100px 100px;
+  animation: tilt var(--duration-bob, 3.2s) var(--ease-in-out, ease-in-out) infinite alternate-reverse;
+}
+
+.armLeft {
+  transform-origin: 36px 170px;
+  animation: armSwing var(--duration-bob, 3.2s) var(--ease-in-out, ease-in-out) infinite alternate;
+}
+
+.armRight {
+  transform-origin: 164px 170px;
+  animation: armSwing var(--duration-bob, 3.2s) var(--ease-in-out, ease-in-out) infinite alternate-reverse;
+}
+
+.core {
+  transform-origin: 100px 176px;
+  animation: pulse var(--duration-core-pulse, 2.4s) var(--ease-in-out, ease-in-out) infinite alternate;
+}
+
+.thruster {
+  transform-origin: 100px 224px;
+  animation: flicker 0.1s infinite alternate;
+}
+
+@keyframes bob {
+  from { transform: translateY(-4px); }
+  to { transform: translateY(4px); }
+}
+
+@keyframes tilt {
+  from { transform: rotate(-2deg); }
+  to { transform: rotate(2deg); }
+}
+
+@keyframes armSwing {
+  from { transform: rotate(-6deg); }
+  to { transform: rotate(6deg); }
+}
+
+@keyframes bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15) translateY(-10px); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px) rotate(-4deg); }
+  75% { transform: translateX(8px) rotate(4deg); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  100% { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes flicker {
+  0% { opacity: 0.8; transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1.02); }
+}

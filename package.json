@@ -1,8 +1,8 @@
 {
-  "name": "jupsy",
+  "name": "joops",
   "version": "0.1.0",
   "private": true,
-  "description": "줍스(Jupsy) — 반려위성 우주청소 게임",
+  "description": "줍스(Joops) — 반려위성 우주청소 게임",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

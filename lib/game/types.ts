@@ -25,7 +25,7 @@ export interface Debris {
   shapeSeed: number;
 }
 
-export interface Jupsy {
+export interface Joops {
   pos: Vec;
   vel: Vec;
   radius: number;

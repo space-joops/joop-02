@@ -23,8 +23,8 @@ export function radiusForMass(collectedKg: number): number {
  * 커질수록 더 큰 것도 먹을 수 있게 된다는 규칙의 구현이다.
  * 흡수 불가한 파편은 그냥 지나친다 (패널티 없음).
  */
-export function canAbsorb(jupsyRadius: number, debrisRadius: number): boolean {
-  return jupsyRadius >= debrisRadius * ABSORB_RADIUS_RATIO;
+export function canAbsorb(joopsRadius: number, debrisRadius: number): boolean {
+  return joopsRadius >= debrisRadius * ABSORB_RADIUS_RATIO;
 }
 
 /**

@@ -252,7 +252,7 @@
 | --- | --- | --- |
 | 구조 | 1계층 | 2계층 (원시 `--c-*` → 시맨틱 `--color-*`) |
 | 배경 | `--color-space-900` | `--color-bg-deep` |
-| 줍스 눈 | `--color-jupsy-eye` | `--color-eye` |
+| 줍스 눈 | `--color-joops-eye` | `--color-eye` |
 | 쓰레기 | `--color-debris-safe` 1종 | 금속/크리스탈/아카이브/케이블 4종 |
 | 간격·타이포 | `--space-4`, `--font-size-xl` | `--sp-4`, `--fs-400` |
 | 커버 범위 | 홈 화면에 필요한 만큼 | 캐릭터·쓰레기·위험·배지·궤도까지 |
@@ -314,7 +314,7 @@
 
 **결정 1 — 스키마에 `version` 필드를 넣고, 읽을 수 없는 값은 백업 키로 옮긴다.**
 
-파싱에 실패하거나 `version`이 아는 값이 아니면 원본 문자열을 `jupsy:records:backup:<타임스탬프>`로 옮기고 빈 상태로 시작한다.
+파싱에 실패하거나 `version`이 아는 값이 아니면 원본 문자열을 `joops:records:backup:<타임스탬프>`로 옮기고 빈 상태로 시작한다.
 
 **결정 2 — hydration은 `useSyncExternalStore`로 처리한다.**
 
