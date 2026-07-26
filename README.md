@@ -46,8 +46,10 @@ app/            App Router 페이지와 레이아웃
   globals.css   디자인 토큰 (색·간격·타이포·레이어·모션)
   layout.tsx    모바일 세로 셸 (safe-area, 회전 안내)
   play/         아케이드 모드 화면
-components/     Joystick, Jupsy
+  profile/      누적 실적 대시보드
+components/     Joystick, Jupsy, OrbitSector, Badge
 lib/
+  storage.ts      localStorage 접근 지점 (스키마 버전 포함)
   useGameLoop.ts  rAF + delta time 루프
   game/           게임 규칙 순수 함수 (+ 단위 테스트)
 docs/           기획·설계·학습 문서
@@ -68,6 +70,6 @@ docs/           기획·설계·학습 문서
 
 ## 현재 상태
 
-**M1(아케이드 모드 코어) 완료.** 홈 → 청소하러 가기 → 60초 세션 → 결과 요약까지 실제로 플레이됩니다.
+**M2(누적 실적 & 프로필) 완료.** 홈 → 청소하러 가기 → 60초 세션 → 결과 요약 → 기록 보기까지 이어지고, **청소 기록이 누적됩니다.**
 
-아직 없는 것: **누적 실적 저장과 프로필 화면(M2)**. 지금은 한 판이 끝나면 기록이 사라지고, 홈의 `프로필 보기`가 비활성인 이유입니다.
+다음은 **캐릭터 비주얼 고도화(M3)** 입니다. 지금의 줍스 SVG는 프로토타입 버전이고, 고퀄리티 원본과 표정 8종은 `design/character/` 에 이미 준비되어 있습니다.
