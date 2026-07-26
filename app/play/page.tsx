@@ -246,9 +246,12 @@ export default function PlayPage() {
         </svg>
       </div>
 
-      <footer className={styles.controls}>
+      {/* 조이스틱은 자체 터치 영역(하단 절반)을 절대 위치로 겹쳐 그린다.
+          별도 레이아웃 행(옛 footer)을 차지하지 않아 게임 필드가 그 뒤로
+          그대로 보인다 (이슈 #7 — 플로팅 조이스틱). */}
+      <div className={styles.joystickZone}>
         <Joystick onChange={handleInput} />
-      </footer>
+      </div>
 
       {phase === 'ended' && result && <SessionSummary result={result} records={records} />}
     </div>
