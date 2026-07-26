@@ -1,10 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="별이 깔린 우주 배경">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="별이 깔린 우주 배경 (카세트 퓨처리즘)">
   <!--
     배경 별 · 3개 시차(parallax) 레이어
     #star-far / #star-mid / #star-near 를 서로 다른 속도로 translate 하면 깊이감이 생깁니다.
     별은 장식이므로 사용하는 쪽에서 aria-hidden="true" 를 주는 것을 권장합니다.
+
+    카세트 퓨처리즘 반영(PR #5 검토): 앱 전체가 공유하는 배경 토큰(color-bg-deep)은
+    그대로 둔다(바꾸면 홈·프로필 화면까지 전부 물든다). 대신 이 배경에만
+    스캔라인과 소수의 초록·앰버 시그널 점을 얹어 CRT 단말기 느낌을 낸다.
+    두 색 모두 새 토큰을 만들지 않고 캐릭터와 같은 눈·코어 토큰(color-eye,
+    color-core)을 재사용해 "같은 발광체"라는 인상을 준다.
   -->
   <rect width="400" height="800" fill="var(--color-bg-deep, #05070f)"/>
+
+  <!-- 스캔라인 — 필터가 아니라 얇은 사각형을 반복해 흉내낸다 -->
+  <g fill="var(--color-shell, #ecdfc0)" opacity="0.025">
+    <rect x="0" y="0" width="400" height="1.5"/>
+    <rect x="0" y="16" width="400" height="1.5"/>
+    <rect x="0" y="32" width="400" height="1.5"/>
+    <rect x="0" y="48" width="400" height="1.5"/>
+    <rect x="0" y="64" width="400" height="1.5"/>
+    <rect x="0" y="80" width="400" height="1.5"/>
+    <rect x="0" y="96" width="400" height="1.5"/>
+    <rect x="0" y="112" width="400" height="1.5"/>
+    <rect x="0" y="128" width="400" height="1.5"/>
+    <rect x="0" y="144" width="400" height="1.5"/>
+    <rect x="0" y="160" width="400" height="1.5"/>
+    <rect x="0" y="176" width="400" height="1.5"/>
+    <rect x="0" y="192" width="400" height="1.5"/>
+    <rect x="0" y="208" width="400" height="1.5"/>
+    <rect x="0" y="224" width="400" height="1.5"/>
+    <rect x="0" y="240" width="400" height="1.5"/>
+  </g>
+
+  <!-- 신호 점 — 소수만 초록/앰버로 밝혀 CRT 단말기 느낌을 더한다 -->
+  <g id="star-signal" opacity="0.85">
+    <circle cx="96" cy="118" r="1.8" fill="var(--color-eye, #39ff14)"/>
+    <circle cx="312" cy="266" r="1.6" fill="var(--color-core, #ffb000)"/>
+    <circle cx="184" cy="452" r="1.7" fill="var(--color-eye, #39ff14)"/>
+    <circle cx="58" cy="614" r="1.5" fill="var(--color-core, #ffb000)"/>
+    <circle cx="340" cy="558" r="1.8" fill="var(--color-eye, #39ff14)"/>
+  </g>
+
   <g fill="var(--color-star, #eaf0fa)">
     <g id="star-far" opacity="0.35">
       <circle cx="278.3" cy="210.0" r="0.71"/>
